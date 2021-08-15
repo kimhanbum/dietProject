@@ -1,0 +1,163 @@
+@charset "UTF-8";
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	color:white;
+	
+}
+
+* {
+	box-sizing: border-box;
+}
+b{
+	color:white;
+}
+#span5{
+	visibility: hidden;
+	color: #f44336;
+	position: relative;
+	top:-10px;
+	
+}
+
+select, input[type=text], input[type=password], input[type="button"] {
+	width: 100%;
+	padding: 15px;
+	margin: 5px 0 22px 0;
+	display: inline-block;
+	border: none;
+	background: #04060a7a; 
+	outline: none;
+	height:40px;
+	
+}
+
+select {
+	padding:10px 15px 10px 15px;
+	vertical-align: revert;
+	
+	
+}
+
+legend {
+	text-align: center;
+	font-size: 40px;
+	font-weight: bold
+}
+
+#id, #post1,#phoneNumber,#confirmNumber,#pass_ {
+	width: 70%
+}
+
+#jumin1, #jumin2 {
+	width: 49.2%
+}
+.confirm{
+	display:none;
+}
+#id+input, #post1+input ,#phoneNumber+input,#confirmNumber+input,#pass_+input{
+	width: 29%;
+	background: #8bc34a;
+	line-height:10px;
+    vertical-align:bottom;
+    color:white;
+}
+#confirmNumber{
+	text-align:center;
+}
+textarea {
+	width: 100%;resize:none;
+
+}
+
+#email, #domain {
+	width: 32%;
+	
+}
+
+
+#sel {
+	width:32%;
+	background: #04060a7a;
+	color:white;
+	margin-left:6px;
+	
+}
+
+.container2 {
+	border: none;
+	padding: 1.5% 1%
+}
+
+input[type=text]:focus, input[type=password]:focus {
+	background-color:#04060a7a;
+	outline: none;
+}
+input[type=text], input[type=password]{
+	color:white;
+	
+}
+
+input[type=button]:hover {
+	opacity: 0.8;
+	cursor: pointer
+}
+
+button {
+	background-color: #4CAF50;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	cursor: pointer;
+	width: 100%;
+	opacity: 0.9;
+}
+
+button:hover {
+	opacity: 1;
+}
+
+.
+.signupbtn{
+	background-color:#82ae46;
+}
+.signupbtn:hover{
+	background-color:#8cbb4c !important;
+	color:white !important;
+}
+
+.cancelbtn, .signupbtn {
+	float: left;
+	width:30%;
+	margin:auto 20px;
+}
+
+.container {
+	padding: 16px;
+}
+
+body {
+	background-color: white;
+}
+@keyframes animatezoom {
+  from {transform: scale(0)} 
+  to {transform: scale(1)}
+}
+#myform {
+	background-color:rgba(12, 85, 105, 0.51);
+	margin: 4% auto 15% auto;
+	width: 880px;
+	animation: animatezoom 0.6s;
+	border-radius:15px;
+	padding: 0px 15px 15px 15px;
+}
+
+fieldset{
+	border:none;
+	
+}
+#intro{
+	background:#04060a7a;
+	color: white;
+}

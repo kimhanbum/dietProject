@@ -1,0 +1,80 @@
+
+/*sidebar style 시작 */
+.one, .two, .three, 
+.four, .five, .six {
+	background-color: gray;
+	color: white;
+}
+
+.one+div, .two+div, .three+div, .four+div, 
+.five+div, .six+div, .title {
+	text-align: center;
+	font-weight: bold;
+	font-size: 15px
+}
+
+.title {
+	display: block;
+	font-size: 15px;
+	margin-bottom: 2px
+}
+
+.two>div, .three>div, .four>div, .six>div {
+	display: inline-block;
+	width: 48%;
+	text-align: center
+}
+
+.one, .five {
+	width: 48%;
+	text-align: center
+}
+/*sidebar style 끝 */
+.article_container {
+	width: 100%;
+	padding: 3em 0;
+	border :0px
+}
+.asideLeft_container {
+	width: 100%;
+	padding-left: 20px;
+	padding-right: 50px;
+	margin-right: auto;
+	margin-left: auto;
+}
+.asideRight_container {
+	width: 100%;
+	padding-left: 50px;
+	padding-right: 20px;
+	margin-right: auto;
+	margin-left: auto;
+}
+/*article style */
+article{
+	float: left;
+}
+aside {
+	float: left;
+	color: black;
+}
+aside a{
+	width: 100%;
+	color: black;
+	cursor: pointer;
+}
+li{
+	list-style: none;
+}
+div >a{
+	padding-left: 40px;
+}
+aside a:hover {
+	color: red;
+}
+article {
+	width:70%;
+	float: left;
+	padding: 20px 12px;
+	/* border: 1px solid #ccc; 이부분은 범위 영역확인용 삭제 해도됨*/
+	/* height:700px;           이부분은 범위 영역확인용 삭제 해도됨*/
+}

@@ -1,0 +1,272 @@
+
+ol,ul{list-style:none;margin:0px;padding:0px;}
+blockquote,q{quotes:none;}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
+table{border-collapse:collapse;border-spacing:0;}
+
+
+.txt-rt{text-align:right;}
+.txt-lt{text-align:left;}
+.txt-center{text-align:center;}
+.float-rt{float:right;}
+.float-lt{float:left;}
+.clear{clear:both;}
+.pos-relative{position:relative;}
+.pos-absolute{position:absolute;}
+.vertical-base{	vertical-align:baseline;}
+.vertical-top{	vertical-align:top;}
+nav.vertical ul li{	display:block;}
+nav.horizontal ul li{	display: inline-block;}
+img{max-width:100%;}
+#span1,#span2{color:#d06e67;}
+#findpassword,#register{background:none;
+                        color: white;
+                        border: none}
+#register:hover{color:#cddc39}  
+#findpassword:hover{color:#cddc39}               
+body {
+    font-family: 'Open Sans', sans-serif;
+    background: url(../images/banner.jpg)no-repeat center 0px;
+    background-attachment: fixed;
+	background-size: cover;
+}
+
+.login-form{
+	
+	border-radius:15px;
+	
+}
+.login-form>h2 {
+    font-size: 1.1em;
+    text-align: center;
+    padding: 1.2em;
+    background: #8bc34a;
+    color: #fff;
+    font-weight: 200;
+    letter-spacing: 10px;
+    border-radius:15px 15px 0 0 ;
+}
+.main {
+    padding: 3em 0 0;
+    
+}
+.login-form {
+    width:60%;
+    margin: 3.5em auto;
+    background: rgba(12, 85, 105, 0.51);
+    padding-bottom:1.5em;
+   
+}
+.agileits-top {
+    padding: 2em 3em 3em;
+}
+.login-form input[type="text"], .login-form input[type="password"] {
+    font-size: 1em;
+    color: #fff;
+    padding: 0.8em 1em;
+    border: 0;
+    width: 93%;
+    border-bottom: 1px solid #c7c7c7;
+    background: none;
+    
+}
+
+.styled-input input:focus ~ label, .styled-input input:valid ~ label {
+    font-size: 1.1em;
+    color: #cddc39;
+    top: -2em;
+    
+    transition: all 0.125s ease;
+}
+.styled-input {
+  width:100%;
+  margin: 2em 0 1em;
+  position: relative;
+}
+
+.styled-input label {
+    color: #fff;
+    padding: 0.8em 1em;
+    position: absolute;
+    top: 0;
+    left: 0;
+   
+	
+    transition: all 0.3s ease;
+    pointer-events: none;
+    font-weight: 400;
+    font-size: 1em;
+    display: block;
+    line-height: 1em;
+}
+.styled-input input ~ span {
+  display: block;
+  width: 0;
+  height:2px;
+  background:#fff;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  
+  transition: all 0.125s ease; 
+}
+
+.styled-input input:focus { outline: 0; }
+
+.styled-input input:focus ~ span {
+     width: 100%;
+    
+      transition: all 0.075s ease;
+      font-family: 'OpenSans-Regular';
+} 
+
+.login-form p {
+    font-size: 1em;
+    color: #fff;
+    margin: 1em 0 .5em;
+}
+
+
+.wthree-text label {
+    position: relative;
+    padding-left: 1.8em;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    color: #fff;
+    cursor: pointer;
+    display: block; 
+}
+.wthree-text label span:first-child {
+    width: 14px;
+    height: 14px;
+    border: 2px solid #fff;
+    position: absolute;
+    left: 0;
+	top: 2px; 
+}
+
+.wthree-text {
+    margin-top: 3em;
+}
+.wthree-text ul li{
+	display:inline-block;
+	float: left;
+}
+.wthree-text ul li:nth-child(2) {
+    float: right;
+}
+
+
+.agileits-bottom{
+	position:relative;
+}
+.agileits-bottom:before {
+    content: '';
+    position: absolute;
+    top: -17px;
+    left: -17px;
+    width: 0;
+    height: 0;
+    border-top: 17px solid transparent;
+    border-right: 17px solid rgba(12, 85, 105, 0.51);
+	transition:.5s all ease;
+}
+.agileits-bottom:after {
+    content: '';
+    position: absolute;
+    top: -17px;
+    right: -17px;
+    width: 0;
+    height: 0;
+    border-left: 17px solid rgba(12, 85, 105, 0.51);
+    border-top: 17px solid transparent;
+	transition:.5s all ease;
+}
+.agileits-bottom input[type="submit"] {
+    
+    font-size: 1.5em;
+    color: #02a299;
+    background: #fff;
+    outline: none;
+    cursor: pointer;
+    padding: 1em 0;    
+    border: none;
+    width:100%;
+    margin-left: -0.7em;
+    margin-right:2px;
+    position:relative;
+    
+    left:16px;
+  
+}
+.agileits-bottom input[type="submit"]:hover {
+    color: #8bc34a;
+	transition:.5s all ease;
+}
+
+@media(max-width:384px){
+.agileits-bottom input[type="submit"] {
+    width: 106.8%;
+    font-size: 0.9em;
+    margin-left: -0.7em;
+}
+.agileits-bottom {
+    margin: 2em -1.5em 0;
+}
+.agilesign-form { 
+    margin: 1.5em auto;
+}
+}
+@media(max-width:375px){
+.agileits-bottom input[type="submit"] {
+    width: 106.5%;
+    margin-left: -0.6em;
+}
+h1 {
+    font-size: 1.6em;
+} 
+.wthree-text ul li { 
+    float: none;
+    display: block;
+}
+.wthree-text ul li:nth-child(2) {
+    float: none;
+    margin-top: 1em;
+}
+.wthree-text {
+    margin-top: 1.5em;
+}
+}
+@media(max-width:320px){
+.w3layouts-main {
+    padding: 1em 0 0;
+}
+.agilesign-form {
+    width: 85%;
+} 
+.agilesign-form input[type="text"], .agilesign-form input[type="password"] {
+    font-size: 0.8em;
+    padding: 0.6em;
+    width: 92%;
+}
+.styled-input label {
+    padding: 0.6em;
+    font-size: 0.8em;
+}
+.styled-input input:focus ~ label, .styled-input input:valid ~ label {
+	font-size: 0.8em;
+    top: -1em;
+} 
+.styled-input input ~ span { 
+    bottom: -1px; 
+}
+.agileits-bottom input[type="submit"] {
+    width: 107%;
+    margin-left: -0.6em;
+}
+.agileits-bottom {
+    margin: 1.8em -1.5em 0;
+}
+}
+
