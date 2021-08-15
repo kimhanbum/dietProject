@@ -1,0 +1,82 @@
+/* article css 스타일*/
+article{
+	float: left;
+	width:70%;
+}
+
+/* aside css 스타일  */
+aside {
+	float: left;
+	display:flex;
+	padding: 65px 0px 0px 0px;
+	width:30%;
+	min-height: 1000px;
+	min-width: 250px;
+}
+.asideRight_container {
+	padding:25px 20px 25px 20px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+/* article,aside로 인한 float clear */
+body>section{
+	clear:left;
+}
+
+/*검색 관련 section css 적용 */
+article>section:nth-child(1)>div {
+	width : 700px;
+}
+article>section:nth-child(1){
+	padding-bottom:0px;
+	padding-top :65px
+}
+article>section:nth-child(1) input[type=text]{
+	height:40px;
+}
+article>section:nth-child(1)>div>div:nth-child(1){
+	height:60px;
+	background:#82AD46;
+}
+article>section:nth-child(1)>div>div:nth-child(1)>div{
+    padding-top:10px; 
+}
+
+
+/* hr margin 재정의 */
+hr{
+	margin-bottom: 7px;
+	margin-top: 0px;
+}
+
+/*검색 버튼 스타일 적용*/
+#seach_food{
+   margin-top : 30px;
+   font-size:1.4rem;
+   border-radius:10px;
+   width: 300px;
+   height: 50px;
+}
+
+/* aside 스크롤 미표시 클래스*/
+.box {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    overflow:auto; 
+ 	max-height:200px;
+}
+.box::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+    overflow:auto; 
+ 	max-height:200px;
+}
+/* aside text 사이즈 */
+aside input[type=text]{
+	height:25px;
+	width:258px;
+}
+/*aside button 사이즈 */
+aside button{
+	width:130px;
+}

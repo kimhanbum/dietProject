@@ -1,0 +1,238 @@
+
+
+img {
+	width: 20px;
+	height: 20px;
+}
+
+.title_today, .week_today, .week {
+	text-align: center;
+}
+
+.water>img {
+	width: 10px;
+	height: 10px;
+}
+
+.water {
+	border: 1px solid;
+	width: 150px;
+	padding: 5px;
+	border-radius: 20px;
+	color: #03a9f4;
+	font-size: 7px;
+	float: left;
+}
+
+.mugae>img {
+	width: 10px;
+	height: 10px;
+}
+
+.mugae {
+	border: 1px solid;
+	width: 150px;
+	padding: 5px;
+	border-radius: 20px;
+	color: #e91e63;
+	font-size: 6px;
+	float: left;
+	margin-left: 5%
+}
+
+.woon>img {
+	width: 10px;
+	height: 10px;
+}
+.woon>img:lsat-child{
+	margin-right:20px;
+}
+.woon {
+	border: 1px solid;
+	width: 150px;
+	padding: 5px;
+	border-radius: 20px;
+	color: #3be241;
+	font-size: 6px;
+	float: right;
+}
+
+body>fieldset:first-child>div {
+	width: 500px;
+}
+
+body>fieldset:last-child>div {
+	border: 1px solid black;
+	margin-bottom: 0.2rem;
+	height: 3rem;
+	width: 250px;
+}
+
+body>fieldset:last-child {
+	width: 100px;
+}
+
+.sun, .mon, .tue, .wed, .thu, .fri, .sat {
+	border-radius: 50%;
+	background-color: #f8ffb3;
+}
+
+.sun:hover {
+	color: #ffc107
+}
+
+.mon:hover {
+	color: #ffc107
+}
+
+.tue:hover {
+	color: #ffc107
+}
+
+.wed:hover {
+	color: #ffc107
+}
+
+.thu:hover {
+	color: #ffc107
+}
+
+.fri:hover {
+	color: #ffc107
+}
+
+.sat:hover {
+	color: #ffc107
+}
+
+/* modal */
+/* 모달 파일 label을 div로 감싸서 원하는 모양
+          만들고 input(upfile)태그 숨기기*/
+         
+.fileimg{
+   display:flex;
+   justify-content: center;
+}
+label{
+   cursor:pointer;
+   font-size: 1em;
+}
+#upfile{
+   visibility: hidden;
+}
+
+.textimg{
+   height:200px;
+   width:200px;
+}
+
+
+
+
+
+
+
+
+/*modal 스크롤*/
+ 
+.modal-body{
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    overflow:auto; 
+ 	max-height:200px;	
+}
+.modla-body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+    overflow:auto; 
+ 	max-height:200px;
+}
+
+
+/*submodal 이미지*/
+.imgsnack{
+	width:130px;
+	height:130px;
+}
+
+
+/*sidebar style 시작 */
+.one, .two, .three, 
+.four, .five, .six {
+	background-color: gray;
+	color: white;
+}
+
+.one+div, .two+div, .three+div, .four+div, 
+.five+div, .six+div, .title {
+	text-align: center;
+	font-weight: bold;
+	font-size: 15px
+}
+
+.title {
+	display: block;
+	font-size: 15px;
+	margin-bottom: 2px
+}
+
+.two>div, .three>div, .four>div, .six>div {
+	display: inline-block;
+	width: 48%;
+	text-align: center
+}
+
+.one, .five {
+	width: 48%;
+	text-align: center
+}
+/*sidebar style 끝 */
+
+.article_container {
+	width: 100%;
+	margin-right: auto;
+	margin-left: auto;
+}
+.asideLeft_container {
+	width: 100%;
+	padding-left: 20px;
+	padding-right: 50px;
+	margin-right: auto;
+	margin-left: auto;
+}
+.asideRight_container {
+	width: 100%;
+	padding-left: 50px;
+	padding-right: 20px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+/*article style */
+article{
+	float: left;
+}
+aside {
+	float: left;
+	color: black;
+}
+aside a{
+	width: 100%;
+	color: black;
+	cursor: pointer;
+}
+li{
+	list-style: none;
+}
+div >a{
+	padding-left: 40px;
+}
+aside a:hover {
+	color: red;
+}
+article {
+	width:50%;
+	float: left;
+	padding: 20px 12px;
+/*	border: 1px solid #ccc; /*이부분은 범위 영역확인용 삭제 해도됨*/
+/*	height:700px;           /*이부분은 범위 영역확인용 삭제 해도됨*/ 	
+}

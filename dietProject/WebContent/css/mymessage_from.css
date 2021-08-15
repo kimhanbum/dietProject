@@ -1,0 +1,48 @@
+.article_container {
+	width: 100%;
+	padding: 3em 0;
+	border :0px
+}
+.asideLeft_container {
+	width: 100%;
+	padding-left: 20px;
+	padding-right: 50px;
+	margin-right: auto;
+	margin-left: auto;
+}
+.asideRight_container {
+	width: 100%;
+	padding-left: 50px;
+	padding-right: 20px;
+	margin-right: auto;
+	margin-left: auto;
+}
+/*article style */
+article{
+	float: left;
+}
+aside {
+	float: left;
+	color: black;
+}
+aside a{
+	width: 100%;
+	color: black;
+	cursor: pointer;
+}
+li{
+	list-style: none;
+}
+aside div >a{
+	padding-left: 40px;
+}
+aside a:hover {
+	color: red;
+}
+article {
+	width:70%;
+	float: left;
+	padding: 20px 12px;
+	/* border: 1px solid #ccc; �̺κ��� ���� ����Ȯ�ο� ���� �ص���*/
+	/* height:700px;           �̺κ��� ���� ����Ȯ�ο� ���� �ص���*/
+}
