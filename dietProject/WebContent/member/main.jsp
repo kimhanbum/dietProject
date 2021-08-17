@@ -5,7 +5,7 @@
 <html lang="en">
   <head>
     <title>Diet_Project</title>
-    	<jsp:include page="../comm/header.jsp"/>
+    	<jsp:include page="/comm/header.jsp"/>
   </head>
   <body class="goto-here">
 	
@@ -13,7 +13,7 @@
 
     <section id="home-section" class="hero">
 		  <div class="home-slider owl-carousel">
-	      <div class="slider-item" style="background-image: url(images/bg_1.jpg);">
+	      <div class="slider-item" style="background-image: url(../images/bg_1.jpg);">
 	      	<div class="overlay"></div>
 	        <div class="container">
 	          <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
@@ -291,8 +291,8 @@
     <hr>
 
 		
-   	<jsp:include page="../comm/footer_Subcribe.jsp"/>
-   	<jsp:include page="../comm/footer_info.jsp"/>
+   	<jsp:include page="/comm/footer_Subcribe.jsp"/>
+   	<jsp:include page="/comm/footer_info.jsp"/>
 	
     
   

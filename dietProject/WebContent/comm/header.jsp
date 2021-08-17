@@ -3,18 +3,18 @@
 <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/open-iconic-bootstrap.min.css">
-<link rel="stylesheet" href="../css/animate.css">
-<link rel="stylesheet" href="../css/owl.carousel.min.css">
-<link rel="stylesheet" href="../css/owl.theme.default.min.css">
-<link rel="stylesheet" href="../css/magnific-popup.css">
-<link rel="stylesheet" href="../css/aos.css">
-<link rel="stylesheet" href="../css/ionicons.min.css">
-<link rel="stylesheet" href="../css/bootstrap-datepicker.css">
-<link rel="stylesheet" href="../css/jquery.timepicker.css">
-<link rel="stylesheet" href="../css/flaticon.css">
-<link rel="stylesheet" href="../css/icomoon.css">
-<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+<link rel="stylesheet" href="css/animate.css">
+<link rel="stylesheet" href="css/owl.carousel.min.css">
+<link rel="stylesheet" href="css/owl.theme.default.min.css">
+<link rel="stylesheet" href="css/magnific-popup.css">
+<link rel="stylesheet" href="css/aos.css">
+<link rel="stylesheet" href="css/ionicons.min.css">
+<link rel="stylesheet" href="css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="css/jquery.timepicker.css">
+<link rel="stylesheet" href="css/flaticon.css">
+<link rel="stylesheet" href="css/icomoon.css">
+<link rel="stylesheet" href="css/style.css">
 <div class="py-1 bg-primary">
   	<div class="container">
   		<div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
@@ -60,11 +60,12 @@
     
      <div class="login">
       <c:if test="${empty id}">
-      <a  id="login" href="login.jsp">로그인</a>&nbsp;&nbsp;&nbsp;
-         <a  id="join" href="join.jsp">회원가입</a>
+      <a  id="login" href="login.net">로그인</a>&nbsp;&nbsp;&nbsp;
+         <a  id="join" href="join.net">회원가입</a>
          </c:if>
          <c:if test="${!empty id}">
-         <a  id="MyPage" href="MyPage.jsp">마이페이지</a>
+          <a  id="mypage" href="mypage.my">마이페이지</a>
+          <a  href="logout.net">로그아웃</a>
          </c:if>
       </div>
     </div>

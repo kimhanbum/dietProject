@@ -11,8 +11,16 @@ public class MemberJoinProcessAction implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ActionForward forward =new ActionForward();
-		forward.setRedirect(false);
-		forward.setPath("");
+		String id= request.getParameter("id");
+		String  name=request.getParameter("pass");
+
+		
+		
+		
+		
+		
+		
+	
 		return forward;
 	}
 }
