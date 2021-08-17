@@ -7,12 +7,12 @@
 <title>today_diet</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="../css/today_diet.css" type="text/css">
+<link rel="stylesheet" href="css/today_diet.css" type="text/css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src='../js/today_diet_detail_contents.js'></script>
+  <script src='js/today_diet_detail_contents.js'></script>
 <style>
 /* select ▼ */
 .sel_wrap{ }
@@ -97,9 +97,9 @@ select::-ms-expand {
 				<hr>
 				<li><p class="icon-receipt">&nbsp;&nbsp;콘텐츠</p>
 					<ul>
-						<li><a href="#">내정보</a></li>
-						<li><a href="#">Today 식단</a></li>
-						<li><a href="#">식단 리스트</a></li>
+						<li><a href="${pageContext.request.contextPath}/infoCheck.my">내정보</a></li>
+						<li><a href="${pageContext.request.contextPath}/dietDetail.to">Today 식단</a></li>
+						<li><a href="${pageContext.request.contextPath}/dietpage.dt">식단 리스트</a></li>
 						<li><a href="#"></a></li>
 					</ul></li>
 				<hr>
@@ -213,6 +213,7 @@ select::-ms-expand {
 			  	</div>
 			</div>
 		</div>
+		</div>
 	</article>	
 
 
@@ -263,7 +264,7 @@ select::-ms-expand {
         
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button class="btn_submit" type="submit" onclick="ex3:클릭시 이동 할 주소">
+          <button class="btn_submit" id="btn_submit" type="submit" onclick="ex3:클릭시 이동 할 주소">
              <img src="images/btn_check.jpg" alt="btn_check"  ></button>  
         </div>
         
@@ -285,52 +286,164 @@ select::-ms-expand {
         
          <!-- SubModal body -->
         <div class="modal-body">
-	        <div class="snack_container">
-	    			<img src="images/meal/우유.jpg" class="imgsnack">
+			<div class="snack_container">
+			<div class="snack_container">
+	    			<img src="images/dietSnack/감자칩.jpg" class="imgsnack">
+	    			<input type="checkbox" class="snack_checkbox" id="check1" />
+			</div>
+	    			<img src="images/dietSnack/김치볶음밥.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/meal/snack2.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/김치찌개.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/meal/snack3.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/다크초콜릿.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/meal/snack4.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/닭갈비.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/meal/snack5.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/돈까스.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/meal/snack6.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/돼지갈비.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/meal/snack7.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/된장찌개.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/meal/snack8.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/떡볶이.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/meal/snack9.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/마늘빵.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/meal/snack10.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/만두.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/meal/snack11.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/머핀.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/meal/snack12.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/물냉면.jpg" class="imgsnack">
+	    			<input type="checkbox" class="snack_checkbox" id="check1" />
+			</div>
+			<div class="snack_container">
+	    			<img src="images/dietSnack/브라우니.jpg" class="imgsnack">
+	    			<input type="checkbox" class="snack_checkbox" id="check1" />
+			</div>
+			<div class="snack_container">
+	    			<img src="images/dietSnack/비빔냉면.jpg" class="imgsnack">
+	    			<input type="checkbox" class="snack_checkbox" id="check1" />
+			</div>
+			<div class="snack_container">
+	    			<img src="images/dietSnack/샌드위치.jpg" class="imgsnack">
+	    			<input type="checkbox" class="snack_checkbox" id="check1" />
+			</div>
+			<div class="snack_container">
+	    			<img src="images/dietSnack/생크림케이크.jpg" class="imgsnack">
+	    			<input type="checkbox" class="snack_checkbox" id="check1" />
+			</div>
+			<div class="snack_container">
+	    			<img src="images/dietSnack/소불고기.jpg" class="imgsnack">
+	    			<input type="checkbox" class="snack_checkbox" id="check1" />
+			</div>
+			<div class="snack_container">
+	    			<img src="../images/dietSnack/순대.jpg" class="imgsnack">
+	    			<input type="checkbox" class="snack_checkbox" id="check1" />
+			</div>
+			<div class="snack_container">
+	    			<img src="images/dietSnack/순두부찌개.jpg" class="imgsnack">
+	    			<input type="checkbox" class="snack_checkbox" id="check1" />
+			</div>
+			<div class="snack_container">
+	    			<img src="images/dietSnack/애플파이.jpg" class="imgsnack">
+	    			<input type="checkbox" class="snack_checkbox" id="check1" />
+			</div>
+			<div class="snack_container">
+	    			<img src="images/dietSnack/와플.jpg" class="imgsnack">
+	    			<input type="checkbox" class="snack_checkbox" id="check1" />
+			</div>
+			<div class="snack_container">
+	    			<img src="images/dietSnack/요거트.jpg" class="imgsnack">
+	    			<input type="checkbox" class="snack_checkbox" id="check1" />
+			</div>
+			<div class="snack_container">
+	    			<img src="images/dietSnack/우유.jpg" class="imgsnack">
+	    			<input type="checkbox" class="snack_checkbox" id="check1" />
+			</div>
+			<div class="snack_container">
+	    			<img src="images/dietSnack/제육볶음.jpg" class="imgsnack">
+	    			<input type="checkbox" class="snack_checkbox" id="check1" />
+			</div>
+			<div class="snack_container">
+	    			<img src="images/dietSnack/짜장면.jpg" class="imgsnack">
+	    			<input type="checkbox" class="snack_checkbox" id="check1" />
+			</div>
+			<div class="snack_container">
+	    			<img src="images/dietSnack/짬뽕.jpg" class="imgsnack">
+	    			<input type="checkbox" class="snack_checkbox" id="check1" />
+			</div>
+			<div class="snack_container">
+	    			<img src="images/dietSnack/치즈케이크.jpg" class="imgsnack">
+	    			<input type="checkbox" class="snack_checkbox" id="check1" />
+			</div>
+			<div class="snack_container">
+	    			<img src="images/dietSnack/콩국수.jpg" class="imgsnack">
+	    			<input type="checkbox" class="snack_checkbox" id="check1" />
+			</div>
+			<div class="snack_container">
+	    			<img src="images/dietSnack/쿠키.jpg" class="imgsnack">
+	    			<input type="checkbox" class="snack_checkbox" id="check1" />
+			</div>
+			<div class="snack_container">
+	    			<img src="images/dietSnack/탕수육.jpg" class="imgsnack">
+	    			<input type="checkbox" class="snack_checkbox" id="check1" />
+			</div>
+			<div class="snack_container">
+	    			<img src="images/dietSnack/튀김.jpg" class="imgsnack">
+	    			<input type="checkbox" class="snack_checkbox" id="check1" />
+			</div>
+			<div class="snack_container">
+	    			<img src="images/dietSnack/티라미슈.jpg" class="imgsnack">
+	    			<input type="checkbox" class="snack_checkbox" id="check1" />
+			</div>
+			<div class="snack_container">
+	    			<img src="images/dietSnack/파스타.jpg" class="imgsnack">
+	    			<input type="checkbox" class="snack_checkbox" id="check1" />
+			</div>
+			<div class="snack_container">
+	    			<img src="images/dietSnack/푸딩.jpg" class="imgsnack">
+	    			<input type="checkbox" class="snack_checkbox" id="check1" />
+			</div>
+			<div class="snack_container">
+	    			<img src="images/dietSnack/피자.png" class="imgsnack">
+	    			<input type="checkbox" class="snack_checkbox" id="check1" />
+			</div>
+			<div class="snack_container">
+	    			<img src="images/dietSnack/핫도그.jpg" class="imgsnack">
+	    			<input type="checkbox" class="snack_checkbox" id="check1" />
+			</div>
+			<div class="snack_container">
+	    			<img src="images/dietSnack/해물볶음밥.jpg" class="imgsnack">
+	    			<input type="checkbox" class="snack_checkbox" id="check1" />
+			</div>
+			<div class="snack_container">
+	    			<img src="images/dietSnack/해물칼국수.jpg" class="imgsnack">
+	    			<input type="checkbox" class="snack_checkbox" id="check1" />
+			</div>
+			<div class="snack_container">
+	    			<img src="images/dietSnack/햄버거.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
         </div>
@@ -345,6 +458,27 @@ select::-ms-expand {
     </div>
   </div>
   
+	  <!--  모달 저장 -->	 
+<script>
+ $(#btn_submit).on('click', function(){
+	$.ajax({
+		url:'${pageContext.request.contextPath}/',
+		type: 'post',
+		succes: function(result){
+			$(#btn_submit).modal('show');
+			console.log(result);
+		}
+		
+		
+	})
+	
+	 
+ })
+		 
+		 
+</script>
+
+
 		 
 		<!-- 서브모달 -->
 <script>
@@ -371,41 +505,41 @@ select::-ms-expand {
 					<div class="one">
 						<div>칼로리</div>
 					</div>
-					<div class='title'>1750 / 850 / 900</div>
+					<div class='title'>1750 / ${totalinfo.total_cal} / 900</div>
 				</div>
 				<div>
 					<div class="two">
 						<div>영양소</div>
 						<div>탄수화물</div>
 					</div>
-					<div class='title'>100 / 70 / 30</div>
+					<div class='title'>100 / ${totalinfo.total_carb} / 30</div>
 				</div>
 				<div>
 					<div class="three">
 						<div>영양소</div>
 						<div>단백질</div>
 					</div>
-					<div class='title'>100 / 60 / 40</div>
+					<div class='title'>100 / ${totalinfo.total_protein} / 40</div>
 				</div>
 				<div>
 					<div class="four">
 						<div>영양소</div>
 						<div>지방</div>
 					</div>
-					<div class='title'>100 / 50 / 50</div>
+					<div class='title'>100 / ${totalinfo.total_fat} / 50</div>
 				</div>
 				<div>
 					<div class="five">
 						<div>물</div>
 					</div>
-					<div class='title'>8잔 / 5잔 / 3잔</div>
+					<div class='title'>8잔 / ${totalinfo.total_water} / 3잔</div>
 				</div>
 				<div>
 					<div class="six">
 						<div>운동</div>
 						<div>(kcal)</div>
 					</div>
-					<div class='title'>800 / 200 / 600</div>
+					<div class='title'>800 / ${totalinfo.total_workout} / 600</div>
 				</div>
 			</fieldset>
 		</div>

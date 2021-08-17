@@ -2,6 +2,7 @@ package _comm.javabean;
 
 
 public class TotalInfo {
+	//필드                 (멤버변수)
 	private String id;
 	private String total_date;
 	private String total_bf;

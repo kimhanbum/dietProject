@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="../css/myPage.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/myPage.css" type="text/css">
 <style>
 #content.section_home {
 	line-height: 14px;
@@ -66,7 +66,6 @@
 }
 
 
-
 .section_home .btn_area_btm {
 	font-size: 0;
 	padding: 17px 0 0 1px;
@@ -112,9 +111,9 @@ p {
 				<hr>
 				<li><p class="icon-receipt">&nbsp;&nbsp;콘텐츠</p>
 					<ul>
-						<li><a href="#">내정보</a></li>
-						<li><a href="#">Today 식단</a></li>
-						<li><a href="#">식단 리스트</a></li>
+						<li><a href="${pageContext.request.contextPath}/infoCheck.my">내정보</a></li>
+						<li><a href="${pageContext.request.contextPath}/dietDetail.to">Today 식단</a></li>
+						<li><a href="${pageContext.request.contextPath}/dietpage.dt">식단 리스트</a></li>
 						<li><a href="#"></a></li>
 					</ul></li>
 				<hr>
@@ -145,7 +144,7 @@ p {
 						<h5>내 정보</h5>
 					</div>
 					<div style="position : absolute; left:10px; bottom:113px;"class="sh_content">
-					<a href="연결할주소" class="btn_model" 
+					<a href="${pageContext.request.contextPath}/infoCheck.my" class="btn_model" 
 					    onclick="clicker"><b class="btn2">관리</b></a>
 					</div>
 				</div>
@@ -156,7 +155,7 @@ p {
 						<h5>내 식단 리스트</h5>
 					</div>
 					 <div style="position : absolute; left:10px; top:468px;" class="sh_content">
-						<a href="연결할주소" class="btn_model"
+						<a href="${pageContext.request.contextPath}/dietpage.dt" class="btn_model"
 							onclick="clicker"><b
 							class="btn2" >관리</b></a>
 					</div>
@@ -170,7 +169,7 @@ p {
 					</div>
 					<div style="position:absolute; z-index:1; top:247px" class="sh_content">
 					<br>
-					<a style="margin-left:-40px;" href="연결할주소" class="btn_model"onclick="clicker"><b class="btn2" >관리</b></a>
+					<a style="margin-left:-40px;" href="${pageContext.request.contextPath}/dietDetail.to" class="btn_model"onclick="clicker"><b class="btn2" >관리</b></a>
 				</div>
 			</div>
 		    </div>
@@ -180,56 +179,7 @@ p {
 	
 	
 	
-	
-	
 
-	<!-- 마이페이지 우측 side -->
-	<aside class="ftco-section">
-		<div class="asideRight_container">
-			<fieldset>
-				<span class='title'>목 표 / 현재 / 섭취가능</span>
-				<div>
-					<div class="one">
-						<div>칼로리</div>
-					</div>
-					<div class='title'>1750 / 850 / 900</div>
-				</div>
-				<div>
-					<div class="two">
-						<div>영양소</div>
-						<div>탄수화물</div>
-					</div>
-					<div class='title'>100 / 70 / 30</div>
-				</div>
-				<div>
-					<div class="three">
-						<div>영양소</div>
-						<div>단백질</div>
-					</div>
-					<div class='title'>100 / 60 / 40</div>
-				</div>
-				<div>
-					<div class="four">
-						<div>영양소</div>
-						<div>지방</div>
-					</div>
-					<div class='title'>100 / 50 / 50</div>
-				</div>
-				<div>
-					<div class="five">
-						<div>물</div>
-					</div>
-					<div class='title'>8잔 / 5잔 / 3잔</div>
-				</div>
-				<div>
-					<div class="six">
-						<div>운동</div>
-					</div>
-					<div class='title'>800kcal / 200kcal / 600kcal</div>
-				</div>
-			</fieldset>
-		</div>
-	</aside>
 
 	<!-- footer 영역1 -->
 	<jsp:include page="../comm/footer_Subcribe.jsp" />

@@ -39,8 +39,10 @@ public class TodayFrontContoller extends javax.servlet.http.HttpServlet{
 		ActionForward forward =null;
 		Action action =null;
 		switch(command) {
+	     
+			
 			case "/todayDiet.to":
-				action = new MyDietLoadAction();
+				action = new TodayDietAction();
 				break;
 			case "/bottomProcess.to":
 				action = new TodayDietBottimProcessAction();
