@@ -35,6 +35,7 @@ public class DietFrontContoller extends javax.servlet.http.HttpServlet{
 		String command = RequestURI.substring(contextPath.length());
 		System.out.println("command = " + command);
 		
+		//깃 테스트
 		//초기화
 		ActionForward forward =null;
 		Action action =null;
