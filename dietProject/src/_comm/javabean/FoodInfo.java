@@ -4,6 +4,7 @@ package _comm.javabean;
 public class FoodInfo {
 	private int food_code;
 	private String food_name;
+	private String food_img_name;
 	private int food_carb; 
 	private int food_fat;
 	private int food_protein;
@@ -11,6 +12,14 @@ public class FoodInfo {
 	private int food_type;
 	private int nutrient_type;
 	
+	public String getFood_img_name() {
+		return food_img_name;
+	}
+
+	public void setFood_img_name(String food_img_name) {
+		this.food_img_name = food_img_name;
+	}
+
 	public int getFood_code() {
 		return food_code;
 	}

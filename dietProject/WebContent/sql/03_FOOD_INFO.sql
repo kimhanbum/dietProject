@@ -5,6 +5,7 @@ DROP TABLE FOOD_INFO purge;
 CREATE TABLE FOOD_INFO(
     FOOD_CODE       NUMBER(3)    NOT NULL,    --식자재코드
     FOOD_NAME     	VARCHAR2(30) NOT NULL,    --식자재이름
+    FOOD_IMG_NAME	VARCHAR2(30) NOT NULL,    --식자재 이미지 이름
     FOOD_CARB       NUMBER(3)	 NOT NULL,    --탄수화물 g수
     FOOD_FAT      	NUMBER(3)	 NOT NULL,    --지방 g수
     FOOD_PROTEIN  	NUMBER(3)	 NOT NULL,    --단백질 g수
