@@ -65,52 +65,49 @@ insert into FOOD_INFO values(food_seq.nextval,'해바라기씨',0,1,0,10,6,2);
 insert into FOOD_INFO values(food_seq.nextval,'피칸',0,2,0,12,6,2);
 
 --1.기성식단
-insert into MEAL_INFO values('M1','김치찌개',2,3,3,52);
-insert into MEAL_INFO values('M2','김치볶음밥',8,1,1,138);
-insert into MEAL_INFO values('M3','돈까스',6,4,3,82);
-insert into MEAL_INFO values('M4','햄버거',25,5,15,306);
-insert into MEAL_INFO values('M5','된장찌개',5,4,4,70);
-insert into MEAL_INFO values('M6','제육볶음',17,19,12,280);
-insert into MEAL_INFO values('M7','물냉면',14,1,2,69);
-insert into MEAL_INFO values('M8','비빔냉면',22,1,3,114);
-insert into MEAL_INFO values('M9','피자',110,18,17,357);
-insert into MEAL_INFO values('M10','콩국수',13,6,10,181);
-insert into MEAL_INFO values('M11','순두부찌개',7,4,1,97);
-insert into MEAL_INFO values('M12','해물볶음밥',31,2,4,162);
-insert into MEAL_INFO values('M13','만두',17,9,10,180);
-insert into MEAL_INFO values('M14','파스타',69,2,14,325);
-insert into MEAL_INFO values('M15','탕수육',21,6,6,260);
-insert into MEAL_INFO values('M16','짜장면',42,12,7,312);
-insert into MEAL_INFO values('M17','짬뽕',62,13,11,230);
-insert into MEAL_INFO values('M18','돼지갈비',4,15,28,293);
-insert into MEAL_INFO values('M19','소불고기',4,7,13,130);
-insert into MEAL_INFO values('M20','닭갈비',6,5,10,115);
-insert into MEAL_INFO values('M21','해물칼국수',31,2,1,70);
+insert into MEAL_INFO values('M1','김치찌개','kimstew.jpg',2,3,3,52);
+insert into MEAL_INFO values('M2','김치볶음밥','kimrice.jpg',8,1,1,138);
+insert into MEAL_INFO values('M3','돈까스','pork.jpg',6,4,3,82);
+insert into MEAL_INFO values('M4','햄버거','hamburger.jpg',25,5,15,306);
+insert into MEAL_INFO values('M5','된장찌개','soystew.jpg',5,4,4,70);
+insert into MEAL_INFO values('M6','제육볶음','jaeyuk.jpg',17,19,12,280);
+insert into MEAL_INFO values('M7','물냉면','mul.jpg',14,1,2,69);
+insert into MEAL_INFO values('M8','비빔냉면','bibim.jpg',22,1,3,114);
+insert into MEAL_INFO values('M9','피자','pizza.png',110,18,17,357);
+insert into MEAL_INFO values('M10','콩국수','soynoodle.jpg',13,6,10,181);
+insert into MEAL_INFO values('M11','순두부찌개','sundu.jpg',7,4,1,97);
+insert into MEAL_INFO values('M12','해물볶음밥','haemulrice.jpg',31,2,4,162);
+insert into MEAL_INFO values('M13','만두','man.jpg',17,9,10,180);
+insert into MEAL_INFO values('M14','파스타','pasta.jpg',69,2,14,325);
+insert into MEAL_INFO values('M15','탕수육','tang.jpg',21,6,6,260);
+insert into MEAL_INFO values('M16','짜장면','jajang.jpg',42,12,7,312);
+insert into MEAL_INFO values('M17','짬뽕','jjam.jpg',62,13,11,230);
+insert into MEAL_INFO values('M18','돼지갈비','porkrib.jpg',4,15,28,293);
+insert into MEAL_INFO values('M19','소불고기','sobul.jpg',4,7,13,130);
+insert into MEAL_INFO values('M20','닭갈비','chickenrib.jsp',6,5,10,115);
+insert into MEAL_INFO values('M21','해물칼국수','haemulcal.jpg',31,2,1,70);
 
 --2.간식
-insert into MEAL_INFO values('M22','떡볶이',30,4,2,150);
-insert into MEAL_INFO values('M23','순대',28,3,7,122);
-insert into MEAL_INFO values('M24','튀김',24,12,18,308);
-insert into MEAL_INFO values('M25','생크림케익',20,18,4,257);
-insert into MEAL_INFO values('M26','티라미슈',20,19,6,261);
-insert into MEAL_INFO values('M27','머핀',26,1,5,132);
-insert into MEAL_INFO values('M28','브라우니',21,4,1,129);
-insert into MEAL_INFO values('M29','치즈케이크',20,18,4,257);
-insert into MEAL_INFO values('M30','쿠키',3,1,1,24);
-insert into MEAL_INFO values('M31','와플',19,4,3,121);
-insert into MEAL_INFO values('M32','다크초콜릿',24,14,2,207);
-insert into MEAL_INFO values('M33','마늘빵',7,2,1,53);
-insert into MEAL_INFO values('M34','푸딩',24,4,2,140);
-insert into MEAL_INFO values('M35','아이스크림',32,14,4,267);
-insert into MEAL_INFO values('M36','감자칩',45,33,6,835);
-insert into MEAL_INFO values('M37','애플파이',57,19,3,411);
-insert into MEAL_INFO values('M38','우유',4,4,3,65);
-insert into MEAL_INFO values('M39','샌드위치',71,21,5,500);
-insert into MEAL_INFO values('M40','요거트',4,0,10,55);
-insert into MEAL_INFO values('M41','핫도그',27,11,7,235);
-
-
-
+insert into MEAL_INFO values('M22','떡볶이','tteok.jpg',30,4,2,150);
+insert into MEAL_INFO values('M23','순대','sundae.jpg',28,3,7,122);
+insert into MEAL_INFO values('M24','튀김','fried.jpg',24,12,18,308);
+insert into MEAL_INFO values('M25','생크림케익','cake.jpg',20,18,4,257);
+insert into MEAL_INFO values('M26','티라미슈','tira.jpg',20,19,6,261);
+insert into MEAL_INFO values('M27','머핀','muffin.jpg',26,1,5,132);
+insert into MEAL_INFO values('M28','브라우니','brownie.jpg',21,4,1,129);
+insert into MEAL_INFO values('M29','치즈케이크','cheesecake.jpg',20,18,4,257);
+insert into MEAL_INFO values('M30','쿠키','cookie.jpg',3,1,1,24);
+insert into MEAL_INFO values('M31','와플','waffle.jpg',19,4,3,121);
+insert into MEAL_INFO values('M32','다크초콜릿','darkchoco.jsp',24,14,2,207);
+insert into MEAL_INFO values('M33','마늘빵','garlic.jpg',7,2,1,53);
+insert into MEAL_INFO values('M34','푸딩','pudding.jpg',24,4,2,140);
+insert into MEAL_INFO values('M35','아이스크림','icecream.jpg',32,14,4,267);
+insert into MEAL_INFO values('M36','감자칩','chip.jsp',45,33,6,835);
+insert into MEAL_INFO values('M37','애플파이','applepie.jpg',57,19,3,411);
+insert into MEAL_INFO values('M38','우유','milk.jpg',4,4,3,65);
+insert into MEAL_INFO values('M39','샌드위치','sandwich.jpg',71,21,5,500);
+insert into MEAL_INFO values('M40','요거트','yogurt.jpg',4,0,10,55);
+insert into MEAL_INFO values('M41','핫도그','hotdog.jpg',27,11,7,235);
 
 --초기 입력값 
 
@@ -160,12 +157,5 @@ insert into NOTICE_INFO values('admin01',1,'공지입니다.','홈페이가 오�
 --문의사항
 insert into QUESTION_INFO values('user002',1,'문의사항이 있습니다.','식단작성방법이 어떻게되나요',sysdate,1,0,0);
 insert into QUESTION_INFO values('admin01',2,'re:문의사항이 있습니다.','식단작성항목으로가세요',sysdate,1,1,1);
-
-
-
-
-
-
-
 
 
