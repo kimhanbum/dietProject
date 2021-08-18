@@ -6,6 +6,7 @@ DROP TABLE MEAL_INFO purge;
 CREATE TABLE MEAL_INFO(
 	MEAL_CODE      VARCHAR2(4)    	NOT NULL,    --기성식단 코드
 	MEAL_NAME      VARCHAR2(30)     NOT NULL,    --기성식단 이름
+	MEAL_IMG_NAME  VARCHAR2(30)     NOT NULL,    --기성식단 이름
     MEAL_CARB      NUMBER(3)	 	NOT NULL,    --기성식단 탄수 g
     MEAL_FAT  	   NUMBER(3)	 	NOT NULL,    --기성식단 지방 g
     MEAL_PROTEIN   NUMBER(3)	 	NOT NULL,    --기성식단 단백 g

@@ -4,6 +4,7 @@ package _comm.javabean;
 public class MealInfo {
 	private String meal_code;
 	private String meal_name;
+	private String meal_img_name;
 	private int meal_carb;
 	private int meal_fat;
 	private int meal_protein;
@@ -23,6 +24,14 @@ public class MealInfo {
 
 	public void setMeal_name(String meal_name) {
 		this.meal_name = meal_name;
+	}
+	
+	public String getMeal_img_name() {
+		return meal_img_name;
+	}
+
+	public void setMeal_img_name(String meal_img_name) {
+		this.meal_img_name = meal_img_name;
 	}
 
 	public int getMeal_carb() {
@@ -60,4 +69,6 @@ public class MealInfo {
 	public MealInfo() {
 		
 	}
+
+	
 }

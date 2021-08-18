@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import javax.naming.*;
 import javax.sql.*;
 
+import _comm.javabean.DietInfo;
+import _comm.javabean.MealInfo;
 import _comm.javabean.TotalInfo;
 
 
@@ -39,7 +41,7 @@ public class TodayDAO {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement("select * from total_info "
 			                           + "where id= 'user001'" 
-			                           + "and to_date(total_date, 'YY/MM/DD') = '21/08/10'");
+			                           + "and to_date(total_date, 'YY/MM/DD') = '21/08/17'");
 			
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
@@ -84,34 +86,110 @@ public class TodayDAO {
 
 
 	
-	public TotalInfo getDietInfo(String code) {
-		TotalInfo total = new TotalInfo();
+	public DietInfo getDietInfo(String code) {
+		DietInfo diet = new DietInfo();
 		Connection con = null;
 		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement("select * from diet_info where diet_code=?");
+			pstmt.setString(1, code);
+			//실행                
+			rs = pstmt.executeQuery();
+			if (rs.next()) {  
+			    //변수이름.set(쓸 변수 값) 저장하기
+			    diet.setId(rs.getString("id"));
+			    diet.setDiet_code(rs.getString("diet_code"));
+			    diet.setDiet_name(rs.getString("diet_name"));
+			    diet.setDiet_form(rs.getString("diet_form"));
+			    diet.setDiet_recomm(rs.getInt("diet_recomm"));
+			    diet.setDiet_total_carb(rs.getInt("diet_total_carb"));
+			    diet.setDiet_total_fat(rs.getInt("diet_total_fat"));
+			    diet.setDiet_total_protein(rs.getInt("diet_total_protein"));
+			    diet.setDiet_total_cal(rs.getInt("diet_total_cal"));
+			    diet.setDiet_date(rs.getString("diet_date"));
+			    if(rs.getInt("diet_share") == 0) {
+			    	diet.setDiet_share(false);
+			    }else if(rs.getInt("diet_share") == 1) {
+			    	diet.setDiet_share(true);
+			    } return diet;
+			    
+			}
+		} catch (Exception ex) {
+			System.out.println("getDietlInfo() 에러: " + ex);
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			if (con != null)
+				try {
+					con.close();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+		} return diet;
 		
-		
-		
-		
-		
-		return total;
 	}
 
+	
+	
 
-	public TotalInfo getMealInfo(String code) {
-        TotalInfo total = new TotalInfo();
+	public MealInfo getMealInfo(String code) {
+        MealInfo meal = new MealInfo();
         Connection con = null;
 		PreparedStatement pstmt = null;
-		
-		
-		
-		
-		
-		return total;
+		ResultSet rs = null;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement("select * from meal_info where meal_code=?");
+			pstmt.setString(1, code);		
+			           //실행                
+			rs = pstmt.executeQuery();
+			if (rs.next()) {  
+			    //변수이름.set(쓸 변수 값) 저장하기
+				meal.setMeal_code(rs.getString("meal_code"));
+			    meal.setMeal_name(rs.getString("meal_name"));
+			    meal.setMeal_img_name(rs.getString("meal_img_name"));
+			    meal.setMeal_carb(rs.getInt("meal_carb"));
+			    meal.setMeal_fat(rs.getInt("meal_fat"));
+			    meal.setMeal_protein(rs.getInt("meal_protein"));
+			    meal.setMeal_cal(rs.getInt("meal_cal"));
+			}
+		} catch (Exception ex) {
+			System.out.println("getMealInfo() 에러: " + ex);
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			if (con != null)
+				try {
+					con.close();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+		} return meal;
 	}
 
-	
-	
-	
+
 	
 }
 
