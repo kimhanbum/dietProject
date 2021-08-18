@@ -63,6 +63,9 @@ public class DietFrontContoller extends javax.servlet.http.HttpServlet{
 			case "/dietReplyUpdate.dt":
 				action = new DietReplyUpdateAction();
 				break;
+			case "/dietReplyLoad.dt":
+				action = new DietReplyLoadAction();
+				break;
 		}
 		
 		forward = action.execute(request,response);

@@ -1,68 +1,68 @@
 --이름,탄수화물,지방,단백질,칼로리,종류1(음식타입),종류2(영양소타입)
 --1.채소 
-insert into FOOD_INFO values(food_seq.nextval,'감자',16,0,2,70,1,1);
-insert into FOOD_INFO values(food_seq.nextval,'고구마',26,0,2,112,1,1);
-insert into FOOD_INFO values(food_seq.nextval,'브로콜리',7,0,3,34,1,1);
-insert into FOOD_INFO values(food_seq.nextval,'샐러리',1,0,0,6,1,1);
-insert into FOOD_INFO values(food_seq.nextval,'아스파라거스',1,0,0,4,1,1);
-insert into FOOD_INFO values(food_seq.nextval,'오이',11,0,2,45,1,1);
-insert into FOOD_INFO values(food_seq.nextval,'토마토',5,0,1,22,1,1);
-insert into FOOD_INFO values(food_seq.nextval,'올리브',1,0,0,5,1,1);
-insert into FOOD_INFO values(food_seq.nextval,'당근',10,0,1,41,1,1);
-insert into FOOD_INFO values(food_seq.nextval,'버섯',3,0,3,22,1,1);
+insert into FOOD_INFO values(food_seq.nextval,'감자','potato',16,0,2,70,1,1);
+insert into FOOD_INFO values(food_seq.nextval,'고구마','sweetPotato',26,0,2,112,1,1);
+insert into FOOD_INFO values(food_seq.nextval,'브로콜리','broccoli',7,0,3,34,1,1);
+insert into FOOD_INFO values(food_seq.nextval,'샐러리','celery',1,0,0,6,1,1);
+insert into FOOD_INFO values(food_seq.nextval,'아스파라거스','asparagus',1,0,0,4,1,1);
+insert into FOOD_INFO values(food_seq.nextval,'오이','cucumber',11,0,2,45,1,1);
+insert into FOOD_INFO values(food_seq.nextval,'토마토','tomato',5,0,1,22,1,1);
+insert into FOOD_INFO values(food_seq.nextval,'올리브','olive',1,0,0,5,1,1);
+insert into FOOD_INFO values(food_seq.nextval,'당근','carrot',10,0,1,41,1,1);
+insert into FOOD_INFO values(food_seq.nextval,'버섯','mushroom',3,0,3,22,1,1);
 
 --2.과일
-insert into FOOD_INFO values(food_seq.nextval,'딸기',60,0,1,222,2,1);
-insert into FOOD_INFO values(food_seq.nextval,'바나나',27,0,1,105,2,1);
-insert into FOOD_INFO values(food_seq.nextval,'사과',19,0,0,72,2,1);
-insert into FOOD_INFO values(food_seq.nextval,'오렌지',15,0,1,62,2,1);
-insert into FOOD_INFO values(food_seq.nextval,'블루베리',21,1,1,83,2,1);
-insert into FOOD_INFO values(food_seq.nextval,'포도',15,0,1,62,2,1);
-insert into FOOD_INFO values(food_seq.nextval,'복숭아',36,0,1,136,2,1);
-insert into FOOD_INFO values(food_seq.nextval,'아보카도',17,29,4,322,2,2);
-insert into FOOD_INFO values(food_seq.nextval,'키위',11,1,1,46,2,1);
-insert into FOOD_INFO values(food_seq.nextval,'배',25,0,1,96,2,1);
+insert into FOOD_INFO values(food_seq.nextval,'딸기','strawberry',60,0,1,222,2,1);
+insert into FOOD_INFO values(food_seq.nextval,'바나나','banana',27,0,1,105,2,1);
+insert into FOOD_INFO values(food_seq.nextval,'사과','apple',19,0,0,72,2,1);
+insert into FOOD_INFO values(food_seq.nextval,'오렌지','orange',15,0,1,62,2,1);
+insert into FOOD_INFO values(food_seq.nextval,'블루베리','blueberries',21,1,1,83,2,1);
+insert into FOOD_INFO values(food_seq.nextval,'포도','grape',15,0,1,62,2,1);
+insert into FOOD_INFO values(food_seq.nextval,'복숭아','peach',36,0,1,136,2,1);
+insert into FOOD_INFO values(food_seq.nextval,'아보카도','avocado',17,29,4,322,2,2);
+insert into FOOD_INFO values(food_seq.nextval,'키위','kiwi',11,1,1,46,2,1);
+insert into FOOD_INFO values(food_seq.nextval,'배','pear',25,0,1,96,2,1);
 
 --3.어류
-insert into FOOD_INFO values(food_seq.nextval,'고등어',0,9,20,167,3,3);
-insert into FOOD_INFO values(food_seq.nextval,'연어',0,6,22,146,3,3);
-insert into FOOD_INFO values(food_seq.nextval,'참치',0,5,23,144,3,3);
-insert into FOOD_INFO values(food_seq.nextval,'청어',0,14,16,195,3,3);
-insert into FOOD_INFO values(food_seq.nextval,'멸치',0,5,20,131,3,3);
-insert into FOOD_INFO values(food_seq.nextval,'대구',8,11,19,211,3,3);
-insert into FOOD_INFO values(food_seq.nextval,'메기',9,15,18,240,3,3);
-insert into FOOD_INFO values(food_seq.nextval,'도미',0,3,44,218,3,3);
-insert into FOOD_INFO values(food_seq.nextval,'황새치',1,8,23,177,3,3);
-insert into FOOD_INFO values(food_seq.nextval,'넙치',0,2,21,110,3,3);
+insert into FOOD_INFO values(food_seq.nextval,'고등어','mackerel',0,9,20,167,3,3);
+insert into FOOD_INFO values(food_seq.nextval,'연어','salmon',0,6,22,146,3,3);
+insert into FOOD_INFO values(food_seq.nextval,'참치','tuna',0,5,23,144,3,3);
+insert into FOOD_INFO values(food_seq.nextval,'청어','herring',0,14,16,195,3,3);
+insert into FOOD_INFO values(food_seq.nextval,'멸치','anchovy',0,5,20,131,3,3);
+insert into FOOD_INFO values(food_seq.nextval,'대구','cod',8,11,19,211,3,3);
+insert into FOOD_INFO values(food_seq.nextval,'메기','catfish',9,15,18,240,3,3);
+insert into FOOD_INFO values(food_seq.nextval,'도미','bream',0,3,44,218,3,3);
+insert into FOOD_INFO values(food_seq.nextval,'황새치','swordfish',1,8,23,177,3,3);
+insert into FOOD_INFO values(food_seq.nextval,'넙치','halibut',0,2,21,110,3,3);
 
 --4.육류
-insert into FOOD_INFO values(food_seq.nextval,'돼지앞다리',0,12,16,182,4,3);
-insert into FOOD_INFO values(food_seq.nextval,'돼지뒷다리',0,19,17,245,4,2);
-insert into FOOD_INFO values(food_seq.nextval,'돼지목살',0,19,2,269,4,3);
-insert into FOOD_INFO values(food_seq.nextval,'닭다리',0,9,19,156,4,3);
-insert into FOOD_INFO values(food_seq.nextval,'닭가슴살',0,1,23,109,4,3);
-insert into FOOD_INFO values(food_seq.nextval,'소등심',0,14,20,214,4,3);
-insert into FOOD_INFO values(food_seq.nextval,'소안심',0,9,21,169,4,3);
+insert into FOOD_INFO values(food_seq.nextval,'돼지앞다리','pork_forelimbs',0,12,16,182,4,3);
+insert into FOOD_INFO values(food_seq.nextval,'돼지뒷다리','pork_hindleg',0,19,17,245,4,2);
+insert into FOOD_INFO values(food_seq.nextval,'돼지목살','pork_neck',0,19,2,269,4,3);
+insert into FOOD_INFO values(food_seq.nextval,'닭다리','chicken_leg',0,9,19,156,4,3);
+insert into FOOD_INFO values(food_seq.nextval,'닭가슴살','chicken_breast',0,1,23,109,4,3);
+insert into FOOD_INFO values(food_seq.nextval,'소등심','beef_sirloin',0,14,20,214,4,3);
+insert into FOOD_INFO values(food_seq.nextval,'소안심','beef_tenderloin',0,9,21,169,4,3);
 
 --5.해조류
-insert into FOOD_INFO values(food_seq.nextval,'바지락',2,1,12,67,5,3);
-insert into FOOD_INFO values(food_seq.nextval,'관자',2,1,20,106,5,3);
-insert into FOOD_INFO values(food_seq.nextval,'키조개',1,1,11,57,5,3);
-insert into FOOD_INFO values(food_seq.nextval,'새조개',1,2,21,110,5,3);
-insert into FOOD_INFO values(food_seq.nextval,'미역',10,1,3,45,5,1);
-insert into FOOD_INFO values(food_seq.nextval,'김',5,0,6,34,5,3);
-insert into FOOD_INFO values(food_seq.nextval,'톳',5,0,1,24,5,1);
-insert into FOOD_INFO values(food_seq.nextval,'파래',3,0,2,11,5,1);
+insert into FOOD_INFO values(food_seq.nextval,'바지락','bagirak',2,1,12,67,5,3);
+insert into FOOD_INFO values(food_seq.nextval,'관자','scallop',2,1,20,106,5,3);
+insert into FOOD_INFO values(food_seq.nextval,'키조개','key_clam',1,1,11,57,5,3);
+insert into FOOD_INFO values(food_seq.nextval,'새조개','sea_clam',1,2,21,110,5,3);
+insert into FOOD_INFO values(food_seq.nextval,'미역','seaweed',10,1,3,45,5,1);
+insert into FOOD_INFO values(food_seq.nextval,'김','dry_seaweed',5,0,6,34,5,3);
+insert into FOOD_INFO values(food_seq.nextval,'톳','ttot',5,0,1,24,5,1);
+insert into FOOD_INFO values(food_seq.nextval,'파래','pare',3,0,2,11,5,1);
 
 --6.견과류
-insert into FOOD_INFO values(food_seq.nextval,'밤',7,0,4,16,6,1);
-insert into FOOD_INFO values(food_seq.nextval,'땅콩',0,2,1,11,6,2);
-insert into FOOD_INFO values(food_seq.nextval,'호두',1,3,1,26,6,2);
-insert into FOOD_INFO values(food_seq.nextval,'아몬드',0,1,0,7,6,2);
-insert into FOOD_INFO values(food_seq.nextval,'잣',0,2,1,12,6,2);
-insert into FOOD_INFO values(food_seq.nextval,'피스타치오',1,1,0,4,6,2);
-insert into FOOD_INFO values(food_seq.nextval,'해바라기씨',0,1,0,10,6,2);
-insert into FOOD_INFO values(food_seq.nextval,'피칸',0,2,0,12,6,2);
+insert into FOOD_INFO values(food_seq.nextval,'밤','chestnut',7,0,4,16,6,1);
+insert into FOOD_INFO values(food_seq.nextval,'땅콩','peanut ',0,2,1,11,6,2);
+insert into FOOD_INFO values(food_seq.nextval,'호두','walnut',1,3,1,26,6,2);
+insert into FOOD_INFO values(food_seq.nextval,'아몬드','almond',0,1,0,7,6,2);
+insert into FOOD_INFO values(food_seq.nextval,'잣','pine_nut',0,2,1,12,6,2);
+insert into FOOD_INFO values(food_seq.nextval,'피스타치오','pistachio',1,1,0,4,6,2);
+insert into FOOD_INFO values(food_seq.nextval,'해바라기씨','sunflower_seed',0,1,0,10,6,2);
+insert into FOOD_INFO values(food_seq.nextval,'피칸','pecan',0,2,0,12,6,2);
 
 --1.기성식단
 insert into MEAL_INFO values('M1','김치찌개','kimstew.jpg',2,3,3,52);
@@ -157,5 +157,4 @@ insert into NOTICE_INFO values('admin01',1,'공지입니다.','홈페이가 오�
 --문의사항
 insert into QUESTION_INFO values('user002',1,'문의사항이 있습니다.','식단작성방법이 어떻게되나요',sysdate,1,0,0);
 insert into QUESTION_INFO values('admin01',2,'re:문의사항이 있습니다.','식단작성항목으로가세요',sysdate,1,1,1);
-
 

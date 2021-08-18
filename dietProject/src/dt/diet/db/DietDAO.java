@@ -4,7 +4,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.naming.*;
@@ -136,10 +135,17 @@ public class DietDAO {
 				pstmt.setInt(3,startrow);
 				pstmt.setInt(4,endrow);
 				rs = pstmt.executeQuery();
+			
 			}
 			System.out.println(board_list_sql);
 			while(rs.next()) {
 				DietInfo d = new DietInfo();
+				
+				//나눠서 쓰면 
+				String str = rs.getString("DIET_CODE"); //반환형 있음
+				d.setDiet_code(str);
+				
+				
 				d.setDiet_code(rs.getString("DIET_CODE"));
 				d.setDiet_name(rs.getString("DIET_NAME"));
 				if(rs.getInt("DIET_SHARE") == 1)
@@ -309,7 +315,7 @@ public class DietDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs =null;
 		JsonArray jArray = new JsonArray();
-		String select_sql ="select food_name from food_info where food_code = ?";
+		String select_sql ="select food_name,food_img_name from food_info where food_code = ?";
 		try {
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(select_sql);
@@ -320,6 +326,7 @@ public class DietDAO {
 				if(rs.next()) {
 					JsonObject object =new JsonObject();
 					object.addProperty("food_name",rs.getString(1));
+					object.addProperty("food_img_name",rs.getString(2));
 					jArray.add(object);
 				}
 			}
@@ -399,5 +406,164 @@ public class DietDAO {
 			}
 		}
 		return array;
+	}	
+	public int replyInsert(DietReply dr) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			conn = ds.getConnection();
+			String max_sql = "(select nvl(max(diet_re_num),0)+1 from diet_reply)";
+			String sql = "insert into diet_reply(id,diet_code,diet_re_num,diet_re_seq,diet_re_content) "
+					+ "   values(?,?,"+max_sql+",?,?)";
+			
+			//PreparedStatement 사용
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,dr.getId());
+			pstmt.setString(2,dr.getDiet_code());
+			pstmt.setInt(3,dr.getDiet_re_seq());
+			pstmt.setString(4,dr.getDiet_re_content());
+			result=pstmt.executeUpdate();
+			
+			if(result == 1)
+				System.out.println("댓글 삽입이 완료되었습니다.");
+		}catch (Exception ex) {
+			System.out.println("replyInsert()에러 : " + ex);
+			ex.printStackTrace();
+		}finally {
+			try {
+				if(pstmt != null) 
+					pstmt.close();
+			}catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			try {
+				if(conn != null) 
+					conn.close();
+			}catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return result;
+	}
+	public JsonArray getReplyList(String reply_dietCode,int state) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sort="asc";
+		if(state == 2) {
+			sort="desc";
+		}
+		String sql = "select * from diet_reply"
+				  + " where diet_code = ? "
+				  + " order by diet_re_date " + sort;
+		JsonArray array =new JsonArray();
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, reply_dietCode);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				JsonObject object =new JsonObject();
+				object.addProperty("id",rs.getString(1));
+				object.addProperty("diet_code",rs.getString(2));
+				object.addProperty("diet_re_num",rs.getInt(3));
+				object.addProperty("diet_re_seq",rs.getInt(4));
+				object.addProperty("diet_re_content",rs.getString(5));
+				object.addProperty("diet_re_date",rs.getString(6));
+				array.add(object);
+			}
+		} catch (Exception e) {
+			System.out.println("getReplyList() 에러 :" + e);
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			try {
+				if (pstmt != null)
+					pstmt.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return array;
+	}
+	public int replyDelete(int num) {
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    int result=0;
+ 
+	    try {
+	    	conn = ds.getConnection();
+	    	
+		    String sql = "delete diet_reply where diet_re_num = ?";
+		    
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1,num);
+			result = pstmt.executeUpdate();
+			if(result == 1) {
+				System.out.println("데이터 삭제 되었습니다.");
+			}
+			
+		}catch (SQLException ex) {
+			ex.printStackTrace();
+			System.out.println("replyDelete() 에러 : " + ex);
+		}finally {
+			try {
+				if(pstmt != null) 
+					pstmt.close();
+			}catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			try {
+				if(conn != null) 
+					conn.close();
+			}catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return result;
+	}
+	public int replyUpdate(int num,String content) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int result=0;
+		try {
+			conn = ds.getConnection();
+			String sql = "update diet_reply set diet_re_content=? "
+					   +" where diet_re_num = ? ";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, content);
+			pstmt.setInt(2, num);
+			result = pstmt.executeUpdate();
+			if (result == 1) {
+				System.out.println("데이터가 수정 되었습니다.");
+			}
+		} catch (Exception e) {
+			System.out.println("replyUpdate 에러 :" + e);
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return result;
 	}
 }

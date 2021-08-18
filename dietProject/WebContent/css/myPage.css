@@ -68,6 +68,9 @@ li{
 div >a{
 	padding-left: 40px;
 }
+aside>div>ul , aside>div>ul>li>ul{
+	padding-left: 40px !important;
+}
 aside a:hover {
 	color: red;
 }
