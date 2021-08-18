@@ -25,7 +25,7 @@
 	</div>
     
 	
-	  <form name="myform" method="get" action="send.html"
+	  <form name="myform" method="post" action="joinAddProcess.net"
 	id='myform' style="width:60%" >
 	
 	<div class="containner">
@@ -34,39 +34,39 @@
 	<div style="margin-left:20%;margin-top:20px">
 	<label for="goal" style="margin-top:30px"><b>목표</b></label><br>	
 	<div style="display:inline-block">
-	<input type="radio" name="goal" value="m" id="gender1">체중감량
+	<input type="radio" name="goal" value="1" >체중감량
 	</div>
 	
 	<div style="margin-left:20%;display:inline-block">
-	<input type="radio" name="goal" value="f" id="gender2">체중유지
+	<input type="radio" name="goal" value="2" >체중유지
 	</div>
 	
 	<div style="margin-left:20%;display:inline-block">
-	<input type="radio" name="goal" value="f" id="gender3">체중증가
+	<input type="radio" name="goal" value="3" >체중증가
 	</div>	
 	</div>
 	
 	<br>
 	<div style="margin-left:20%; margin-bottom:20px;margin-top:20px">
 	<div style="display:inline-block; width:32%">
-	<label for="tel_1"><b>&nbsp;&nbsp;&nbsp;&nbsp;키</b></label><br>
-	<input type="text"  name="tel_1" id="tel_1" 
+	<label for="height"><b>&nbsp;&nbsp;&nbsp;&nbsp;키</b></label><br>
+	<input type="text"  name="height" id="height" 
 	         maxLength="3" style="width:34%">
-	<label for="tel_2"><b>cm&nbsp;&nbsp; </b></label>
+	<label ><b>cm&nbsp;&nbsp; </b></label>
 	</div>      
 	         
 	<div style="display:inline-block; width:32%">        
-	<label for="tel_1"><b>체&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;중</b></label><br>
-	<input type="text"  name="tel_2" id="tel_2"  
+	<label for="wight"><b>체&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;중</b></label><br>
+	<input type="text"  name="wight" id="weight"  
 	         maxLength="3"  style="width:34%">
-	 <label for="tel_3"><b> kg </b></label>        
+	 <label ><b> kg </b></label>        
 	</div> 
 	
 	<div style="display:inline-block; width:32%">        
-	<label for="tel_1"><b>목표체중</b></label><br>
-	<input type="text"  name="tel_3" id="tel_3"  
+	<label for="goal_weight"><b>목표체중</b></label><br>
+	<input type="text"  name="goal_weight" id="goal_weight"  
 	         maxLength="3" style="width:34%"> 
-	 <label for="tel_3"><b> kg </b></label>         
+	 <label ><b> kg </b></label>         
 	</div>                
 	</div>
 	

@@ -51,6 +51,9 @@ public class MemberFrontContoller extends javax.servlet.http.HttpServlet{
 			case "/join.net":
 				action = new MemberJoinAction();
 				break;
+			case "/joinAdd.net":
+				action = new MemberJoinAddAction();
+				break;
 			case "/joinProcess.net":
 				action = new MemberJoinProcessAction();
 				break;

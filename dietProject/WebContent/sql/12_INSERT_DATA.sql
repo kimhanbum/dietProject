@@ -1,165 +1,165 @@
---ÀÌ¸§,Åº¼öÈ­¹°,Áö¹æ,´Ü¹éÁú,Ä®·Î¸®,Á¾·ù1(À½½ÄÅ¸ÀÔ),Á¾·ù2(¿µ¾ç¼ÒÅ¸ÀÔ)
---1.Ã¤¼Ò 
-insert into FOOD_INFO values(food_seq.nextval,'°¨ÀÚ',16,0,2,70,1,1);
-insert into FOOD_INFO values(food_seq.nextval,'°í±¸¸¶',26,0,2,112,1,1);
-insert into FOOD_INFO values(food_seq.nextval,'ºê·ÎÄİ¸®',7,0,3,34,1,1);
-insert into FOOD_INFO values(food_seq.nextval,'»ø·¯¸®',1,0,0,6,1,1);
-insert into FOOD_INFO values(food_seq.nextval,'¾Æ½ºÆÄ¶ó°Å½º',1,0,0,4,1,1);
-insert into FOOD_INFO values(food_seq.nextval,'¿ÀÀÌ',11,0,2,45,1,1);
-insert into FOOD_INFO values(food_seq.nextval,'Åä¸¶Åä',5,0,1,22,1,1);
-insert into FOOD_INFO values(food_seq.nextval,'¿Ã¸®ºê',1,0,0,5,1,1);
-insert into FOOD_INFO values(food_seq.nextval,'´ç±Ù',10,0,1,41,1,1);
-insert into FOOD_INFO values(food_seq.nextval,'¹ö¼¸',3,0,3,22,1,1);
+--ì´ë¦„,íƒ„ìˆ˜í™”ë¬¼,ì§€ë°©,ë‹¨ë°±ì§ˆ,ì¹¼ë¡œë¦¬,ì¢…ë¥˜1(ìŒì‹íƒ€ì…),ì¢…ë¥˜2(ì˜ì–‘ì†Œíƒ€ì…)
+--1.ì±„ì†Œ 
+insert into FOOD_INFO values(food_seq.nextval,'ê°ì',16,0,2,70,1,1);
+insert into FOOD_INFO values(food_seq.nextval,'ê³ êµ¬ë§ˆ',26,0,2,112,1,1);
+insert into FOOD_INFO values(food_seq.nextval,'ë¸Œë¡œì½œë¦¬',7,0,3,34,1,1);
+insert into FOOD_INFO values(food_seq.nextval,'ìƒëŸ¬ë¦¬',1,0,0,6,1,1);
+insert into FOOD_INFO values(food_seq.nextval,'ì•„ìŠ¤íŒŒë¼ê±°ìŠ¤',1,0,0,4,1,1);
+insert into FOOD_INFO values(food_seq.nextval,'ì˜¤ì´',11,0,2,45,1,1);
+insert into FOOD_INFO values(food_seq.nextval,'í† ë§ˆí† ',5,0,1,22,1,1);
+insert into FOOD_INFO values(food_seq.nextval,'ì˜¬ë¦¬ë¸Œ',1,0,0,5,1,1);
+insert into FOOD_INFO values(food_seq.nextval,'ë‹¹ê·¼',10,0,1,41,1,1);
+insert into FOOD_INFO values(food_seq.nextval,'ë²„ì„¯',3,0,3,22,1,1);
 
---2.°úÀÏ
-insert into FOOD_INFO values(food_seq.nextval,'µş±â',60,0,1,222,2,1);
-insert into FOOD_INFO values(food_seq.nextval,'¹Ù³ª³ª',27,0,1,105,2,1);
-insert into FOOD_INFO values(food_seq.nextval,'»ç°ú',19,0,0,72,2,1);
-insert into FOOD_INFO values(food_seq.nextval,'¿À·»Áö',15,0,1,62,2,1);
-insert into FOOD_INFO values(food_seq.nextval,'ºí·çº£¸®',21,1,1,83,2,1);
-insert into FOOD_INFO values(food_seq.nextval,'Æ÷µµ',15,0,1,62,2,1);
-insert into FOOD_INFO values(food_seq.nextval,'º¹¼ş¾Æ',36,0,1,136,2,1);
-insert into FOOD_INFO values(food_seq.nextval,'¾Æº¸Ä«µµ',17,29,4,322,2,2);
-insert into FOOD_INFO values(food_seq.nextval,'Å°À§',11,1,1,46,2,1);
-insert into FOOD_INFO values(food_seq.nextval,'¹è',25,0,1,96,2,1);
+--2.ê³¼ì¼
+insert into FOOD_INFO values(food_seq.nextval,'ë”¸ê¸°',60,0,1,222,2,1);
+insert into FOOD_INFO values(food_seq.nextval,'ë°”ë‚˜ë‚˜',27,0,1,105,2,1);
+insert into FOOD_INFO values(food_seq.nextval,'ì‚¬ê³¼',19,0,0,72,2,1);
+insert into FOOD_INFO values(food_seq.nextval,'ì˜¤ë Œì§€',15,0,1,62,2,1);
+insert into FOOD_INFO values(food_seq.nextval,'ë¸”ë£¨ë² ë¦¬',21,1,1,83,2,1);
+insert into FOOD_INFO values(food_seq.nextval,'í¬ë„',15,0,1,62,2,1);
+insert into FOOD_INFO values(food_seq.nextval,'ë³µìˆ­ì•„',36,0,1,136,2,1);
+insert into FOOD_INFO values(food_seq.nextval,'ì•„ë³´ì¹´ë„',17,29,4,322,2,2);
+insert into FOOD_INFO values(food_seq.nextval,'í‚¤ìœ„',11,1,1,46,2,1);
+insert into FOOD_INFO values(food_seq.nextval,'ë°°',25,0,1,96,2,1);
 
---3.¾î·ù
-insert into FOOD_INFO values(food_seq.nextval,'°íµî¾î',0,9,20,167,3,3);
-insert into FOOD_INFO values(food_seq.nextval,'¿¬¾î',0,6,22,146,3,3);
-insert into FOOD_INFO values(food_seq.nextval,'ÂüÄ¡',0,5,23,144,3,3);
-insert into FOOD_INFO values(food_seq.nextval,'Ã»¾î',0,14,16,195,3,3);
-insert into FOOD_INFO values(food_seq.nextval,'¸êÄ¡',0,5,20,131,3,3);
-insert into FOOD_INFO values(food_seq.nextval,'´ë±¸',8,11,19,211,3,3);
-insert into FOOD_INFO values(food_seq.nextval,'¸Ş±â',9,15,18,240,3,3);
-insert into FOOD_INFO values(food_seq.nextval,'µµ¹Ì',0,3,44,218,3,3);
-insert into FOOD_INFO values(food_seq.nextval,'È²»õÄ¡',1,8,23,177,3,3);
-insert into FOOD_INFO values(food_seq.nextval,'³ÒÄ¡',0,2,21,110,3,3);
+--3.ì–´ë¥˜
+insert into FOOD_INFO values(food_seq.nextval,'ê³ ë“±ì–´',0,9,20,167,3,3);
+insert into FOOD_INFO values(food_seq.nextval,'ì—°ì–´',0,6,22,146,3,3);
+insert into FOOD_INFO values(food_seq.nextval,'ì°¸ì¹˜',0,5,23,144,3,3);
+insert into FOOD_INFO values(food_seq.nextval,'ì²­ì–´',0,14,16,195,3,3);
+insert into FOOD_INFO values(food_seq.nextval,'ë©¸ì¹˜',0,5,20,131,3,3);
+insert into FOOD_INFO values(food_seq.nextval,'ëŒ€êµ¬',8,11,19,211,3,3);
+insert into FOOD_INFO values(food_seq.nextval,'ë©”ê¸°',9,15,18,240,3,3);
+insert into FOOD_INFO values(food_seq.nextval,'ë„ë¯¸',0,3,44,218,3,3);
+insert into FOOD_INFO values(food_seq.nextval,'í™©ìƒˆì¹˜',1,8,23,177,3,3);
+insert into FOOD_INFO values(food_seq.nextval,'ë„™ì¹˜',0,2,21,110,3,3);
 
---4.À°·ù
-insert into FOOD_INFO values(food_seq.nextval,'µÅÁö¾Õ´Ù¸®',0,12,16,182,4,3);
-insert into FOOD_INFO values(food_seq.nextval,'µÅÁöµŞ´Ù¸®',0,19,17,245,4,2);
-insert into FOOD_INFO values(food_seq.nextval,'µÅÁö¸ñ»ì',0,19,2,269,4,3);
-insert into FOOD_INFO values(food_seq.nextval,'´ß´Ù¸®',0,9,19,156,4,3);
-insert into FOOD_INFO values(food_seq.nextval,'´ß°¡½¿»ì',0,1,23,109,4,3);
-insert into FOOD_INFO values(food_seq.nextval,'¼Òµî½É',0,14,20,214,4,3);
-insert into FOOD_INFO values(food_seq.nextval,'¼Ò¾È½É',0,9,21,169,4,3);
+--4.ìœ¡ë¥˜
+insert into FOOD_INFO values(food_seq.nextval,'ë¼ì§€ì•ë‹¤ë¦¬',0,12,16,182,4,3);
+insert into FOOD_INFO values(food_seq.nextval,'ë¼ì§€ë’·ë‹¤ë¦¬',0,19,17,245,4,2);
+insert into FOOD_INFO values(food_seq.nextval,'ë¼ì§€ëª©ì‚´',0,19,2,269,4,3);
+insert into FOOD_INFO values(food_seq.nextval,'ë‹­ë‹¤ë¦¬',0,9,19,156,4,3);
+insert into FOOD_INFO values(food_seq.nextval,'ë‹­ê°€ìŠ´ì‚´',0,1,23,109,4,3);
+insert into FOOD_INFO values(food_seq.nextval,'ì†Œë“±ì‹¬',0,14,20,214,4,3);
+insert into FOOD_INFO values(food_seq.nextval,'ì†Œì•ˆì‹¬',0,9,21,169,4,3);
 
---5.ÇØÁ¶·ù
-insert into FOOD_INFO values(food_seq.nextval,'¹ÙÁö¶ô',2,1,12,67,5,3);
-insert into FOOD_INFO values(food_seq.nextval,'°üÀÚ',2,1,20,106,5,3);
-insert into FOOD_INFO values(food_seq.nextval,'Å°Á¶°³',1,1,11,57,5,3);
-insert into FOOD_INFO values(food_seq.nextval,'»õÁ¶°³',1,2,21,110,5,3);
-insert into FOOD_INFO values(food_seq.nextval,'¹Ì¿ª',10,1,3,45,5,1);
-insert into FOOD_INFO values(food_seq.nextval,'±è',5,0,6,34,5,3);
-insert into FOOD_INFO values(food_seq.nextval,'Åê',5,0,1,24,5,1);
-insert into FOOD_INFO values(food_seq.nextval,'ÆÄ·¡',3,0,2,11,5,1);
+--5.í•´ì¡°ë¥˜
+insert into FOOD_INFO values(food_seq.nextval,'ë°”ì§€ë½',2,1,12,67,5,3);
+insert into FOOD_INFO values(food_seq.nextval,'ê´€ì',2,1,20,106,5,3);
+insert into FOOD_INFO values(food_seq.nextval,'í‚¤ì¡°ê°œ',1,1,11,57,5,3);
+insert into FOOD_INFO values(food_seq.nextval,'ìƒˆì¡°ê°œ',1,2,21,110,5,3);
+insert into FOOD_INFO values(food_seq.nextval,'ë¯¸ì—­',10,1,3,45,5,1);
+insert into FOOD_INFO values(food_seq.nextval,'ê¹€',5,0,6,34,5,3);
+insert into FOOD_INFO values(food_seq.nextval,'í†³',5,0,1,24,5,1);
+insert into FOOD_INFO values(food_seq.nextval,'íŒŒë˜',3,0,2,11,5,1);
 
---6.°ß°ú·ù
-insert into FOOD_INFO values(food_seq.nextval,'¹ã',7,0,4,16,6,1);
-insert into FOOD_INFO values(food_seq.nextval,'¶¥Äá',0,2,1,11,6,2);
-insert into FOOD_INFO values(food_seq.nextval,'È£µÎ',1,3,1,26,6,2);
-insert into FOOD_INFO values(food_seq.nextval,'¾Æ¸óµå',0,1,0,7,6,2);
-insert into FOOD_INFO values(food_seq.nextval,'Àã',0,2,1,12,6,2);
-insert into FOOD_INFO values(food_seq.nextval,'ÇÇ½ºÅ¸Ä¡¿À',1,1,0,4,6,2);
-insert into FOOD_INFO values(food_seq.nextval,'ÇØ¹Ù¶ó±â¾¾',0,1,0,10,6,2);
-insert into FOOD_INFO values(food_seq.nextval,'ÇÇÄ­',0,2,0,12,6,2);
+--6.ê²¬ê³¼ë¥˜
+insert into FOOD_INFO values(food_seq.nextval,'ë°¤',7,0,4,16,6,1);
+insert into FOOD_INFO values(food_seq.nextval,'ë•…ì½©',0,2,1,11,6,2);
+insert into FOOD_INFO values(food_seq.nextval,'í˜¸ë‘',1,3,1,26,6,2);
+insert into FOOD_INFO values(food_seq.nextval,'ì•„ëª¬ë“œ',0,1,0,7,6,2);
+insert into FOOD_INFO values(food_seq.nextval,'ì£',0,2,1,12,6,2);
+insert into FOOD_INFO values(food_seq.nextval,'í”¼ìŠ¤íƒ€ì¹˜ì˜¤',1,1,0,4,6,2);
+insert into FOOD_INFO values(food_seq.nextval,'í•´ë°”ë¼ê¸°ì”¨',0,1,0,10,6,2);
+insert into FOOD_INFO values(food_seq.nextval,'í”¼ì¹¸',0,2,0,12,6,2);
 
---1.±â¼º½Ä´Ü
-insert into MEAL_INFO values('M1','±èÄ¡Âî°³',2,3,3,52);
-insert into MEAL_INFO values('M2','±èÄ¡ººÀ½¹ä',8,1,1,138);
-insert into MEAL_INFO values('M3','µ·±î½º',6,4,3,82);
-insert into MEAL_INFO values('M4','ÇÜ¹ö°Å',25,5,15,306);
-insert into MEAL_INFO values('M5','µÈÀåÂî°³',5,4,4,70);
-insert into MEAL_INFO values('M6','Á¦À°ººÀ½',17,19,12,280);
-insert into MEAL_INFO values('M7','¹°³Ã¸é',14,1,2,69);
-insert into MEAL_INFO values('M8','ºñºö³Ã¸é',22,1,3,114);
-insert into MEAL_INFO values('M9','ÇÇÀÚ',110,18,17,357);
-insert into MEAL_INFO values('M10','Äá±¹¼ö',13,6,10,181);
-insert into MEAL_INFO values('M11','¼øµÎºÎÂî°³',7,4,1,97);
-insert into MEAL_INFO values('M12','ÇØ¹°ººÀ½¹ä',31,2,4,162);
-insert into MEAL_INFO values('M13','¸¸µÎ',17,9,10,180);
-insert into MEAL_INFO values('M14','ÆÄ½ºÅ¸',69,2,14,325);
-insert into MEAL_INFO values('M15','ÅÁ¼öÀ°',21,6,6,260);
-insert into MEAL_INFO values('M16','Â¥Àå¸é',42,12,7,312);
-insert into MEAL_INFO values('M17','Â«»Í',62,13,11,230);
-insert into MEAL_INFO values('M18','µÅÁö°¥ºñ',4,15,28,293);
-insert into MEAL_INFO values('M19','¼ÒºÒ°í±â',4,7,13,130);
-insert into MEAL_INFO values('M20','´ß°¥ºñ',6,5,10,115);
-insert into MEAL_INFO values('M21','ÇØ¹°Ä®±¹¼ö',31,2,1,70);
+--1.ê¸°ì„±ì‹ë‹¨
+insert into MEAL_INFO values('M1','ê¹€ì¹˜ì°Œê°œ',2,3,3,52);
+insert into MEAL_INFO values('M2','ê¹€ì¹˜ë³¶ìŒë°¥',8,1,1,138);
+insert into MEAL_INFO values('M3','ëˆê¹ŒìŠ¤',6,4,3,82);
+insert into MEAL_INFO values('M4','í–„ë²„ê±°',25,5,15,306);
+insert into MEAL_INFO values('M5','ëœì¥ì°Œê°œ',5,4,4,70);
+insert into MEAL_INFO values('M6','ì œìœ¡ë³¶ìŒ',17,19,12,280);
+insert into MEAL_INFO values('M7','ë¬¼ëƒ‰ë©´',14,1,2,69);
+insert into MEAL_INFO values('M8','ë¹„ë¹”ëƒ‰ë©´',22,1,3,114);
+insert into MEAL_INFO values('M9','í”¼ì',110,18,17,357);
+insert into MEAL_INFO values('M10','ì½©êµ­ìˆ˜',13,6,10,181);
+insert into MEAL_INFO values('M11','ìˆœë‘ë¶€ì°Œê°œ',7,4,1,97);
+insert into MEAL_INFO values('M12','í•´ë¬¼ë³¶ìŒë°¥',31,2,4,162);
+insert into MEAL_INFO values('M13','ë§Œë‘',17,9,10,180);
+insert into MEAL_INFO values('M14','íŒŒìŠ¤íƒ€',69,2,14,325);
+insert into MEAL_INFO values('M15','íƒ•ìˆ˜ìœ¡',21,6,6,260);
+insert into MEAL_INFO values('M16','ì§œì¥ë©´',42,12,7,312);
+insert into MEAL_INFO values('M17','ì§¬ë½•',62,13,11,230);
+insert into MEAL_INFO values('M18','ë¼ì§€ê°ˆë¹„',4,15,28,293);
+insert into MEAL_INFO values('M19','ì†Œë¶ˆê³ ê¸°',4,7,13,130);
+insert into MEAL_INFO values('M20','ë‹­ê°ˆë¹„',6,5,10,115);
+insert into MEAL_INFO values('M21','í•´ë¬¼ì¹¼êµ­ìˆ˜',31,2,1,70);
 
---2.°£½Ä
-insert into MEAL_INFO values('M22','¶±ººÀÌ',30,4,2,150);
-insert into MEAL_INFO values('M23','¼ø´ë',28,3,7,122);
-insert into MEAL_INFO values('M24','Æ¢±è',24,12,18,308);
-insert into MEAL_INFO values('M25','»ıÅ©¸²ÄÉÀÍ',20,18,4,257);
-insert into MEAL_INFO values('M26','Æ¼¶ó¹Ì½´',20,19,6,261);
-insert into MEAL_INFO values('M27','¸ÓÇÉ',26,1,5,132);
-insert into MEAL_INFO values('M28','ºê¶ó¿ì´Ï',21,4,1,129);
-insert into MEAL_INFO values('M29','Ä¡ÁîÄÉÀÌÅ©',20,18,4,257);
-insert into MEAL_INFO values('M30','ÄíÅ°',3,1,1,24);
-insert into MEAL_INFO values('M31','¿ÍÇÃ',19,4,3,121);
-insert into MEAL_INFO values('M32','´ÙÅ©ÃÊÄİ¸´',24,14,2,207);
-insert into MEAL_INFO values('M33','¸¶´Ã»§',7,2,1,53);
-insert into MEAL_INFO values('M34','Çªµù',24,4,2,140);
-insert into MEAL_INFO values('M35','¾ÆÀÌ½ºÅ©¸²',32,14,4,267);
-insert into MEAL_INFO values('M36','°¨ÀÚÄ¨',45,33,6,835);
-insert into MEAL_INFO values('M37','¾ÖÇÃÆÄÀÌ',57,19,3,411);
-insert into MEAL_INFO values('M38','¿ìÀ¯',4,4,3,65);
-insert into MEAL_INFO values('M39','»÷µåÀ§Ä¡',71,21,5,500);
-insert into MEAL_INFO values('M40','¿ä°ÅÆ®',4,0,10,55);
-insert into MEAL_INFO values('M41','ÇÖµµ±×',27,11,7,235);
-
-
+--2.ê°„ì‹
+insert into MEAL_INFO values('M22','ë–¡ë³¶ì´',30,4,2,150);
+insert into MEAL_INFO values('M23','ìˆœëŒ€',28,3,7,122);
+insert into MEAL_INFO values('M24','íŠ€ê¹€',24,12,18,308);
+insert into MEAL_INFO values('M25','ìƒí¬ë¦¼ì¼€ìµ',20,18,4,257);
+insert into MEAL_INFO values('M26','í‹°ë¼ë¯¸ìŠˆ',20,19,6,261);
+insert into MEAL_INFO values('M27','ë¨¸í•€',26,1,5,132);
+insert into MEAL_INFO values('M28','ë¸Œë¼ìš°ë‹ˆ',21,4,1,129);
+insert into MEAL_INFO values('M29','ì¹˜ì¦ˆì¼€ì´í¬',20,18,4,257);
+insert into MEAL_INFO values('M30','ì¿ í‚¤',3,1,1,24);
+insert into MEAL_INFO values('M31','ì™€í”Œ',19,4,3,121);
+insert into MEAL_INFO values('M32','ë‹¤í¬ì´ˆì½œë¦¿',24,14,2,207);
+insert into MEAL_INFO values('M33','ë§ˆëŠ˜ë¹µ',7,2,1,53);
+insert into MEAL_INFO values('M34','í‘¸ë”©',24,4,2,140);
+insert into MEAL_INFO values('M35','ì•„ì´ìŠ¤í¬ë¦¼',32,14,4,267);
+insert into MEAL_INFO values('M36','ê°ìì¹©',45,33,6,835);
+insert into MEAL_INFO values('M37','ì• í”ŒíŒŒì´',57,19,3,411);
+insert into MEAL_INFO values('M38','ìš°ìœ ',4,4,3,65);
+insert into MEAL_INFO values('M39','ìƒŒë“œìœ„ì¹˜',71,21,5,500);
+insert into MEAL_INFO values('M40','ìš”ê±°íŠ¸',4,0,10,55);
+insert into MEAL_INFO values('M41','í•«ë„ê·¸',27,11,7,235);
 
 
---ÃÊ±â ÀÔ·Â°ª 
 
---admin °èÁ¤ »ı¼º
-insert into USER_INFO values('admin01','admin01','admin01',sysdate,'³²','admin01@naver.com','010-1111-2222','°æ±âµµ ¼ö¿ø½Ã');
-insert into USER_INFO values('admin02','admin02','admin02',sysdate,'¿©','admin02@naver.com','010-3333-4444','°æ±âµµ ÇÏ³²½Ã');
-insert into USER_INFO values('admin03','admin03','admin03',sysdate,'³²','admin03@naver.com','010-5555-6666','°æ±âµµ ¾È¾ç½Ã');
 
---À¯Àú °èÁ¤ »ı¼º
-insert into USER_INFO values('user001','user001','user001',sysdate,'¿©','user01@naver.com','010-1234-4321','¼­¿ï½Ã °­³²±¸');
-insert into USER_INFO values('user002','user002','user002',sysdate,'³²','user02@naver.com','010-5678-8765','¼­¿ï½Ã ¸¶Æ÷±¸');
-insert into USER_INFO values('user003','user003','user003',sysdate,'³²','user03@naver.com','010-7788-8899','¼­¿ï½Ã ¼­ÃÊ±¸');
+--ì´ˆê¸° ì…ë ¥ê°’ 
 
---À¯Àú °³ÀÎÁ¤º¸
+--admin ê³„ì • ìƒì„±
+insert into USER_INFO values('admin01','admin01','admin01',880423-1888888,'ë‚¨','admin01@naver.com','010-1111-2222','ê²½ê¸°ë„ ìˆ˜ì›ì‹œ');
+insert into USER_INFO values('admin02','admin02','admin02',770526-2777777,'ì—¬','admin02@naver.com','010-3333-4444','ê²½ê¸°ë„ í•˜ë‚¨ì‹œ');
+insert into USER_INFO values('admin03','admin03','admin03',661024-1666666,'ë‚¨','admin03@naver.com','010-5555-6666','ê²½ê¸°ë„ ì•ˆì–‘ì‹œ');
+
+--ìœ ì € ê³„ì • ìƒì„±
+insert into USER_INFO values('user001','user001','user001',550925-2555555,'ì—¬','user01@naver.com','010-1234-4321','ì„œìš¸ì‹œ ê°•ë‚¨êµ¬');
+insert into USER_INFO values('user002','user002','user002',440421-1444444,'ë‚¨','user02@naver.com','010-5678-8765','ì„œìš¸ì‹œ ë§ˆí¬êµ¬');
+insert into USER_INFO values('user003','user003','user003',991010-1333333,'ë‚¨','user03@naver.com','010-7788-8899','ì„œìš¸ì‹œ ì„œì´ˆêµ¬');
+
+--ìœ ì € ê°œì¸ì •ë³´
 insert into PERSONAL_INFO values('user001',1,170,60,50,2400);
 insert into PERSONAL_INFO values('user002',2,180,60,60,2500);
 insert into PERSONAL_INFO values('user003',3,190,60,65,2600);
 
---½Ä´Ü Ãß°¡
-insert into DIET_INFO values('user001','D1','Ã¤¼ÒÀ§ÁÖ','1,2,3,4',0,0,10,20,30,300,sysdate);
-insert into DIET_INFO values('user002','D2','°úÀÏÀ§ÁÖ','11,12,13,14',0,0,20,30,10,310,sysdate);
-insert into DIET_INFO values('user003','D3','¾î·ùÀ§ÁÖ','21,22,23,24',0,0,30,20,10,320,sysdate);
+--ì‹ë‹¨ ì¶”ê°€
+insert into DIET_INFO values('user001','D1','ì±„ì†Œìœ„ì£¼','1,2,3,4',0,0,10,20,30,300,sysdate);
+insert into DIET_INFO values('user002','D2','ê³¼ì¼ìœ„ì£¼','11,12,13,14',0,0,20,30,10,310,sysdate);
+insert into DIET_INFO values('user003','D3','ì–´ë¥˜ìœ„ì£¼','21,22,23,24',0,0,30,20,10,320,sysdate);
 
---½Ä´Ü ´ñ±Û
-insert into DIET_REPLY values('user001','D2',1,1,'°úÀÏÀÌ ÁÁ½À´Ï´Ù',sysdate);
-insert into DIET_REPLY values('user002','D3',2,1,'¾î·ù°¡ ÁÁ½À´Ï´Ù',sysdate);
-insert into DIET_REPLY values('user003','D1',3,1,'Ã¤¼Ò°¡ ÁÁ½À´Ï´Ù',sysdate);
+--ì‹ë‹¨ ëŒ“ê¸€
+insert into DIET_REPLY values('user001','D2',1,1,'ê³¼ì¼ì´ ì¢‹ìŠµë‹ˆë‹¤',sysdate);
+insert into DIET_REPLY values('user002','D3',2,1,'ì–´ë¥˜ê°€ ì¢‹ìŠµë‹ˆë‹¤',sysdate);
+insert into DIET_REPLY values('user003','D1',3,1,'ì±„ì†Œê°€ ì¢‹ìŠµë‹ˆë‹¤',sysdate);
 
---ÀüÃ¼ Á¤º¸ 
-insert into TOTAL_INFO values('user001','D1','D2','D3','M22',5,45,'·¯´×1½Ã°£',60,60,60,930,sysdate);
-insert into TOTAL_INFO values('user002','M1','M2','D2','M23',4,50,'ÀÚÀü°Å1½Ã°£',70,70,70,1000,sysdate);
-insert into TOTAL_INFO values('user003','M1','M2','D1','M24',3,55,'Çï½º1½Ã°£',80,80,80,1120,sysdate);
+--ì „ì²´ ì •ë³´ 
+insert into TOTAL_INFO values('user001','D1','D2','D3','M22',5,45,'ëŸ¬ë‹1ì‹œê°„',60,60,60,930,sysdate);
+insert into TOTAL_INFO values('user002','M1','M2','D2','M23',4,50,'ìì „ê±°1ì‹œê°„',70,70,70,1000,sysdate);
+insert into TOTAL_INFO values('user003','M1','M2','D1','M24',3,55,'í—¬ìŠ¤1ì‹œê°„',80,80,80,1120,sysdate);
 
---·¹½ÃÇÇ
-insert into RECIPE_INFO values('user001','1','Á¦À°ººÀ½','°í±â¸¦ °íÃßÀå¿¡ ººÀ½','´Ş´ŞÇÏ°Ô¸¸µë','gogi1.png',sysdate);
-insert into RECIPE_INFO values('user002','2','¼ÒºÒ°í±â','°í±â¸¦ °£Àå¿¡ ººÀ½','Â¬ÀßÇÏ°Ô¸¸µë','gogi2.png',sysdate);
-insert into RECIPE_INFO values('user003','3','Å¥ºê½ºÅ×ÀÌÅ©','°í±â¸¦ ½ºÅ×ÀÌÅ©¼Ò½º¿¡ ººÀ½','¸ÀÀÖ°Ô¸¸µë','gogi3.png',sysdate);
+--ë ˆì‹œí”¼
+insert into RECIPE_INFO values('user001','1','ì œìœ¡ë³¶ìŒ','ê³ ê¸°ë¥¼ ê³ ì¶”ì¥ì— ë³¶ìŒ','ë‹¬ë‹¬í•˜ê²Œë§Œë“¬','gogi1.png',sysdate);
+insert into RECIPE_INFO values('user002','2','ì†Œë¶ˆê³ ê¸°','ê³ ê¸°ë¥¼ ê°„ì¥ì— ë³¶ìŒ','ì§­ì˜í•˜ê²Œë§Œë“¬','gogi2.png',sysdate);
+insert into RECIPE_INFO values('user003','3','íë¸ŒìŠ¤í…Œì´í¬','ê³ ê¸°ë¥¼ ìŠ¤í…Œì´í¬ì†ŒìŠ¤ì— ë³¶ìŒ','ë§›ìˆê²Œë§Œë“¬','gogi3.png',sysdate);
 
---·¹½ÃÇÇ ´ñ±Û
-insert into RECIPE_REPLY values('user001','2',1,1,'ºÒ°í±â ÁÁ½À´Ï´Ù',sysdate);
-insert into RECIPE_REPLY values('user002','3',2,1,'½ºÅ×ÀÌÅ© ÁÁ½À´Ï´Ù',sysdate);
-insert into RECIPE_REPLY values('user003','1',3,1,'Á¦À°ÀÌ ÁÁ½À´Ï´Ù',sysdate);
+--ë ˆì‹œí”¼ ëŒ“ê¸€
+insert into RECIPE_REPLY values('user001','2',1,1,'ë¶ˆê³ ê¸° ì¢‹ìŠµë‹ˆë‹¤',sysdate);
+insert into RECIPE_REPLY values('user002','3',2,1,'ìŠ¤í…Œì´í¬ ì¢‹ìŠµë‹ˆë‹¤',sysdate);
+insert into RECIPE_REPLY values('user003','1',3,1,'ì œìœ¡ì´ ì¢‹ìŠµë‹ˆë‹¤',sysdate);
 
---°øÁö»çÇ×
-insert into NOTICE_INFO values('admin01',1,'°øÁöÀÔ´Ï´Ù.','È¨ÆäÀÌ°¡ ¿ÀÇÂÇß½À´Ï´Ù.','notice.png',sysdate);
+--ê³µì§€ì‚¬í•­
+insert into NOTICE_INFO values('admin01',1,'ê³µì§€ì…ë‹ˆë‹¤.','í™ˆí˜ì´ê°€ ì˜¤í”ˆí–ˆìŠµë‹ˆë‹¤.','notice.png',sysdate);
 
---¹®ÀÇ»çÇ×
-insert into QUESTION_INFO values('user002',1,'¹®ÀÇ»çÇ×ÀÌ ÀÖ½À´Ï´Ù.','½Ä´ÜÀÛ¼º¹æ¹ıÀÌ ¾î¶»°ÔµÇ³ª¿ä',sysdate,1,0,0);
-insert into QUESTION_INFO values('admin01',2,'re:¹®ÀÇ»çÇ×ÀÌ ÀÖ½À´Ï´Ù.','½Ä´ÜÀÛ¼ºÇ×¸ñÀ¸·Î°¡¼¼¿ä',sysdate,1,1,1);
+--ë¬¸ì˜ì‚¬í•­
+insert into QUESTION_INFO values('user002',1,'ë¬¸ì˜ì‚¬í•­ì´ ìˆìŠµë‹ˆë‹¤.','ì‹ë‹¨ì‘ì„±ë°©ë²•ì´ ì–´ë–»ê²Œë˜ë‚˜ìš”',sysdate,1,0,0);
+insert into QUESTION_INFO values('admin01',2,'re:ë¬¸ì˜ì‚¬í•­ì´ ìˆìŠµë‹ˆë‹¤.','ì‹ë‹¨ì‘ì„±í•­ëª©ìœ¼ë¡œê°€ì„¸ìš”',sysdate,1,1,1);
 
 
 
