@@ -11,7 +11,7 @@
 <script>
  $(function(){
 	
-	 $("#myform")[0].reset();
+	
 	 $('#myform').submit(function(){
 
 	      if($('#confirmIdcheck').val()=='y'){
@@ -31,7 +31,7 @@
 		    	  return false;
 		      }
 		      
-		      alert("회원가입을 축하드립니다.");
+		     
 		      
 		      
 		    });
@@ -43,10 +43,10 @@
 				  $('#id').focus();
 				  return false;
 			  }else{
-				  pattern= /^[a-zA-Z0-9_]{4,}$/;
+				  pattern= /^[a-zA-Z0-9_]{4,20}$/;
 				   pandan= pattern.test(input_id);				  
 				  if(!pandan){
-					  alert('아이디의  대소문자,숫자,_로 총 4개 이상이여야 합니다');
+					  alert('아이디는  대소문자,숫자,_로 총 4-20자 여야 합니다');
 					  $('#id').val('').focus();
 				  }else{
 					  $.ajax({
@@ -91,10 +91,12 @@
 				  }else{
 					  alert("주민번호 앞자리를 숫자 또는 형식에 맞게 입력하세요[yymmdd]");
 					  $("#jumin1").val('');
-					  $("#jumin1").focus();
+					 
 				  }
 			  }
 		  });
+		  
+		  
 		  
 		  $('#jumin2').focusout(function(){
 			  if($("#jumin2").val().length==7){
@@ -107,7 +109,7 @@
 					  $("input[type=radio]").eq(index).prop("checked",true);
 				  }else{
 					  alert("주민번호 뒤자리를 형식에 맞게 입력하세요[12345][0-9]{6}");
-					  $("#jumin2").val('').focus()
+					  $("#jumin2").val('');
 					 
 				  }
 			  }
@@ -122,14 +124,7 @@
 				location.href="login.net";
 		    });
 		    
-		    $('#tel_1').focusout(function(){
-			    pattern=/^[0][0-7]{2,3}$/ 
-			    pandan = pattern.test( $('#tel_1').val());
-		       if(!pandan){
-		    	   alert("전화번호를 앞자리를 형식에 맞게 입력해주세요");
-		       }	
-		    
-			  });
+		 
 		    
 		    $('#pass_').focusout(function(){
 			   
@@ -140,6 +135,14 @@
 		    	   pandan=false;
 		       }else{
 		    	   $("#span3").css("visibility","hidden");
+		       }	
+		    
+			  });
+		    $('#tel_1').focusout(function(){
+			    pattern=/^[0][0-7]{2,3}$/ 
+			    pandan = pattern.test( $('#tel_1').val());
+		       if(!pandan){
+		    	   alert("전화번호를 앞자리를 형식에 맞게 입력해주세요");
 		       }	
 		    
 			  });
@@ -161,15 +164,7 @@
 		    
 			  });
 		    
-		    $('#birth_year').focusout(function(){
-			    pattern=/^([1][9]|[2][0])[0-9]{2}$/ 
-			    pandan = pattern.test( $('#birth_year').val());
-		       if(!pandan){
-		    	   alert("생년월일을 4자리 입력해주세요");
-		    	  
-		       }	
-		    
-			  });
+		
 		   
 		    $('#pass').focusout(function(){
 		     	
@@ -275,7 +270,7 @@
 	</div>
 
 
-	<form name="myform" method="post" action="MemberJoinProcessAction.net"
+	<form name="myform" method="post" action="joinProcess.net"
 		id='myform'>
 
 		<div class="containner">
@@ -302,67 +297,10 @@
 
 				<div style="margin-top: 2px">
 					<label for="name"><b>이름</b></label> <input type="text"
-						placeholder="이름을 입력하세요" name="pass" id="name" required>
+						placeholder="이름을 입력하세요" name="name" id="name" required>
 
 				</div>
 
-				<div style="margin-top: -20px">
-					<label for="birth_year"><b>출생년월일</b></label>
-					<div>
-						<input type="text" placeholder="출생년도4자리" name="birth_year"
-							id="birth_year" style="width: 35%" required> <span>년</span>
-						<select name="birth_month" id="birth_month"
-							style="width: 29%; color: white" required>
-							<option value=""></option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-							<option value="7">7</option>
-							<option value="8">8</option>
-							<option value="9">9</option>
-							<option value="10">10</option>
-							<option value="11">11</option>
-							<option value="12">12</option>
-						</select> <span>월</span> <select name="birth_day" id="birth_day"
-							style="width: 28%; color: white" required>
-							<option value=""></option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-							<option value="7">7</option>
-							<option value="8">8</option>
-							<option value="9">9</option>
-							<option value="10">10</option>
-							<option value="11">11</option>
-							<option value="12">12</option>
-							<option value="13">13</option>
-							<option value="14">14</option>
-							<option value="15">15</option>
-							<option value="16">16</option>
-							<option value="17">17</option>
-							<option value="18">18</option>
-							<option value="19">19</option>
-							<option value="20">20</option>
-							<option value="21">21</option>
-							<option value="22">22</option>
-							<option value="23">23</option>
-							<option value="24">24</option>
-							<option value="25">25</option>
-							<option value="26">26</option>
-							<option value="27">27</option>
-							<option value="28">28</option>
-							<option value="29">29</option>
-							<option value="30">31</option>
-							<option value="31">31</option>
-
-						</select> <span>일</span>
-					</div>
 				</div>
 				<div style="margin-top: -10px">
 					<label for="jumin1"><b>주민번호</b></label><br> <input type="text"
@@ -376,7 +314,7 @@
 
 				<label for="email"><b> E-Mail </b></label><br> <input
 					type="text" name="email" id="email" required> @ <input
-					type="text" name="domail" id="domain" required> <select
+					type="text" name="domain" id="domain" required> <select
 					name="sel" id="sel">
 					<option value="">직접입력</option>
 					<option value="naver.com">naver.com</option>
@@ -388,8 +326,8 @@
 				</select> <label><b>성별</b></label><br>
 
 				<div class="container2">
-					<input type="radio" name="gender" value="m" id="gender1">남자&nbsp;&nbsp;&nbsp;
-					<input type="radio" name="gender" value="f" id="gender2">여자
+					<input type="radio" name="gender" value="남" id="gender1">남자&nbsp;&nbsp;&nbsp;
+					<input type="radio" name="gender" value="여" id="gender2">여자
 				</div>
 				<br>
 				<div style="margin-top: -10px; width: 101%">
@@ -413,7 +351,7 @@
 
 				<div class="clearfix">
 					<button type="reset" class="cancelbtn btn btn-danger">취소</button>
-					<button type="submit" class="signupbtn btn btn-primary">다음</button>
+					<button type="submit" class="signupbtn btn btn-primary">가입</button>
 
 
 				</div>

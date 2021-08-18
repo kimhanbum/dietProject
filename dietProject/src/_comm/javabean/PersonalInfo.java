@@ -6,8 +6,8 @@ public class PersonalInfo {
 	private int goal;
 	private int hegiht;
 	private int weight;
-	private int goa_weight;
-	private String rmr;
+	private int goal_weight;
+	private int rmr;
 	
 	public String getId() {
 		return id;
@@ -49,22 +49,22 @@ public class PersonalInfo {
 	}
 
 
-	public int getGoa_weight() {
-		return goa_weight;
+	public int getGoal_weight() {
+		return goal_weight;
 	}
 
 
-	public void setGoa_weight(int goa_weight) {
-		this.goa_weight = goa_weight;
+	public void setGoal_weight(int goa_weight) {
+		this.goal_weight = goa_weight;
 	}
 
 
-	public String getRmr() {
+	public int getRmr() {
 		return rmr;
 	}
 
 
-	public void setRmr(String rmr) {
+	public void setRmr(int rmr) {
 		this.rmr = rmr;
 	}
 

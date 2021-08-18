@@ -5,7 +5,7 @@ public class UserInfo {
 	private String id;
 	private String pass;
 	private String name;
-	private String birth;
+	private String jumin;
 	private String gender;
 	private String email;
 	private String tel;
@@ -28,11 +28,11 @@ public class UserInfo {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getBirth() {
-		return birth;
+	public String getJumin() {
+		return jumin;
 	}
-	public void setBirth(String birth) {
-		this.birth = birth;
+	public void setJumin(String jumin) {
+		this.jumin = jumin;
 	}
 	public String getGender() {
 		return gender;

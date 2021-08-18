@@ -71,7 +71,7 @@
 						
 					</div> 
 					<span id=span2></span><br>
-					<input type="checkbox" id="remember" name="remembaer" value="store" style="margin-left:6px;">
+					<input type="checkbox" id="remember" name="remember" value="store" style="margin-left:6px;">
 					<span style="color:white">아이디 기억하기</span>
 					<div class="wthree-text"> 
 						<ul> 
