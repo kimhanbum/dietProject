@@ -3,10 +3,10 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>마이페이지 기본양식 입니다</title>
+<title>마이페이지-공유 식단</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="../css/myPage.css" type="text/css">
+<link rel="stylesheet" href="css/mydiet.css" type="text/css">
 <style>
 /* 버튼을 해당 행에 놓을 경우에만 보이도록 표시 */
 tbody button{
@@ -71,32 +71,7 @@ thead input[type=text]{
 	</div>
 
 	<!-- 마이 페이지 좌측 side 메뉴들 -->
-	<aside class="ftco-section">
-		<div class="asideLeft_container">
-			<a href="#"><span class="icon-home2">&nbsp;&nbsp;</span>마이홈페이지 </a>			
-			<ul>
-				<hr>
-				<li><p class="icon-receipt">&nbsp;&nbsp;콘텐츠</p>
-					<ul>
-						<li><a href="#">내정보</a></li>
-						<li><a href="#">Today 식단</a></li>
-						<li><a href="#">식단 리스트</a></li>
-						<li><a href="#"></a></li>
-					</ul>
-				</li>
-				<hr>
-				<li><p class="icon-chat_bubble_outline">&nbsp;&nbsp;댓글·방명록</p>
-					
-					<ul>
-						<li><a href="#">나의 공유식단</a></li>
-						<li><a href="#">나의 레시피</a></li>
-						<li><a href="#">내가 남긴 댓글</a></li>
-						<li><a href="#">내게 남긴 댓글</a></li>
-					</ul>
-				</li>
-			</ul>
-		</div>
-	</aside>
+ 	<jsp:include page="../comm/asideLeft.jsp" />  
 
 	<!-- 마이페이지 중앙 article -->
 	<article>
@@ -104,76 +79,86 @@ thead input[type=text]{
 			<table style='min-width: 0px !important;' class="table table-borderless">
 				<thead>
 					<tr>
-						<th colspan="3"><h5>내 식단 관리 10</h5></th> 
-						<th colspan="2">
-							<button type="button" class="btn btn-secondary">
-											식단 구성하기
-							</button>
-						</th>
+						<th colspan="3"><h5>공유식단 관리 ${listcount}</h5></th> 
+						<th colspan="2"></th>
 					</tr>
 					<tr>
 						<th style="background:#dcdcdc;" colspan="5">
 							<div class="d-flex flex-row-reverse">
-							 <img class="p-2" src="images/search.png" width="30px" height="30px" alt="search">
-							 <input class="p-2" type="text" placeholder="검색어 입력하세요" required maxlength="12">
+							 <img id="searchDiet" class="p-2" src="images/search.png" width="30px" height="30px" alt="search">
+							 <input id="searchText" class="p-2" type="text" placeholder="검색어 입력하세요" required maxlength="12">
 							</div>
 						</th>
 					</tr>
 				</thead>
 				<tbody>
-						<tr>
-							<td><div>맛없는 식단</div></td>
-							<td><div>총 칼로리:900000 Kcal</div></td>
-							<td><span>야채위주의 식단으로 구성하였고 맛이없습니다.</span></td>
-							<td colspan="2" style="text-align: right !important;">
-							 	<button type="button" class="btn btn-secondary">공유취소</button>
-							 	<button type="button" class="btn btn-secondary">상세보기</button>
-							</td>
-						</tr>
-						<tr>
-							<td><div>맛없는 식단</div></td>
-							<td><div>총 칼로리:900000 Kcal</div></td>
-							<td><span>야채위주의 식단으로 구성하였고 맛이없습니다.</span></td>
-							<td colspan="2" style="text-align: right !important;">
-							 	<button type="button" class="btn btn-secondary">공유취소</button>
-							 	<button type="button" class="btn btn-secondary">상세보기</button>
-							</td>
-						</tr>
-						<tr>
-							<td><div>맛없는 식단</div></td>
-							<td><div>총 칼로리:900000 Kcal</div></td>
-							<td><span>야채위주의 식단으로 구성하였고 맛이없습니다.</span></td>
-							<td colspan="2" style="text-align: right !important;">
-							 	<button type="button" class="btn btn-secondary">공유취소</button>
-							 	<button type="button" class="btn btn-secondary">상세보기</button>
-							</td>
-						</tr>
-						<tr>
-							<td><div>맛없는 식단</div></td>
-							<td><div>총 칼로리:900000 Kcal</div></td>
-							<td><span>야채위주의 식단으로 구성하였고 맛이없습니다.</span></td>
-							<td colspan="2" style="text-align: right !important;">
-							 	<button type="button" class="btn btn-secondary">공유취소</button>
-							 	<button type="button" class="btn btn-secondary">상세보기</button>
-							</td>
-						</tr>
+					<s:if test="${listcount > 0 }">
+						<s:forEach var="b" items="${diList}">	
+							<tr>
+	  							<td>
+	  								<div>
+										<s:out value="${b.diet_name}"/><%--식단 이름 --%>	
+							    	</div>
+	  							</td>
+	  							<td>
+	  								<div>
+	  									총 칼로리: ${b.diet_total_cal} Kcal
+	  								</div>
+	  							</td>
+								<td>
+									<span>
+										탄수화물 : ${b.diet_total_carb}g / 지방 : ${b.diet_total_fat}g / 단백질 : ${b.diet_total_protein}g 
+									</span>
+								</td>
+	  							<td colspan="2" style="text-align: right !important;">
+									<button type="button" id="shareDietbtn"  value="${b.diet_code}" class="btn btn-secondary">공유취소</button>
+									<button type="button" id="DetailDietbtn" value="${b.diet_code}" class="btn btn-secondary" data-toggle="modal" data-target="#myModal">상세보기</button>
+								</td>	
+	  					</s:forEach>
+					</s:if>	
+					<s:if test="${listcount == 0 }">
+						<tr><td colspan="5">공유된 식단이 없습니다.</td></tr>
+					</s:if>
 				</tbody>
 			</table>
-			<div class="row mt-5">
-          <div class="col text-center">
-            <div class="block-27">
-              <ul>
-                <li><a href="#">&lt;</a></li>
-                <li class="active"><span>1</span></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">&gt;</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
+			<s:if test="${listcount > 0 }">
+				<div class="row mt-5">
+		          <div class="col text-center">
+		            <div class="block-27">
+		              <ul>
+		              	 <s:if test="${page <= 1 }">
+		              	 	<li>
+		              	 		<a style="background:gray; color:white">&lt;</a>
+		              	 	</li>
+			 			 </s:if>
+		                 <s:if test="${page > 1 }">
+		              	 	<li>
+		              	 		<a href="dietpage.dt?page=${page-1}">&lt;</a>
+		              	 	</li>
+			 			 </s:if>
+			 			<s:forEach var="a" begin="${startpage}" end="${endpage}">
+							<s:if test="${a == page }">
+								<li class="active"><span>${a}</span></li>
+							</s:if>
+							<s:if test="${a != page }">
+								<li><a href="dietpage.dt?page=${a}"><span>${a}</span></a></li>
+							</s:if>
+						</s:forEach>
+			 			<s:if test="${page >= maxpage }">
+							<li>
+				   				<a style="background:gray; color:white">&gt;</a> 
+							</li>
+						</s:if>
+						<s:if test="${page < maxpage }">
+			  				<li>
+								<a href="dietpage.dt?page=${page+1}">&gt;</a>
+			  				</li>	
+						</s:if>
+		              </ul>
+		            </div>
+		          </div>
+		        </div>
+		   </s:if>
 		</div>
 	</article>
 	
@@ -186,6 +171,68 @@ thead input[type=text]{
 
 	<!-- footer 영역2 -->
 	<jsp:include page="../comm/footer_info.jsp" />  
+	
+	
+	<%-- modal시작 --%>
+	<div class="modal" id="myModal" style="overflow:auto;">
+		<div class="modal-dialog modal-lg" style="width:700px;">
+			<div class="modal-content"style=" padding:30px;">
+					<div class="row">
+						<div class="col-sm-12 text-center" style="background:#82AD46">
+							<div id="detailTitle" style="font-size:30px; color:black; margin-bottom:-10px;">채소 인간 식단</div>
+							<div id="detailNutr" style="font-size:20px;">(1200kcal/탄수화물100g/단백질100g/지방100g)</div>
+						</div>
+					</div>
+					<br>
+					<div>
+					</div>
+				    <br>
+				    <span style="padding-bottom:10px; text-align: right;">
+				        <img width="30px" height="30px" src="images/like.png" alt="like">
+				        <b id="detailComm" style="color:black; padding-left:5px;">124</b>
+				    </span>		
+				    <br>
+				   
+					<div class="CommentBox">
+						<div class="comment_option">
+							<h3 class="comment_title">
+								댓글<sup id="count"></sup>
+							</h3>
+							<div class="comment_tab">
+								<ul class="comment_tab_list">
+									<li id="order_olddate" class="comment_tab_item" >
+										<a href="javascript:getList(1)" class="comment_tab_button">등록순</a>
+									</li>
+									<li id="order_newdate" class="comment_tab_item" >
+										<a href="javascript:getList(2)" class="comment_tab_button">최신순</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<ul class="comment_list">
+						</ul>
+						<div class="CommentWriter">
+							<div class="comment_inbox">
+								<b class="comment_inbox_name">${id}</b>
+								<span class="comment_inbox_count">0/200</span>
+								<textarea  style="height:18px;" placeholder="댓글을 남겨보세요" rows="1"
+										class="comment_inbox_text" maxLength="200"></textarea>			
+							</div>
+							<div class="register_box">
+								<div class="button btn_cancel">취소</div>
+								<div class="button btn_register">등록</div>
+							</div>
+						</div>
+				   </div>
+    		</div>
+		</div>
+		<input type="hidden" name="num" value="0" id=reply_dietCode>
+		<input type="hidden" id="loginid" value="${id}" name="loginid">
+	</div>
+	
+	
+	
+	<script type="text/javascript" src="js/shareDiet.js" charset="utf-8"></script>
 
 </body>
 </html>

@@ -23,15 +23,14 @@ public class DietShareAction implements Action{
 		
 		boolean result = dietdao.dietShare(dietCode,dietShare);
 		if(result==false) {
-			System.out.println("½Ä´Ü °øÀ¯ ¼³Á¤ ½ÇÆĞ");
+			System.out.println("ì‹ë‹¨ ê³µìœ  ì„¸íŒ… ì‹¤íŒ¨");
 			ActionForward forward =new ActionForward();
-			request.setAttribute("message","½Ä´Ü °øÀ¯¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù.");
+			request.setAttribute("message","ì‹ë‹¨ ê³µìœ  ì„¸íŒ…ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		    forward.setRedirect(false);
 		    forward.setPath("error/error.jsp");
 			return forward;
 		}
 		System.out.println("ajax json");
-		//À§ÀÇ request·Î ´ã¾Ò´ø °ÍÀ» JsonObejct¿¡ ´ã½À´Ï´Ù.
 		JsonObject object = new JsonObject();
 		object.addProperty("result", result);
 		response.setContentType("text/html;charset=utf-8");

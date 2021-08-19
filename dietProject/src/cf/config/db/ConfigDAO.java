@@ -1,23 +1,299 @@
 package cf.config.db;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.naming.*;
 import javax.sql.*;
 
+import com.google.gson.JsonObject;
 
-/*
-   DAO Å¬·¡½º(Data Access Object)
-   -µ¥ÀÌÅÍ º£ÀÌ½º¿Í ¿¬µ¿ÇÏ¿© ·¹ÄÚµåÀÇ Ãß°¡ ,¼öÁ¤,»èÁ¦ ÀÛ¾÷ÀÌ ÀÌ·ïÁö´Â Å¬·¡½ºÀÔ´Ï´Ù.
- */
+import _comm.javabean.DietInfo;
+import _comm.javabean.FoodInfo;
+import oracle.net.aso.f;
+
+
 public class ConfigDAO {
 	private DataSource ds;
 	public ConfigDAO() {
 		try {
-			//Context.xml¿¡ ¸®¼Ò½º¸¦ »ı¼ºÇØ ³õÀº (JNDI¿¡ ¼³Á¤ÇØ ³õÀº) jdbc/OracleDB¸¦
-			//ÂüÁ¶ÇÏ¿© Connection °´Ã¼¸¦ ¾ò¾î ¿É´Ï´Ù.
 			Context init = new InitialContext();
 			ds = (DataSource)init.lookup("java:/comp/env/jdbc/OracleDB");
 		}catch(Exception ex) {
-			System.out.println("DB ¿¬°á ½ÇÆĞ : " + ex);
+			System.out.println("DB ì—°ê²° ì‹¤íŒ¨ :  " + ex);
 			return;
 		}
+	}
+	public int getfoodListCount(String search,String type,String[] check) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int x = 0;
+		String select_sql="";
+				
+		try {
+			conn = ds.getConnection();
+			if(search == null) {
+				//1.ê²€ìƒ‰ì–´ì™€ ì²´í¬ë°•ìŠ¤ ê°’ì´ ë‘˜ë‹¤ ì—†ëŠ” ê²½ìš°
+				if(type == null) {
+					select_sql = "select count(*) from food_info";
+					System.out.println("1. " + select_sql);
+				}
+				//2.ê²€ìƒ‰ì–´ëŠ” ì—†ì§€ë§Œ ì²´í¬ë°•ìŠ¤ ê°’ì´ ìˆëŠ” ê²½ìš° 
+				else {
+					select_sql = "select count(*) from food_info where ";
+					for(int i=0;i<check.length;i++) 
+					{
+						select_sql+=type +" = "+ check[i];
+						if((i+1)!=check.length) {
+							select_sql+=" or ";
+						}
+					}
+					System.out.println("2. " + select_sql);
+				}
+				pstmt = conn.prepareStatement(select_sql);
+			}
+			else {
+				//3.ê²€ìƒ‰ì–´ëŠ” ìˆì§€ë§Œ ì²´í¬ë°•ìŠ¤ ê°’ì´ ì—†ëŠ” ê²½ìš°
+				if(type == null) {
+					select_sql = "select count(*) from food_info where food_name like ? ";
+					System.out.println("3. " + select_sql);
+				}
+				//4.ê²€ìƒ‰ì–´ë„ ìˆê³  ì²´í¬ë°•ìŠ¤ ê°’ë„ ìˆëŠ” ê²½ìš° 
+				else {
+					select_sql = "select count(*) from food_info where food_name like ? and ( ";
+					for(int i=0;i<check.length;i++) 
+					{
+						select_sql+=type +" = "+ check[i];
+						if((i+1)!=check.length) {
+							select_sql+=" or ";
+						}
+					}
+					select_sql +=" )";
+					System.out.println("4. " + select_sql);
+				}
+				pstmt = conn.prepareStatement(select_sql);
+				pstmt.setString(1, "%"+search+"%");
+			}
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				x = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			System.out.println("getfoodListCount()ì‹¤íŒ¨ : " + e);
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			try {
+				if (pstmt != null)
+					pstmt.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return x;
+	}
+
+	public List<FoodInfo> getfoodList(int page,int limit,String search,String type,String[] check) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		
+		String food_list_sql;
+		
+		List<FoodInfo> list = new ArrayList<FoodInfo>();
+
+		int startrow = (page -1) * limit + 1;
+		int endrow = startrow + limit - 1;
+		
+		try {
+
+			conn = ds.getConnection();
+			if(search == null) {
+				//1.ê²€ìƒ‰ì–´ì™€ ì²´í¬ë°•ìŠ¤ ê°’ì´ ë‘˜ë‹¤ ì—†ëŠ” ê²½ìš°
+				if(type == null) {
+					food_list_sql = "SELECT * "
+	           				+"FROM "
+	           				+"     (SELECT ROWNUM RNUM,FOOD_CODE,FOOD_NAME,"
+	           				+"      FOOD_IMG_NAME,FOOD_CARB,"
+	           				+"      FOOD_FAT,FOOD_PROTEIN,"
+	           				+"      FOOD_CAL FROM "
+	           				+"               (SELECT * FROM FOOD_INFO "
+	           				+"                ORDER BY FOOD_CODE ASC) "
+	           				+"     ) "
+	           				+" WHERE RNUM>=? AND RNUM<=?";
+					System.out.println("1. " + food_list_sql);
+				}
+				//2.ê²€ìƒ‰ì–´ëŠ” ì—†ì§€ë§Œ ì²´í¬ë°•ìŠ¤ ê°’ì´ ìˆëŠ” ê²½ìš° 
+				else {
+					food_list_sql = "SELECT * "
+	           				+"FROM "
+	           				+"     (SELECT ROWNUM RNUM,FOOD_CODE,FOOD_NAME,"
+	           				+"      FOOD_IMG_NAME,FOOD_CARB,"
+	           				+"      FOOD_FAT,FOOD_PROTEIN,"
+	           				+"      FOOD_CAL FROM "
+	           				+"               (SELECT * FROM FOOD_INFO "
+							+"                WHERE ";
+
+					for(int i=0;i<check.length;i++) 
+					{
+						food_list_sql+=type +" = "+ check[i];
+						if((i+1)!=check.length) {
+							food_list_sql+=" OR ";
+						}
+					}
+					food_list_sql +="         ORDER BY FOOD_CODE ASC) "
+	           				+"     ) "
+	           				+" WHERE RNUM>=? AND RNUM<=?";
+					System.out.println("2. " + food_list_sql);
+				}
+				
+				pstmt = conn.prepareStatement(food_list_sql);
+				pstmt.setInt(1,startrow);
+				pstmt.setInt(2,endrow);
+			}
+			else {
+				//3.ê²€ìƒ‰ì–´ëŠ” ìˆì§€ë§Œ ì²´í¬ë°•ìŠ¤ ê°’ì´ ì—†ëŠ” ê²½ìš°
+				if(type == null) {
+					food_list_sql = "SELECT * "
+	           				+"FROM "
+	           				+"     (SELECT ROWNUM RNUM,FOOD_CODE,FOOD_NAME,"
+	           				+"      FOOD_IMG_NAME,FOOD_CARB,"
+	           				+"      FOOD_FAT,FOOD_PROTEIN,"
+	           				+"      FOOD_CAL FROM "
+	           				+"               (SELECT * FROM FOOD_INFO "
+	           				+"				  WHERE FOOD_NAME LIKE ? "
+	           				+"                ORDER BY FOOD_CODE ASC) "
+	           				+"     ) "
+	           				+" WHERE RNUM>=? AND RNUM<=?";
+					System.out.println("3. " + food_list_sql);
+				}
+				//4.ê²€ìƒ‰ì–´ë„ ìˆê³  ì²´í¬ë°•ìŠ¤ ê°’ë„ ìˆëŠ” ê²½ìš° 
+				else {
+					food_list_sql = "SELECT * "
+	           				+"FROM "
+	           				+"     (SELECT ROWNUM RNUM,FOOD_CODE,FOOD_NAME,"
+	           				+"      FOOD_IMG_NAME,FOOD_CARB,"
+	           				+"      FOOD_FAT,FOOD_PROTEIN,"
+	           				+"      FOOD_CAL FROM "
+	           				+"               (SELECT * FROM FOOD_INFO "
+	           				+"				  WHERE FOOD_NAME LIKE ? AND"
+	           				+"                     ( ";
+	           				
+					for(int i=0;i<check.length;i++) 
+					{
+						food_list_sql+=type +" = "+ check[i];
+						if((i+1)!=check.length) {
+							food_list_sql+=" OR ";
+						}
+						
+					}
+					food_list_sql+="          ) ";
+					food_list_sql+="          ORDER BY FOOD_CODE ASC) "
+		       				+"     ) "
+		       				+" WHERE RNUM>=? AND RNUM<=?";
+					System.out.println("4. " + food_list_sql);
+				}
+				
+				pstmt = conn.prepareStatement(food_list_sql);
+				pstmt.setString(1, "%"+search+"%");
+				pstmt.setInt(2,startrow);
+				pstmt.setInt(3,endrow);
+			
+			}
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				FoodInfo f = new FoodInfo();
+				f.setFood_code(rs.getInt("food_code"));
+				f.setFood_name(rs.getString("food_name"));
+				f.setFood_img_name(rs.getString("food_img_name"));
+				f.setFood_carb(rs.getInt("food_carb"));
+				f.setFood_fat(rs.getInt("food_fat"));
+				f.setFood_protein(rs.getInt("food_protein"));
+				f.setFood_cal(rs.getInt("food_cal"));
+				list.add(f);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("getfoodList() ì‹¤íŒ¨  : " + e);
+		}finally {
+			try {
+				if(rs != null) 
+					rs.close();
+			}catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			try {
+				if(pstmt != null) 
+					pstmt.close();
+			}catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			try {
+				if(conn != null) 
+					conn.close();
+			}catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return list;
+	}
+	public JsonObject getFoodInfo(int fcode) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		JsonObject fooddata= null;
+		String select_sql ="select * from food_info where food_code= ? ";
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(select_sql);
+			pstmt.setInt(1,fcode);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				fooddata= new JsonObject();
+				fooddata.addProperty("food_code", rs.getInt("food_code"));
+				fooddata.addProperty("food_name", rs.getString("food_name"));
+				fooddata.addProperty("food_img_name", rs.getString("food_img_name"));
+				fooddata.addProperty("food_carb", rs.getInt("food_carb"));
+				fooddata.addProperty("food_fat", rs.getInt("food_fat"));
+				fooddata.addProperty("food_protein", rs.getInt("food_protein"));
+				fooddata.addProperty("food_cal", rs.getInt("food_cal"));
+			}
+		}catch (Exception ex) {
+			System.out.println("getDetail() ì‹¤íŒ¨ : " + ex);
+		}finally {
+			try {
+				if(rs != null) 
+					rs.close();
+			}catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			try {
+				if(pstmt != null) 
+					pstmt.close();
+			}catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			try {
+				if(conn != null) 
+					conn.close();
+			}catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return fooddata;
 	}
 }

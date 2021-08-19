@@ -20,18 +20,18 @@ public class DietDeleteAction implements Action{
 		System.out.println("dcode:" + dcode);
 		result = dietdao.DietDelete(dcode);
 		if(result==false) {
-			System.out.println("½Ä´Ü »èÁ¦ ½ÇÆĞ");
+			System.out.println("ì‹ë‹¨ ì‚­ì œ ì‹¤íŒ¨");
 			ActionForward forward =new ActionForward();
-			request.setAttribute("message","½Ä´ÜÀ» »èÁ¦ ÇÏÁö ¸øÇß½À´Ï´Ù..");
+			request.setAttribute("message","ì‹ë‹¨ ì‚­ì œì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.");
 		    forward.setRedirect(false);
 		    forward.setPath("error/error.jsp");
 			return forward;
 		}
-		System.out.println("½Ä´Ü »èÁ¦ ¼º°ø");
+		System.out.println("ì‹ë‹¨ ì‚­ì œ ì™„ë£Œ");
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.println("<script>");
-		out.println("alert('½Ä´ÜÀÌ »èÁ¦ µÇ¾ú½À´Ï´Ù.');");
+		out.println("alert('í•´ë‹¹ ì‹ë‹¨ì˜ ì‚­ì œê°€ ì™„ë£Œ ë˜ì—ˆìŠµë‹ˆë‹¤.')");
 		out.println("location.href='dietpage.dt';");
 		out.println("</script>");
 		out.close();

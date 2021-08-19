@@ -26,29 +26,27 @@ public class DietDetailAction implements Action{
 		String dcode = request.getParameter("dcode");
 		int state =Integer.parseInt(request.getParameter("state"));
 		System.out.println("state: " + state + " dcode:" + dcode );
-		//1.Æ¯Á¤ ½Ä´Ü »ó¼¼º¸±â Á¤º¸ °¡Á®¿À±â(½Ä´Ü »ó¼¼ Á¤º¸)
+		
+		//1.ì‹ë‹¨ì •ë³´ë¥¼ ê°€ì ¸ì˜µë‹ˆë‹¤.
 		object=dietdao.getDetail(dcode);
 		
 		if(object==null) {
-			System.out.println("½Ä´Ü Á¤º¸ °¡Á®¿À±â ½ÇÆĞ");
+			System.out.println("ì‹ë‹¨ì •ë³´ ê°€ì ¸ì˜¤ê¸° ì‹¤íŒ¨");
 			ActionForward forward =new ActionForward();
-			request.setAttribute("message","½Ä´Ü µ¥ÀÌÅÍ¸¦ ÀĞÁö ¸øÇß½À´Ï´Ù.");
+			request.setAttribute("message","ì‹ë‹¨ì •ë³´ë¥¼ ê°€ì ¸ì˜¤ê¸° ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		    forward.setRedirect(false);
 		    forward.setPath("error/error.jsp");
 			return forward;
 		}
 		
-		System.out.println("½Ä´Ü Á¤º¸ °¡Á®¿À±â ¿Ï·á");
-		
-		
-		//2.½Ä´ÜÀÇ ±¸¼º À½½Ä Á¤º¸¸¦ Ã£´Â´Ù.
+		//2.ì‹ë‹¨ì˜ ìƒì„¸ ì‹ìì¬ ì •ë³´ë¥¼ ê°€ì ¸ì˜µë‹ˆë‹¤.
 		String foods =object.get("diet_form").getAsString();
 		System.out.println("foods : " + foods);
 		jArray = dietdao.getFoodDetail(foods);
 		je = new Gson().toJsonTree(jArray);
 		object.add("foodlist", je);
 		
-		//3.½Ä´ÜÀÇ ´ñ±Û Á¤º¸¸¦ Ã£´Â´Ù.
+		//3.ì‹ë‹¨ì˜ ëŒ“ê¸€ ì •ë³´ë¥¼ ê°€ì ¸ì˜µë‹ˆë‹¤.
 		jArray = dietdao.getCommentList(dcode,state);
 		je = new Gson().toJsonTree(jArray);
 		object.add("commentlist", je);

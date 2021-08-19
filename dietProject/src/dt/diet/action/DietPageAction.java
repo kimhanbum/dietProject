@@ -7,10 +7,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import javax.servlet.http.HttpSession;
 
 import _comm.javabean.DietInfo;
 import dt.diet.db.DietDAO;
@@ -24,82 +21,60 @@ public class DietPageAction implements Action{
 		DietDAO dietdao = new DietDAO();
 		List<DietInfo> diList = new ArrayList<DietInfo>();
 		
-		//·Î±×ÀÎ ¼º°ø½Ã ÆÄ¶ó¹ÌÅÍ page°¡ ¾ø¾î¿ä ±×·¡¼­ ÃÊ±â°ªÀ» Áİ´Ï´Ù.
-		int page = 1;   //ÇöÀç ÆäÀÌÁö
-		int limit = 4; //ÇÑÆäÀÌÁö¿¡ º¸¿©ÁÙ °Ô½ÃÆÇ °¹¼ö
-		String search = null;  //search·Î °Ë»öµÈ°ÍÀÌ ¾Æ´Ï¸é null·Î ½ÃÀÛ
+
+		int page = 1;   
+		int limit = 4;
+		String search = null;  
 		
 		if(request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
-		System.out.println("³Ñ¾î¿Â ÆäÀÌÁö : " + page);
-		System.out.println("³Ñ¾î¿Â limit : " + limit);
+		System.out.println("page : " + page);
+		System.out.println("limit" + limit);
 		if(request.getParameter("search") !=null) {
 			search =request.getParameter("search");
 		}
-		System.out.println("³Ñ¾î¿Â °Ë»ö¾î : " + search);
+		System.out.println("search : " + search);
 		
-		//ÀÓÀÇ·Î ÁØ user Á¤º¸¸¦ ¼³Á¤ ÀÌºÎºĞÀº ÃßÈÄ »èÁ¦
-		String user  ="user001";
+		//ì„¸ì…˜ì—ì„œ idë¥¼ ê°€ì ¸ì˜µë‹ˆë‹¤.
+		HttpSession session = request.getSession();
+		String userId = (String) session.getAttribute("id"); 
 		
-		//ÃÑ ¸®½ºÆ® ¼ö¸¦ ¹Ş¾Æ¿É´Ï´Ù.
-		int listcount = dietdao.getListCount(user,search);
+		System.out.println("sessionid: " + userId);
+
 		
-		//¸®½ºÆ®¸¦ ¹Ş¾Æ¿É´Ï´Ù.
-		diList = dietdao.getBoardList(page,limit,user,search);
+		int listcount = dietdao.getListCount(userId,search);
 		
-		/* ÃÑ ÆäÀÌÁö¼ö
-		    = (DB¿¡ ÀúÀåµÈ ÃÑ ¸®½ºÆ®¼ö  + ÇÑ ÆäÀÌÁö¿¡¼­ º¸¿©ÁÖ´Â¸®½ºÆ®¼ö -1)/ÇÑÆäÀÌÁö¿¡¼­ º¸¿©ÁÖ´Â ¸®½ºÆ® ¼ö
-		   ¿¹¸¦ µé¾î ÇÑÆäÀÌÁö¿¡¼­ º¸¿©ÁÖ´Â ¸®½ºÆ®ÀÇ ¼ö°¡ 10°³ÀÎ °æ¿ì
-		   ¿¹1)DB¿¡ ÀúÀåµÈ ÃÑ ¸®½ºÆ®ÀÇ ¼ö°¡ 0¸é ÃÑ ÆäÀÌÁö ¼ö´Â 0ÆäÀÌÁö
-		   ¿¹2)DB¿¡ ÀúÀåµÈ ÃÑ ¸®½ºÆ®ÀÇ ¼ö°¡ (1~10)ÀÌ¸é ÃÑ ÆäÀÌÁö ¼ö´Â 1ÆäÀÌÁö
-		   ¿¹3)DB¿¡ ÀúÀåµÈ ÃÑ ¸®½ºÆ®ÀÇ ¼ö°¡ (11~20)¸é ÃÑ ÆäÀÌÁö ¼ö´Â 2ÆäÀÌÁö
-		   ¿¹4)DB¿¡ ÀúÀåµÈ ÃÑ ¸®½ºÆ®ÀÇ ¼ö°¡ (21~30)¸é ÃÑ ÆäÀÌÁö ¼ö´Â 3ÆäÀÌÁö		   		   		  
-		 */
+		diList = dietdao.getDietList(page,limit,userId,search);
+		
+
 		int maxpage=(listcount + limit-1)/limit;
-		System.out.println("ÃÑ ÆäÀÌÁö¼ö  = " + maxpage);
+		System.out.println("maxPage : " + maxpage);
 		
-		/*
-		  startpage = ÇöÀç ÆäÀÌÁö ±×·ì¿¡¼­ ¸Ç Ã³À½¿¡ Ç¥½ÃµÉ ÆäÀÌÁö ¼ö¸¦ ÀÇ¹ÌÇÕ´Ï´Ù.
-		  ([1],[11],[21]µî...) º¸¿©ÁÙ ÆäÀÌÁö°¡ 30°³ÀÏ °æ¿ì
-		   [1][2][3]......[30]±îÁö ´Ù Ç¥½ÃÇÏ±â¿¡´Â ³Ê¹« ¸¹±â ¶§¹®¿¡ º¸Åë ÇÑÆäÀÌÁö¿¡´Â
-		   10ÆäÀÌÁö Á¤µµ±îÁö ÀÌµ¿ ÇÒ ¼ö ÀÖ°Ô Ç¥½ÃÇÕ´Ï´Ù.
-		      ¿¹) ÆäÀÌÁö ±×·ìÀÌ ¾Æ·¡¿Í °°Àº °æ¿ì
-		   [1][2][3][4][5][6][7][8][9][10]
-		        ÆäÀÌÁö ±×·ìÀÇ ½ÃÀÛ ÆäÀÌÁö´Â startpage¿¡ ¸¶Áö¸· ÆäÀÌÁö´Â endpage¿¡ ±¸ÇÕ´Ï´Ù.
-		  
-		    ¿¹·Î 1~10 ÆäÀÌÁöÀÇ ³»¿ëÀ» ³ªÅ¸³¾‹š´Â ÆäÀÌÁö ±×·ìÀº [1][2][3]....[10]·Î Ç¥½ÃµÇ°í
-		  11~20 ÆäÀÌÁöÀÇ ³»¿ëÀ» ³ªÅ¸³¾‹š´Â ÆäÀÌÁö ±×·ìÀº [11][12][13]....[20]±îÁö Ç¥½ÃµË´Ï´Ù.
-		 */
+
 		int startpage = ((page-1)/10) * 10+1;
-		System.out.println("ÇöÀçÆäÀÌÁö¿¡ º¸¿©ÁÙ ½ÃÀÛ ÆäÀÌÁö¼ö = " + startpage);
+		System.out.println("startpage"+ startpage);
 		
-		//endpage: ÇöÀç ÆäÀÌÁö ±×·ì¿¡¼­ º¸¿©ÁÙ ¸¶Áö¸· ÆäÀÌÁö¼ö ([10],[20].[30]µî)
 		int endpage = startpage + 10 -1;
-		System.out.println("ÇöÀç ÆäÀÌÁö¿¡¼­ º¸¿©ÁÙ ¸¶Áö¸· ÆäÀÌÁö¼ö = " + endpage);
+		System.out.println("endPage" + endpage);
 		
-		/*
-		  ¸¶Áö¸· ±×·ìÀÇ ¸¶Áö¸· ÆäÀÌÁö °ªÀº ÃÖ´ë ÆäÀÌÁö °ªÀÔ´Ï´Ù. 
-		 ¿¹·Î ¸¶Áö¸· ÆäÀÌÁö ±×·ìÀÌ [21]~[30]ÀÎ °æ¿ì
-		 ½ÃÀÛÆäÀÌÁö(staartpage=21)¿Í ¸¶Áö¸·ÆäÀÌÁö(endpage=30) ÀÌÁö¸¸
-		 ÃÖ´ë ÆäÀÌÁö(maxpage)°¡ 25¶ó¸é [21]~[25]±îÁö¸¸ Ç¥½ÃµÇµµ·Ï ÇÕ´Ï´Ù.
-		 */		
+
 		if(endpage > maxpage)
 			endpage = maxpage;
 		
-		request.setAttribute("page",page); //ÇöÀç ÆäÀÌÁö¼ö
-		request.setAttribute("maxpage",maxpage);//ÃÖ´ë ÆäÀÌÁö¼ö
+		request.setAttribute("page",page); 
+		request.setAttribute("maxpage",maxpage);
 		
-		//ÇöÀç ÆäÀÌÁö¿¡ Ç¥½ÃÇÒ Ã¹ ÆäÀÌÁö ¼ö
+
 		request.setAttribute("startpage",startpage);
 		
-		//ÇöÀç ÆäÀÌÁö¿¡ Ç¥½ÃÇÒ ³¡ ÆäÀÌÁö ¼ö 
+
 		request.setAttribute("endpage",endpage);
 		
-		request.setAttribute("listcount",listcount); //ÃÑ ±ÛÀÇ ¼ö 
+		request.setAttribute("listcount",listcount);
 		request.setAttribute("diList", diList);
 		request.setAttribute("limit",limit);
-		request.setAttribute("id",user);
+		request.setAttribute("id",userId);
 		ActionForward forward =new ActionForward();
 	    forward.setRedirect(false);
 	    forward.setPath("mypage/mypage_myDiet.jsp");
