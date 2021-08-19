@@ -112,14 +112,14 @@ insert into MEAL_INFO values('M41','핫도그','hotdog.jpg',27,11,7,235);
 --초기 입력값 
 
 --admin 계정 생성
-insert into USER_INFO values('admin01','admin01','admin01',880423-1888888,'남','admin01@naver.com','010-1111-2222','경기도 수원시');
-insert into USER_INFO values('admin02','admin02','admin02',770526-2777777,'여','admin02@naver.com','010-3333-4444','경기도 하남시');
-insert into USER_INFO values('admin03','admin03','admin03',661024-1666666,'남','admin03@naver.com','010-5555-6666','경기도 안양시');
+insert into USER_INFO values('admin01','admin01','admin01','880423-1888888','남','admin01@naver.com','010-1111-2222','경기도 수원시');
+insert into USER_INFO values('admin02','admin02','admin02','770526-2777777','여','admin02@naver.com','010-3333-4444','경기도 하남시');
+insert into USER_INFO values('admin03','admin03','admin03','661024-1666666','남','admin03@naver.com','010-5555-6666','경기도 안양시');
 
 --유저 계정 생성
-insert into USER_INFO values('user001','user001','user001',550925-2555555,'여','user01@naver.com','010-1234-4321','서울시 강남구');
-insert into USER_INFO values('user002','user002','user002',440421-1444444,'남','user02@naver.com','010-5678-8765','서울시 마포구');
-insert into USER_INFO values('user003','user003','user003',991010-1333333,'남','user03@naver.com','010-7788-8899','서울시 서초구');
+insert into USER_INFO values('user001','user001','user001','550925-2555555','여','user01@naver.com','010-1234-4321','서울시 강남구');
+insert into USER_INFO values('user002','user002','user002','440421-1444444','남','user02@naver.com','010-5678-8765','서울시 마포구');
+insert into USER_INFO values('user003','user003','user003','991010-1333333','남','user03@naver.com','010-7788-8899','서울시 서초구');
 
 --유저 개인정보
 insert into PERSONAL_INFO values('user001',1,170,60,50,2400);

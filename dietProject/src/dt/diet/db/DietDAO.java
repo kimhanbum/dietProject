@@ -15,21 +15,14 @@ import com.google.gson.JsonObject;
 import _comm.javabean.DietInfo;
 import _comm.javabean.DietReply;
 
-
-/*
-   DAO Å¬·¡½º(Data Access Object)
-   -µ¥ÀÌÅÍ º£ÀÌ½º¿Í ¿¬µ¿ÇÏ¿© ·¹ÄÚµåÀÇ Ãß°¡ ,¼öÁ¤,»èÁ¦ ÀÛ¾÷ÀÌ ÀÌ·ïÁö´Â Å¬·¡½ºÀÔ´Ï´Ù.
- */
 public class DietDAO {
 	private DataSource ds;
 	public DietDAO() {
 		try {
-			//Context.xml¿¡ ¸®¼Ò½º¸¦ »ý¼ºÇØ ³õÀº (JNDI¿¡ ¼³Á¤ÇØ ³õÀº) jdbc/OracleDB¸¦
-			//ÂüÁ¶ÇÏ¿© Connection °´Ã¼¸¦ ¾ò¾î ¿É´Ï´Ù.
 			Context init = new InitialContext();
 			ds = (DataSource)init.lookup("java:/comp/env/jdbc/OracleDB");
 		}catch(Exception ex) {
-			System.out.println("DB ¿¬°á ½ÇÆÐ : " + ex);
+			System.out.println("DB ì—°ê²° ì‹¤íŒ¨ : " + ex);
 			return;
 		}
 	}
@@ -57,7 +50,7 @@ public class DietDAO {
 				x = rs.getInt(1);
 			}
 		} catch (Exception e) {
-			System.out.println("getListCount() ¿¡·¯ :" + e);
+			System.out.println("getListCount()ì‹¤íŒ¨ : " + e);
 		} finally {
 			try {
 				if (rs != null)
@@ -81,18 +74,15 @@ public class DietDAO {
 		return x;
 	}
 
-	public List<DietInfo> getBoardList(int page,int limit,String user,String search) {
+	public List<DietInfo> getDietList(int page,int limit,String user,String search) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs =null;
 		
-		
 		String board_list_sql;
 		
-
 		List<DietInfo> list = new ArrayList<DietInfo>();
 
-		//ÇÑÆäÀÌÁö´ç 10°³¾¿ ¸ñ·ÏÀÎ °æ¿ì 1ÆäÀÌÁö , 2ÆäÀÌÁö, 2ÆäÀÌÁö, 4ÆäÀÌÁö....
 		int startrow = (page -1) * limit + 1;
 		int endrow = startrow + limit - 1;
 		
@@ -140,12 +130,6 @@ public class DietDAO {
 			System.out.println(board_list_sql);
 			while(rs.next()) {
 				DietInfo d = new DietInfo();
-				
-				//³ª´²¼­ ¾²¸é 
-				String str = rs.getString("DIET_CODE"); //¹ÝÈ¯Çü ÀÖÀ½
-				d.setDiet_code(str);
-				
-				
 				d.setDiet_code(rs.getString("DIET_CODE"));
 				d.setDiet_name(rs.getString("DIET_NAME"));
 				if(rs.getInt("DIET_SHARE") == 1)
@@ -160,7 +144,7 @@ public class DietDAO {
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("getBoardList() ¿¡·¯: " + e);
+			System.out.println("getBoardList() ì‹¤íŒ¨  : " + e);
 		}finally {
 			try {
 				if(rs != null) 
@@ -203,7 +187,7 @@ public class DietDAO {
 		
 		}catch (SQLException ex) {
 			ex.printStackTrace();
-			System.out.println("dietShare() ¿¡·¯ : " + ex);
+			System.out.println("dietShare() ì‹¤íŒ¨  :" + ex);
 		}finally {
 			try {
 				if(pstmt != null) 
@@ -240,7 +224,7 @@ public class DietDAO {
 			
 		}catch (SQLException ex) {
 			ex.printStackTrace();
-			System.out.println("DietDelete() ¿¡·¯ : " + ex);
+			System.out.println("DietDelete() ì‹¤íŒ¨ :  " + ex);
 		}finally {
 			try {
 				if(rs != null) 
@@ -287,7 +271,7 @@ public class DietDAO {
 				dietdata.addProperty("diet_total_cal", rs.getInt("DIET_TOTAL_CAL"));
 			}
 		}catch (Exception ex) {
-			System.out.println("getDetail() ¿¡·¯ : " + ex);
+			System.out.println("getDetail() ì‹¤íŒ¨ : " + ex);
 		}finally {
 			try {
 				if(rs != null) 
@@ -331,7 +315,7 @@ public class DietDAO {
 				}
 			}
 		}catch (Exception ex) {
-			System.out.println("getFoodDetail() ¿¡·¯ : " + ex);
+			System.out.println("getFoodDetail() ì‹¤íŒ¨ :  " + ex);
 		}finally {
 			try {
 				if(rs != null) 
@@ -384,7 +368,7 @@ public class DietDAO {
 				array.add(object);
 			}
 		} catch (Exception e) {
-			System.out.println("getCommentList() ¿¡·¯ :" + e);
+			System.out.println("getCommentList() ì‹¤íŒ¨ : "+ e);
 		} finally {
 			try {
 				if (rs != null)
@@ -417,7 +401,7 @@ public class DietDAO {
 			String sql = "insert into diet_reply(id,diet_code,diet_re_num,diet_re_seq,diet_re_content) "
 					+ "   values(?,?,"+max_sql+",?,?)";
 			
-			//PreparedStatement »ç¿ë
+			//PreparedStatement
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1,dr.getId());
 			pstmt.setString(2,dr.getDiet_code());
@@ -426,9 +410,9 @@ public class DietDAO {
 			result=pstmt.executeUpdate();
 			
 			if(result == 1)
-				System.out.println("´ñ±Û »ðÀÔÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
+				System.out.println("ëŒ“ê¸€ ì‚½ìž… ì‹¤íŒ¨");
 		}catch (Exception ex) {
-			System.out.println("replyInsert()¿¡·¯ : " + ex);
+			System.out.println("replyInsert() ì‹¤íŒ¨ : "+ ex);
 			ex.printStackTrace();
 		}finally {
 			try {
@@ -474,7 +458,7 @@ public class DietDAO {
 				array.add(object);
 			}
 		} catch (Exception e) {
-			System.out.println("getReplyList() ¿¡·¯ :" + e);
+			System.out.println("getReplyList() ì‹¤íŒ¨ : " + e);
 		} finally {
 			try {
 				if (rs != null)
@@ -511,12 +495,12 @@ public class DietDAO {
 			pstmt.setInt(1,num);
 			result = pstmt.executeUpdate();
 			if(result == 1) {
-				System.out.println("µ¥ÀÌÅÍ »èÁ¦ µÇ¾ú½À´Ï´Ù.");
+				System.out.println("ëŒ“ê¸€ ì‚­ì œ ì„±ê³µ");
 			}
 			
 		}catch (SQLException ex) {
 			ex.printStackTrace();
-			System.out.println("replyDelete() ¿¡·¯ : " + ex);
+			System.out.println("replyDelete() ì‹¤íŒ¨ : " + ex);
 		}finally {
 			try {
 				if(pstmt != null) 
@@ -546,10 +530,10 @@ public class DietDAO {
 			pstmt.setInt(2, num);
 			result = pstmt.executeUpdate();
 			if (result == 1) {
-				System.out.println("µ¥ÀÌÅÍ°¡ ¼öÁ¤ µÇ¾ú½À´Ï´Ù.");
+				System.out.println("ëŒ“ê¸€ ìˆ˜ì • ì„±ê³µ");
 			}
 		} catch (Exception e) {
-			System.out.println("replyUpdate ¿¡·¯ :" + e);
+			System.out.println("replyUpdate ì‹¤íŒ¨:" + e);
 		} finally {
 			try {
 				if (pstmt != null)
@@ -565,5 +549,151 @@ public class DietDAO {
 			}
 		}
 		return result;
+	}
+	public int getShareListCount(String user,String search) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int x = 0;
+		String select_sql;
+		try {
+			conn = ds.getConnection();
+			if(search == null) {
+				select_sql = "select count(*) from diet_info where diet_share =1 and id=? ";
+				pstmt = conn.prepareStatement(select_sql);
+				pstmt.setString(1,user);
+			}
+			else {
+				select_sql = "select count(*) from diet_info where diet_share =1 and id=? and diet_name like ?";
+				pstmt = conn.prepareStatement(select_sql);
+				pstmt.setString(1,user);
+				pstmt.setString(2, "%"+search+"%");
+			}
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				x = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			System.out.println("getShareListCount()ì‹¤íŒ¨ : " + e);
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			try {
+				if (pstmt != null)
+					pstmt.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return x;
+	}
+
+	public List<DietInfo> getShareDietList(int page,int limit,String user,String search) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		
+		String board_list_sql;
+		
+		List<DietInfo> list = new ArrayList<DietInfo>();
+
+		int startrow = (page -1) * limit + 1;
+		int endrow = startrow + limit - 1;
+		
+		try {
+
+			conn = ds.getConnection();
+			if(search == null) {
+				board_list_sql = "SELECT * "
+		           				+"FROM "
+		           				+"     (SELECT ROWNUM RNUM,DIET_CODE,DIET_NAME,"
+		           				+"      DIET_SHARE,DIET_TOTAL_CARB,"
+		           				+"      DIET_TOTAL_FAT,DIET_TOTAL_PROTEIN,"
+		           				+"      DIET_TOTAL_CAL  FROM "
+		           				+"                      (SELECT * FROM DIET_INFO "
+		           				+"						 WHERE DIET_SHARE = 1 AND ID = ? "
+		           				+"                       ORDER BY DIET_DATE ASC) "
+		           				+"     ) "
+		           				+" WHERE RNUM>=? AND RNUM<=?";
+				pstmt = conn.prepareStatement(board_list_sql);
+				pstmt.setString(1,user);
+				pstmt.setInt(2,startrow);
+				pstmt.setInt(3,endrow);
+				rs = pstmt.executeQuery();
+			}
+			else {
+				board_list_sql = "SELECT * "
+		           				+"FROM "
+		           				+"     (SELECT ROWNUM RNUM,DIET_CODE,DIET_NAME,"
+		           				+"      DIET_SHARE,DIET_TOTAL_CARB,"
+		           				+"      DIET_TOTAL_FAT,DIET_TOTAL_PROTEIN,"
+		           				+"      DIET_TOTAL_CAL  FROM "
+		           				+"                      (SELECT * FROM DIET_INFO "
+		           				+"						 WHERE DIET_SHARE = 1 AND ID = ? AND DIET_NAME LIKE ? "
+		           				+"                       ORDER BY DIET_DATE ASC) "
+		           				+"     ) "
+		           				+" WHERE RNUM>=? AND RNUM<=?";
+				pstmt = conn.prepareStatement(board_list_sql);
+				pstmt.setString(1,user);
+				pstmt.setString(2, "%"+search+"%");
+				pstmt.setInt(3,startrow);
+				pstmt.setInt(4,endrow);
+				rs = pstmt.executeQuery();
+			
+			}
+			System.out.println(board_list_sql);
+			while(rs.next()) {
+				DietInfo d = new DietInfo();
+				
+				String str = rs.getString("DIET_CODE"); 
+				d.setDiet_code(str);
+				
+				
+				d.setDiet_code(rs.getString("DIET_CODE"));
+				d.setDiet_name(rs.getString("DIET_NAME"));
+				if(rs.getInt("DIET_SHARE") == 1)
+					d.setDiet_share(true);
+				else 
+					d.setDiet_share(false);
+				d.setDiet_total_carb(rs.getInt("DIET_TOTAL_CARB"));
+				d.setDiet_total_fat(rs.getInt("DIET_TOTAL_FAT"));
+				d.setDiet_total_protein(rs.getInt("DIET_TOTAL_PROTEIN"));
+				d.setDiet_total_cal(rs.getInt("DIET_TOTAL_CAL"));
+				list.add(d);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("getShareDietList() ì‹¤íŒ¨  : " + e);
+		}finally {
+			try {
+				if(rs != null) 
+					rs.close();
+			}catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			try {
+				if(pstmt != null) 
+					pstmt.close();
+			}catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			try {
+				if(conn != null) 
+					conn.close();
+			}catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return list;
 	}
 }

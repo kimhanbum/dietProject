@@ -17,25 +17,25 @@ public class cfDietFrontContoller extends javax.servlet.http.HttpServlet{
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) 
 	           throws ServletException, IOException{
 		/* 
-		    ¿äÃ»µÈ ÀüÃ¼ URLÁß¿¡¼­ Æ÷Æ® ¹øÈ£ ´ÙÀ½ºÎÅÍ ¸¶Áö¸· ¹®ÀÚ¿­±îÁö ¹ÝÈ¯µË´Ï´Ù.
-		    ¿¹) http://localhost:8088/jspProject/login.netÀÎ °æ¿ì
-		      "/jspProject/login.net" ¹ÝÈ¯µË´Ï´Ù.
+		    ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½Ã¼ URLï¿½ß¿ï¿½ï¿½ï¿½ ï¿½ï¿½Æ® ï¿½ï¿½È£ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ë´Ï´ï¿½.
+		    ï¿½ï¿½) http://localhost:8088/jspProject/login.netï¿½ï¿½ ï¿½ï¿½ï¿½
+		      "/jspProject/login.net" ï¿½ï¿½È¯ï¿½Ë´Ï´ï¿½.
 		*/
 		String RequestURI= request.getRequestURI();
 		System.out.println("ReqeustURI = " + RequestURI);
 		
-		//getContextPath() : ÄÁÅØ½ºÆ® °æ·Î°¡ ¹ÝÈ¯µË´Ï´Ù.
-		//contextPath´Â "/jspProject"°¡ ¹ÝÈ¯µË´Ï´Ù.
+		//getContextPath() : ï¿½ï¿½ï¿½Ø½ï¿½Æ® ï¿½ï¿½Î°ï¿½ ï¿½ï¿½È¯ï¿½Ë´Ï´ï¿½.
+		//contextPathï¿½ï¿½ "/jspProject"ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ë´Ï´ï¿½.
 		String contextPath =request.getContextPath();
 		System.out.println("contextPath = " + contextPath);
 		
-		//RequestURI¿¡¼­ ÄÁÅØ½ºÆ® °æ·Î ±æÀÌ °ªÀÇ ÀÎµ¥½º À§Ä¡ÀÇ ¹®ÀÚºÎÅÍ
-		//¸¶Áö¸· À§Ä¡ ¹®ÀÚ±îÁö ÃßÃâÇÕ´Ï´Ù.
-		//command´Â "/login.net" ¹ÝÈ¯µË´Ï´Ù.
+		//RequestURIï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø½ï¿½Æ® ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½Úºï¿½ï¿½ï¿½
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½Ú±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
+		//commandï¿½ï¿½ "/login.net" ï¿½ï¿½È¯ï¿½Ë´Ï´ï¿½.
 		String command = RequestURI.substring(contextPath.length());
 		System.out.println("command = " + command);
 		
-		//ÃÊ±âÈ­
+		//ï¿½Ê±ï¿½È­
 		ActionForward forward =null;
 		Action action =null;
 		switch(command) {
