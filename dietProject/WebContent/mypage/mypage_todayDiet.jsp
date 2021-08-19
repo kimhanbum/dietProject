@@ -1,6 +1,7 @@
 <%--210812.목 마무리, 다시하기 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="s" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -90,26 +91,27 @@ select::-ms-expand {
 	</div>
 
 	<!-- 마이 페이지 좌측 side 메뉴들 -->
+	
 	<aside class="ftco-section">
 		<div class="asideLeft_container">
-			<a href="#"><span class="icon-home2">&nbsp;&nbsp;</span>마이홈페이지 </a>
+			<a href="mypage.my"><span class="icon-home2">&nbsp;&nbsp;</span>마이홈페이지 </a>
 			<ul>
 				<hr>
 				<li><p class="icon-receipt">&nbsp;&nbsp;콘텐츠</p>
 					<ul>
-						<li><a href="${pageContext.request.contextPath}/infoCheck.my">내정보</a></li>
-						<li><a href="${pageContext.request.contextPath}/dietDetail.to">Today 식단</a></li>
-						<li><a href="${pageContext.request.contextPath}/dietpage.dt">식단 리스트</a></li>
-						<li><a href="#"></a></li>
+					<li><a href="infoCheck.my">내정보</a></li>
+					<li><a href="todayDiet.to">Today 식단</a></li>
+					<li><a href="dietpage.dt">식단 리스트</a></li>
+					<li><a href="#"></a></li>
 					</ul></li>
 				<hr>
 				<li><p class="icon-chat_bubble_outline">&nbsp;&nbsp;댓글·방명록</p>
 
 					<ul>
-						<li><a href="#">나의 공유식단</a></li>
-						<li><a href="#">나의 레시피</a></li>
-						<li><a href="#">내가 남긴 댓글</a></li>
-						<li><a href="#">내게 남긴 댓글</a></li>
+					<li><a href="dietSharePage.dt">나의 공유식단</a></li>
+					<li><a href="recipePage.rc">나의 레시피</a></li>
+					<li><a href="replyTo.rp">내가 남긴 댓글</a></li>
+					<li><a href="replyFrom.rp">내게 남긴 댓글</a></li>
 					</ul></li>
 			</ul>
 		</div>
@@ -118,6 +120,7 @@ select::-ms-expand {
 
 	<!-- 마이페이지 중앙 article -->
 	<article class="ftco-section">
+	 <s:set var="s" value="${totalinfo}"/>
 		<div class="container" style="border:1px solid black; min-height: 500px;">
 			<div class="title_today" style="padding-top: 15px;">
 			   Today 식단
@@ -125,23 +128,25 @@ select::-ms-expand {
 			   
 			<hr>
 			<div class="week_today">
-			    2021.07.21.수요일
+			   <div><s:out value="${s.total_date}"/></div>
 			</div>
 			<hr>
 
 			<div class="week d-flex justify-content-around">
-			 <a href="이동될 페이지 주소" target="blank" style="padding:0px">
+			 <a href="이동될 페이지 주소"  style="padding:0px">
 				<img src="images/pointer_left.png" alt="pointer_left"
 						  class="pointer_left">  
 			 </a> 
-		     <input class="sun" type="button" value="일"></input> 
+		     <input class="sun" type="button" value="일">
+		     <div><s:out value="${s.total_date }"/></div>
+		     </input> 
 			 <input class="mon" type="button" value="월"></input>
 			 <input class="tue" type="button" value="화"></input> 
 			 <input class="wed" type="button" value="수"></input> 
 			 <input class="thu" type="button" value="목"></input> 
 			 <input class="fri" type="button" value="금"></input>
 			 <input class="sat" type="button" value="토"></input> 
-			 <a href="이동될 페이지 주소" target=_blank>
+			 <a href="이동될 페이지 주소" >
 			 <img src="images/pointer_right.png" alt="pointer_right"
 				  class="pointer_right" >
 			 </a> 
@@ -205,11 +210,17 @@ select::-ms-expand {
   </button>
   
   <div style="overflow:auto;max-height:200px;">
-			  	<div style="border:1px solid black; min-height:100px;margin:10px">
+			  	<div style="border:1px solid black;">
+			  	<s:out value="${s.total_bf}"/>
 			  	</div>
-			  	<div style="border:1px solid black; min-height:100px;margin:10px">
+			  	<div style="border:1px solid black;">
+			  	<s:out value="${s.total_lunch}"/>
 			  	</div>
-			  	<div style="border:1px solid black; min-height:100px;margin:10px">
+			  	<div style="border:1px solid black;">
+			  	<s:out value="${s.total_dinner}"/>
+			  	</div>
+			  	<div style="border:1px solid black;">
+			  	<s:out value="${s.total_snack}"/>
 			  	</div>
 			</div>
 		</div>
@@ -241,16 +252,12 @@ select::-ms-expand {
                <option value="저녁">저녁</option>
                <option value="간식">간식</option>
        	</select> 
-
         
          <!-- submodal 이동버튼 -->
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#submodal">
     		meal
   		</button>
-	      
-	      
-	      
-	      
+
 	      <!-- modal 창 닫기 버튼 -->
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
@@ -258,8 +265,7 @@ select::-ms-expand {
         <!-- Modal body -->
         <div class="modal-body">
           <textarea id="mo_body2" rows="5" cols="60" style="border-top-style:none;resize:none"></textarea>
-        </p>
-        
+        <p></p>
         </div>
         
         <!-- Modal footer -->
@@ -287,170 +293,174 @@ select::-ms-expand {
          <!-- SubModal body -->
         <div class="modal-body">
 			<div class="snack_container">
-			<div class="snack_container">
-	    			<img src="images/dietSnack/감자칩.jpg" class="imgsnack">
-	    			<input type="checkbox" class="snack_checkbox" id="check1" />
-			</div>
-	    			<img src="images/dietSnack/김치볶음밥.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/kimstew.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/dietSnack/김치찌개.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/kimrice.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/dietSnack/다크초콜릿.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/pork.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/dietSnack/닭갈비.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/hotdog.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/dietSnack/돈까스.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/hamburger.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/dietSnack/돼지갈비.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/soystew.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/dietSnack/된장찌개.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/jaeyuk.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/dietSnack/떡볶이.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/mul.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/dietSnack/마늘빵.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/bibim.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/dietSnack/만두.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/pizza.png" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/dietSnack/머핀.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/soynoodle.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/dietSnack/물냉면.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/sundu.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/dietSnack/브라우니.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/haemulrice.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/dietSnack/비빔냉면.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/man.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/dietSnack/샌드위치.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/pasta.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/dietSnack/생크림케이크.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/tang.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/dietSnack/소불고기.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/jajang.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="../images/dietSnack/순대.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/jjam.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/dietSnack/순두부찌개.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/porkrib.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/dietSnack/애플파이.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/sobul.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/dietSnack/와플.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/chickenrib.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/dietSnack/요거트.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/haemulcal.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/dietSnack/우유.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/tteok.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/dietSnack/제육볶음.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/sundae.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/dietSnack/짜장면.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/fried.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/dietSnack/짬뽕.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/cake.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/dietSnack/치즈케이크.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/tira.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/dietSnack/콩국수.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/muffin.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/dietSnack/쿠키.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/brownie.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/dietSnack/탕수육.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/cheesecake.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/dietSnack/튀김.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/cookie.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/dietSnack/티라미슈.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/waffle.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/dietSnack/파스타.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/darkchoco.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/dietSnack/푸딩.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/garlic.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/dietSnack/피자.png" class="imgsnack">
+	    			<img src="images/dietSnack/pudding.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/dietSnack/핫도그.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/icecream.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/dietSnack/해물볶음밥.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/chip.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/dietSnack/해물칼국수.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/applepie.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/dietSnack/햄버거.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/milk.jpg" class="imgsnack">
+	    			<input type="checkbox" class="snack_checkbox" id="check1" />
+			</div>
+			<div class="snack_container">
+	    			<img src="images/dietSnack/sandwich.jpg" class="imgsnack">
+	    			<input type="checkbox" class="snack_checkbox" id="check1" />
+			</div>
+			<div class="snack_container">
+	    			<img src="images/dietSnack/yogurt.jpg" class="imgsnack">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
         </div>
         
         <!-- SubModal footer -->
         <div class="modal-footer">
-          <button class="btn_submit" type="submit" data-dismiss="modal" >
+          <button class="btn_submit" type="submit" >
            <img src="images/btn_check.jpg" alt="btn_check"  ></button>
         </div>
         
@@ -468,19 +478,12 @@ select::-ms-expand {
 			$(#btn_submit).modal('show');
 			console.log(result);
 		}
-		
-		
-	})
-	
-	 
- })
-		 
-		 
+	});
+ });
 </script>
 
-
 		 
-		<!-- 서브모달 -->
+ <!-- 서브모달 -->
 <script>
 	$(document).ready(function() {
 		$('#submodal').on('beforeShow', function() {
@@ -505,7 +508,7 @@ select::-ms-expand {
 					<div class="one">
 						<div>칼로리</div>
 					</div>
-					<div class='title'>1750 / ${totalinfo.total_cal} / 900</div>
+					<div class='title'>${personalinfo.rmr} / ${totalinfo.total_cal} / 900</div>
 				</div>
 				<div>
 					<div class="two">
@@ -550,9 +553,10 @@ select::-ms-expand {
 
 	<!-- footer 영역2 -->
 	<jsp:include page="../comm/footer_info.jsp" />
+	
 
-
-<script>
+<!-- submodal 이미지 미리보기 -->
+<script> 
 $('input[type=file]').change(function(event){
    console.log('change');
 	  var inputfile = $(this).val().split('\\');
@@ -574,8 +578,24 @@ $('input[type=file]').change(function(event){
 		}else{
 			alert('확장자는 gif, jpg, jpeg, png가 가능합니다.');
 		}
-})//$('input[type=file]').change() end
+}); <!--  $('input[type=file]').change() end   -->
 </script>
+
+<!-- 서브모달 선택이미지 모달에 미리보기 0819-->
+<!-- 
+
+<script>
+reader.onload = function(event) {
+    $('button[type=submit]').change(function(event){
+       console.log('change');
+           reader.onload = function(event){
+             $('#mymodal p ').append('<img class="textimg" src="'
+                                     + event.target.result + '">');
+           };
+})
+</script>
+
+-->
 
 
 

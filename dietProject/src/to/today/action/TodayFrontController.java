@@ -10,32 +10,32 @@ import javax.servlet.http.HttpServletResponse;
 
 
 @WebServlet("*.to")
-public class TodayFrontContoller extends javax.servlet.http.HttpServlet{
+public class TodayFrontController extends javax.servlet.http.HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) 
 	           throws ServletException, IOException{
 		/* 
-		    ¿äÃ»µÈ ÀüÃ¼ URLÁß¿¡¼­ Æ÷Æ® ¹øÈ£ ´ÙÀ½ºÎÅÍ ¸¶Áö¸· ¹®ÀÚ¿­±îÁö ¹İÈ¯µË´Ï´Ù.
-		    ¿¹) http://localhost:8088/jspProject/login.netÀÎ °æ¿ì
-		      "/jspProject/login.net" ¹İÈ¯µË´Ï´Ù.
-		*/
+	                ìš”ì²­ëœ ì „ì²´ URLì¤‘ì—ì„œ í¬íŠ¸ ë²ˆí˜¸ ë‹¤ìŒë¶€í„° ë§ˆì§€ë§‰ ë¬¸ìì—´ê¹Œì§€ ë°˜í™˜ë©ë‹ˆë‹¤.
+	               ì˜ˆ) http://localhost:8088/jspProject/login.netì¸ ê²½ìš°
+	          "/jspProject/login.net" ë°˜í™˜ë©ë‹ˆë‹¤.
+	    */
 		String RequestURI= request.getRequestURI();
 		System.out.println("ReqeustURI = " + RequestURI);
 		
-		//getContextPath() : ÄÁÅØ½ºÆ® °æ·Î°¡ ¹İÈ¯µË´Ï´Ù.
-		//contextPath´Â "/jspProject"°¡ ¹İÈ¯µË´Ï´Ù.
+		//getContextPath() : ì»¨í…ìŠ¤íŠ¸ ê²½ë¡œê°€ ë°˜í™˜ë©ë‹ˆë‹¤.
+		//contextPathëŠ” "/jspProject"ê°€ ë°˜í™˜ë©ë‹ˆë‹¤.
 		String contextPath =request.getContextPath();
 		System.out.println("contextPath = " + contextPath);
-		
-		//RequestURI¿¡¼­ ÄÁÅØ½ºÆ® °æ·Î ±æÀÌ °ªÀÇ ÀÎµ¥½º À§Ä¡ÀÇ ¹®ÀÚºÎÅÍ
-		//¸¶Áö¸· À§Ä¡ ¹®ÀÚ±îÁö ÃßÃâÇÕ´Ï´Ù.
-		//command´Â "/login.net" ¹İÈ¯µË´Ï´Ù.
+				
+		//RequestURIì—ì„œ ì»¨í…ìŠ¤íŠ¸ ê²½ë¡œ ê¸¸ì´ ê°’ì˜ ì¸ë°ìŠ¤ ìœ„ì¹˜ì˜ ë¬¸ìë¶€í„°
+		//ë§ˆì§€ë§‰ ìœ„ì¹˜ ë¬¸ìê¹Œì§€ ì¶”ì¶œí•©ë‹ˆë‹¤.
+		//commandëŠ” "/login.net" ë°˜í™˜ë©ë‹ˆë‹¤.
 		String command = RequestURI.substring(contextPath.length());
 		System.out.println("command = " + command);
-		
-		//ÃÊ±âÈ­
+				
+		//ì´ˆê¸°í™”
 		ActionForward forward =null;
 		Action action =null;
 		switch(command) {
@@ -45,7 +45,7 @@ public class TodayFrontContoller extends javax.servlet.http.HttpServlet{
 				action = new TodayDietAction();
 				break;
 			case "/bottomProcess.to":
-				action = new TodayDietBottimProcessAction();
+				action = new TodayDietBottomProcessAction();
 				break;
 			case "/topProcess.to":
 				action = new TodyaDietTopProcessAction();

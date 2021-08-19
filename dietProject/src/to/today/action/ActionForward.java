@@ -1,9 +1,9 @@
 package to.today.action;
-//ActionForward Å¬·¡½º´Â Action ÀÎÅÍÆäÀÌ½º¿¡¼­ ¸í·ÉÀ» ¼öÇàÇÏ°í °á°ú °ªÀ»
-//°¡Áö°í ÀÌµ¿ ÇÒ¶§ »ç¿ëµÇ´Â Å¬·¡½º ÀÔ´Ï´Ù.
-//ÀÌ Å¬·¡½º´Â Redirect ¿©ºÎ °ª°ú Æ÷¿öµùÇÒ ÆäÀÌÁöÀÇ À§Ä¡¸¦ °¡Áö°í ÀÖ½À´Ï´Ù.
-//ÀÌ °ªµéÀº FrontController¿¡¼­ ActionForward Å¬·¡½º Å¸ÀÔÀ¸·Î º¯È¯°ªÀ»
-//°¡Á®¿À¸é ±× °ªÀ» È®ÀÎÇÏ¿© ÇØ´çÇÏ´Â ¿äÃ» ÆäÀÌÁö·Î ÀÌµ¿ÇÕ´Ï´Ù.
+//ActionForward í´ëž˜ìŠ¤ëŠ” Action ì¸í„°íŽ˜ì´ìŠ¤ì—ì„œ ëª…ë ¹ì„ ìˆ˜í–‰í•˜ê³  ê²°ê³¼ ê°’ì„
+//ê°€ì§€ê³  ì´ë™ í• ë•Œ ì‚¬ìš©ë˜ëŠ” í´ëž˜ìŠ¤ ìž…ë‹ˆë‹¤.
+//ì´ í´ëž˜ìŠ¤ëŠ” Redirect ì—¬ë¶€ ê°’ê³¼ í¬ì›Œë”©í•  íŽ˜ì´ì§€ì˜ ìœ„ì¹˜ë¥¼ ê°€ì§€ê³  ìžˆìŠµë‹ˆë‹¤.
+//ì´ ê°’ë“¤ì€ FrontControllerì—ì„œ ActionForward í´ëž˜ìŠ¤ íƒ€ìž…ìœ¼ë¡œ ë³€í™˜ê°’ì„
+//ê°€ì ¸ì˜¤ë©´ ê·¸ ê°’ì„ í™•ì¸í•˜ì—¬ í•´ë‹¹í•˜ëŠ” ìš”ì²­ íŽ˜ì´ì§€ë¡œ ì´ë™í•©ë‹ˆë‹¤.
 public class ActionForward{
 	private boolean redirect=false;
 	private String path=null;
