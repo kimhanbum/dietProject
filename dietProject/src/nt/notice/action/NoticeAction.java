@@ -12,7 +12,7 @@ public class NoticeAction implements Action{
 			throws ServletException, IOException {
 		ActionForward forward =new ActionForward();
 		forward.setRedirect(false);
-		forward.setPath("");
+		forward.setPath("navi/navi_notice.jsp");
 		return forward;
 	}
 }

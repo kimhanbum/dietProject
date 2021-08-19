@@ -8,6 +8,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import _comm.javabean.PersonalInfo;
 import _comm.javabean.UserInfo;
 
 
@@ -157,6 +158,48 @@ public class MemberDAO {
 				System.out.println("멤버 아이디 중복 에러 입니다");
 
 			}catch (Exception ex) {
+			ex.printStackTrace();
+			System.out.println("로그인 체크 오류: " + ex);
+		}finally {
+			
+			if(con!=null) {
+				   try{
+					   con.close();
+				   }catch(SQLException e) {
+					   e.printStackTrace();
+				   }
+				}
+			if(pstmt!=null) {
+				   try{
+					  pstmt.close();
+				   }catch(SQLException e) {
+					   e.printStackTrace();
+				   }
+				}
+			
+		}
+		return result;
+	}
+	public int insertAdd(PersonalInfo p) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int result= 0;
+		
+		String sql= "insert into personal_info values(?,?,?,?,?,?)";
+		
+		try {
+			con=ds.getConnection();
+			pstmt=con.prepareStatement(sql);
+			
+			pstmt.setString(1, p.getId());
+			pstmt.setInt(2,p.getGoal());
+			pstmt.setInt(3, p.getHeight());
+			pstmt.setInt(4, p.getWeight());
+			pstmt.setInt(5, p.getGoal_weight());
+			pstmt.setInt(6, p.getRmr());
+			
+			result=pstmt.executeUpdate();			
+		}catch (Exception ex) {
 			ex.printStackTrace();
 			System.out.println("로그인 체크 오류: " + ex);
 		}finally {

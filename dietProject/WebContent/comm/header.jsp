@@ -38,23 +38,23 @@
 </div>
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
  <div class="container">
-   <a class="navbar-brand" href="index.html">건강한 다이어트 </a>
+   <a class="navbar-brand" href="main.net">건강한 다이어트 </a>
    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
      <span class="oi oi-menu"></span> 메뉴
    </button>
 
    <div class="collapse navbar-collapse" id="ftco-nav">
      <ul class="navbar-nav ml-auto">
-       <li class="nav-item active"><a href="index.html" class="nav-link">홈</a></li>
+       <li class="nav-item active"><a href="main.net" class="nav-link">홈</a></li>
        <li class="nav-item dropdown">
-          <a class="nav-link " href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">식단 구성</a>
+          <a class="nav-link " href="configDiet.cf"  class="nav-link" >식단 구성</a>
  
         </li>
-       <li class="nav-item"><a href="about.html" class="nav-link">식단 공유</a></li>
-       <li class="nav-item"><a href="blog.html" class="nav-link">레시피 공유</a></li>
-       <li class="nav-item"><a href="contact.html" class="nav-link">My 식단</a></li>
-        <li class="nav-item"><a href="contact.html" class="nav-link">공지 사항&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-       <li class="nav-item cta cta-colored"><a href="cart.html" class="nav-link"><span class="icon-markunread"></span>[0]</a></li>
+       <li class="nav-item"><a href="shareDietMain.sd" class="nav-link">식단 공유</a></li>
+       <li class="nav-item"><a href="shareRecipe.sr" class="nav-link">레시피 공유</a></li>
+       <li class="nav-item"><a href="myDiet.to" class="nav-link">My 식단</a></li>
+        <li class="nav-item"><a href="noticeMain.nt" class="nav-link">공지 사항&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+       <li class="nav-item cta cta-colored"><a href="replyFrom.rp" class="nav-link"><span class="icon-markunread"></span>[0]</a></li>
              
      </ul>
     
@@ -64,7 +64,7 @@
          <a  id="join" href="join.net">회원가입</a>
          </c:if>
          <c:if test="${!empty id}">
-          <a  id="mypage" href="mypage.my">마이페이지</a>
+          <a  id="mypage" href="mypage.my">마이페이지</a>&nbsp;&nbsp;&nbsp;
           <a  href="logout.net">로그아웃</a>
          </c:if>
       </div>

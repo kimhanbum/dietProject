@@ -2,22 +2,28 @@ package sr.shrecipe.db;
 import javax.naming.*;
 import javax.sql.*;
 
+import _comm.javabean.RecipeInfo;
+
 
 /*
-   DAO Å¬·¡½º(Data Access Object)
-   -µ¥ÀÌÅÍ º£ÀÌ½º¿Í ¿¬µ¿ÇÏ¿© ·¹ÄÚµåÀÇ Ãß°¡ ,¼öÁ¤,»èÁ¦ ÀÛ¾÷ÀÌ ÀÌ·ïÁö´Â Å¬·¡½ºÀÔ´Ï´Ù.
+   DAO Å¬ï¿½ï¿½ï¿½ï¿½(Data Access Object)
+   -ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ ï¿½ß°ï¿½ ,ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½Ì·ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.
  */
 public class ShRecipeDAO {
 	private DataSource ds;
 	public ShRecipeDAO() {
 		try {
-			//Context.xml¿¡ ¸®¼Ò½º¸¦ »ý¼ºÇØ ³õÀº (JNDI¿¡ ¼³Á¤ÇØ ³õÀº) jdbc/OracleDB¸¦
-			//ÂüÁ¶ÇÏ¿© Connection °´Ã¼¸¦ ¾ò¾î ¿É´Ï´Ù.
+			//Context.xmlï¿½ï¿½ ï¿½ï¿½ï¿½Ò½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (JNDIï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½) jdbc/OracleDBï¿½ï¿½
+			//ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ Connection ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½É´Ï´ï¿½.
 			Context init = new InitialContext();
 			ds = (DataSource)init.lookup("java:/comp/env/jdbc/OracleDB");
 		}catch(Exception ex) {
-			System.out.println("DB ¿¬°á ½ÇÆÐ : " + ex);
+			System.out.println("DB ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : " + ex);
 			return;
 		}
+	}
+	public RecipeInfo getShareReciped() {
+		
+		return null;
 	}
 }

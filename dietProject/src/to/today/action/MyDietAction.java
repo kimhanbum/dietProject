@@ -26,7 +26,7 @@ public class MyDietAction implements Action{
 			throws ServletException, IOException {
 		ActionForward forward =new ActionForward();
 		forward.setRedirect(false);
-		forward.setPath("");
+		forward.setPath("navi/navi_myDiet.jsp");
 		return forward;
 	}
 }

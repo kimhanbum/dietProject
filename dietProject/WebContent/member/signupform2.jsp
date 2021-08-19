@@ -5,7 +5,10 @@
 <head>
 <jsp:include page="../comm/header.jsp"/>
 <link href="css/signup_style.css" rel="stylesheet" type="text/css" media="all" />
+<script>
 
+
+</script>
 </head>
 <body class="goto-here">
 
@@ -30,7 +33,9 @@
 	
 	<div class="containner">
 	<fieldset >
-	
+	<input type="hidden" name="id"  value='${param.id}' >
+	<input type="hidden" name="age" value='${param.age }' >
+	<input type="hidden" name="gender" value='${param.gender}' >
 	<div style="margin-left:20%;margin-top:20px">
 	<label for="goal" style="margin-top:30px"><b>목표</b></label><br>	
 	<div style="display:inline-block">
@@ -57,7 +62,7 @@
 	         
 	<div style="display:inline-block; width:32%">        
 	<label for="wight"><b>체&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;중</b></label><br>
-	<input type="text"  name="wight" id="weight"  
+	<input type="text"  name="weight" id="weight"  
 	         maxLength="3"  style="width:34%">
 	 <label ><b> kg </b></label>        
 	</div> 
