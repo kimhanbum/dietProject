@@ -4,7 +4,7 @@ package _comm.javabean;
 public class PersonalInfo {
 	private String id;
 	private int goal;
-	private int hegiht;
+	private int height;
 	private int weight;
 	private int goal_weight;
 	private int rmr;
@@ -29,13 +29,13 @@ public class PersonalInfo {
 	}
 
 
-	public int getHegiht() {
-		return hegiht;
+	public int getHeight() {
+		return height;
 	}
 
 
-	public void setHegiht(int hegiht) {
-		this.hegiht = hegiht;
+	public void setHeight(int height) {
+		this.height = height;
 	}
 
 

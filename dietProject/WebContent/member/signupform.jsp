@@ -26,7 +26,7 @@
 		    	return false;
 		    };
 		   
-
+        
 		      if(!pandan){
 		    	  return false;
 		      }
@@ -138,6 +138,16 @@
 		       }	
 		    
 			  });
+		    
+		    $('#pass').keyup(function(){
+		        if($("#pass_").val()!=null&&$("#pass_").val()!=''){
+		        	if($("#pass").val()==$("#pass_").val()){
+		        		 $("#span3").css("visibility","hidden");
+		        	}
+		        }	
+		    
+		    
+		    })
 		    $('#tel_1').focusout(function(){
 			    pattern=/^[0][0-7]{2,3}$/ 
 			    pandan = pattern.test( $('#tel_1').val());
@@ -157,7 +167,7 @@
 			  });
 		    $('#tel_3').focusout(function(){
 			    pattern=/^[0-9]{4}$/ 
-			    pandan = pattern.test( $('#tel_2').val());
+			    pandan = pattern.test( $('#tel_3').val());
 		       if(!pandan){
 		    	   alert("전화번호 중간자리를 형식에 맞게 입력해주세요");
 		       }	

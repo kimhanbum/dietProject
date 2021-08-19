@@ -12,7 +12,7 @@ public class ReplyFromAction implements Action{
 			throws ServletException, IOException {
 		ActionForward forward =new ActionForward();
 		forward.setRedirect(false);
-		forward.setPath("");
+		forward.setPath("mypage/mypage_fromlist.jsp");
 		return forward;
 	}
 }
