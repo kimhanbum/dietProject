@@ -12,7 +12,7 @@ public class MyPageAction implements Action{
 			throws ServletException, IOException {
 		ActionForward forward =new ActionForward();
 		forward.setRedirect(false);
-		forward.setPath("");
+		forward.setPath("mypage/mypage_main.jsp");
 		return forward;
 	}
 }

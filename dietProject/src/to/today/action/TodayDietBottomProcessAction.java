@@ -6,16 +6,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class TodayDietBottimProcessAction implements Action{
+public class TodayDietBottomProcessAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
 		
 		/*
-		 * if() { out.println("alert('»ó¼¼ ½Ä´Ü Á¤º¸°¡ ÀúÀåµÇ¾ú½À´Ï´Ù.');");
+		 * if() { out.println("alert('ìƒì„¸ ì‹ë‹¨ ì •ë³´ê°€ ì €ì¥ë˜ì—ˆìŠµë‹ˆë‹¤.');");
 		 * out.println("location.href='dietDetail.to';"); }else {
-		 * out.println("alert('»ó¼¼ ½Ä´Ü Á¤º¸°¡ ÀúÀå¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù.);");
+		 * out.println("alert('ìƒì„¸ ì‹ë‹¨ ì •ë³´ê°€ ì €ì¥ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.);");
 		 * out.println("history.back();"); }out.close();
 		 */
 		

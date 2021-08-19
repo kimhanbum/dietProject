@@ -2,7 +2,7 @@ package _comm.javabean;
 
 
 public class TotalInfo {
-	//ÇÊµå                 (¸â¹öº¯¼ö)
+	//ï¿½Êµï¿½                 (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
 	private String id;
 	private String total_date;
 	private String total_bf;
@@ -30,7 +30,8 @@ public class TotalInfo {
 	}
 
 	public void setTotal_date(String total_date) {
-		this.total_date = total_date;
+		this.total_date = total_date.substring(0,10);//ë…„-ì›”-ì¼ ì‹œ:ë¶„:ì´ˆ  => ë…„-ì›”-ì¼
+
 	}
 
 	public String getTotal_bf() {
