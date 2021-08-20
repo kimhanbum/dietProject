@@ -13,7 +13,7 @@ import _comm.javabean.DietInfo;
 import dt.diet.db.DietDAO;
 
 
-public class DietPageAction implements Action{
+public class dietShareAddAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -42,8 +42,8 @@ public class DietPageAction implements Action{
 		System.out.println("sessionid: " + userId);
 
 		//내가 작성한 식단 리스트 갯수와 정보를 가져옴.
-		int listcount = dietdao.getListCount(userId,search);
-		diList = dietdao.getDietList(page,limit,userId,search);
+		int listcount = dietdao.getShareDietAddListCount(userId,search);
+		diList = dietdao.getShareDietAddList(page,limit,userId,search);
 		
 		int maxpage=(listcount + limit-1)/limit;
 		System.out.println("maxPage : " + maxpage);
@@ -74,7 +74,7 @@ public class DietPageAction implements Action{
 		request.setAttribute("id",userId);
 		ActionForward forward =new ActionForward();
 	    forward.setRedirect(false);
-	    forward.setPath("mypage/mypage_myDiet.jsp");
+	    forward.setPath("mypage/mypage_ShareDietAddPage.jsp");
 		return forward;
 	}
 }

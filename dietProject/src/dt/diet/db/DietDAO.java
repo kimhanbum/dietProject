@@ -696,4 +696,151 @@ public class DietDAO {
 		}
 		return list;
 	}
+	public int getShareDietAddListCount(String user,String search) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int x = 0;
+		String select_sql;
+		try {
+			conn = ds.getConnection();
+			if(search == null) {
+				select_sql = "select count(*) from cart_info where id=? ";
+				pstmt = conn.prepareStatement(select_sql);
+				pstmt.setString(1,user);
+			}
+			else {
+				select_sql = " select count(*) from cart_info,diet_info "
+						   + " where cart_info.id= ? and "
+						   + " cart_info.cart_code=diet_info.diet_code and "
+						   + " diet_info.diet_name like ? ";
+				pstmt = conn.prepareStatement(select_sql);
+				pstmt.setString(1,user);
+				pstmt.setString(2, "%"+search+"%");
+			}
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				x = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			System.out.println("getShareDietAddListCount()실패 : " + e);
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			try {
+				if (pstmt != null)
+					pstmt.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return x;
+	}
+
+	public List<DietInfo> getShareDietAddList(int page,int limit,String user,String search) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		
+		String board_list_sql;
+		
+		List<DietInfo> list = new ArrayList<DietInfo>();
+
+		int startrow = (page -1) * limit + 1;
+		int endrow = startrow + limit - 1;
+		
+		try {
+
+			conn = ds.getConnection();
+			if(search == null) {
+				board_list_sql =" select * "
+						       +" from "
+						       +" (SELECT ROWNUM RNUM,d.DIET_CODE,d.DIET_NAME,"
+						       +"  d.DIET_SHARE,d.DIET_TOTAL_CARB,"
+						       +"  d.DIET_TOTAL_FAT,d.DIET_TOTAL_PROTEIN,"
+						       +"  d.DIET_TOTAL_CAL from "
+							   +"				        (select * "
+							   +"			             from cart_info c,diet_info d"
+							   +"				         where c.id = ? "
+							   +"				         and c.cart_code = d.diet_code) d "
+						       +" ) "
+		           			   +" WHERE RNUM>=? AND RNUM<=?";
+				pstmt = conn.prepareStatement(board_list_sql);
+				pstmt.setString(1,user);
+				pstmt.setInt(2,startrow);
+				pstmt.setInt(3,endrow);
+				rs = pstmt.executeQuery();
+			}
+			else {
+				board_list_sql =" select * "
+						       +" from "
+						       +" (SELECT ROWNUM RNUM,d.DIET_CODE,d.DIET_NAME,"
+						       +"  d.DIET_SHARE,d.DIET_TOTAL_CARB,"
+						       +"  d.DIET_TOTAL_FAT,d.DIET_TOTAL_PROTEIN,"
+						       +"  d.DIET_TOTAL_CAL from "
+							   +"				        (select * "
+							   +"			             from cart_info c,diet_info d "
+							   +"				         where c.id = ? "
+							   +"                        and d.diet_name LIKE ? "
+							   +"				         and c.cart_code = d.diet_code) d "
+						       +" ) "
+		           			   +" WHERE RNUM>=? AND RNUM<=?";
+				pstmt = conn.prepareStatement(board_list_sql);
+				pstmt.setString(1,user);
+				pstmt.setString(2, "%"+search+"%");
+				pstmt.setInt(3,startrow);
+				pstmt.setInt(4,endrow);
+				rs = pstmt.executeQuery();
+			
+			}
+			System.out.println(board_list_sql);
+			while(rs.next()) {
+				DietInfo d = new DietInfo();
+				d.setDiet_code(rs.getString("DIET_CODE"));
+				d.setDiet_name(rs.getString("DIET_NAME"));
+				if(rs.getInt("DIET_SHARE") == 1)
+					d.setDiet_share(true);
+				else 
+					d.setDiet_share(false);
+				d.setDiet_total_carb(rs.getInt("DIET_TOTAL_CARB"));
+				d.setDiet_total_fat(rs.getInt("DIET_TOTAL_FAT"));
+				d.setDiet_total_protein(rs.getInt("DIET_TOTAL_PROTEIN"));
+				d.setDiet_total_cal(rs.getInt("DIET_TOTAL_CAL"));
+				list.add(d);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("getBoardList() 실패  : " + e);
+		}finally {
+			try {
+				if(rs != null) 
+					rs.close();
+			}catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			try {
+				if(pstmt != null) 
+					pstmt.close();
+			}catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			try {
+				if(conn != null) 
+					conn.close();
+			}catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return list;
+	}
 }

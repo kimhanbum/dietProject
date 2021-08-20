@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+ <%@ taglib prefix="s" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
  <head>
  <jsp:include page="../comm/header.jsp"></jsp:include>
  <link rel="stylesheet" href="css/shareDiet.css" type="text/css">
-  <link rel="stylesheet" href="css/dietmenu.css" type="text/css">
+ <link rel="stylesheet" href="css/dietmenu.css" type="text/css">
  <style>
 	#add_diet, #recomm_diet{
 		width:310px;
@@ -34,295 +34,124 @@
 					<div class="row">
 						<div class="col-md-6 col-lg-12 ftco-animate">
 							<div class="d-flex justify-content-start">
-							
 								 <img class="p-2" src="images/search.png" width="40px" height="40px" alt="search">
-								 <input class="p-2" type="text" placeholder="검색어 입력하세요" required maxlength="12">
+								 <input id="searchText" class="p-2" type="text" placeholder="검색어 입력하세요" required maxlength="12">
 							</div>
 						</div>
 					</div>
 					<br>
-					
-					<div class="row">
-						<div class="col-md-6 col-lg-2 ftco-animate">
-							<label><b>식자재별</b> </label>
-						</div>
-    					<div class="col-md-6 col-lg-2 ftco-animate">
-							<input type="checkbox" name="foodType" id="foodType2" value="2">&nbsp;&nbsp;&nbsp;과일류
-						</div>
-						<div class="col-md-6 col-lg-2 ftco-animate">
-							<input type="checkbox" name="foodType" id="foodType3" value="3">&nbsp;&nbsp;&nbsp;어류
-						</div>
-						<div class="col-md-6 col-lg-2 ftco-animate">
-							<input type="checkbox" name="foodType" id="foodType4" value="4">&nbsp;&nbsp;&nbsp;육류
-						</div>
-						<div class="col-md-6 col-lg-2 ftco-animate">
-							<input type="checkbox" name="foodType" id="foodType5" value="5">&nbsp;&nbsp;&nbsp;해조류
-						</div>
-						<div class="col-md-6 col-lg-2 ftco-animate">
-							<input type="checkbox" name="foodType" id="foodType6" value="6">&nbsp;&nbsp;&nbsp;견과류
-						</div>
-					</div>
-					<hr>
 					<div class="row">
 						<div class="col-md-6 col-lg-2 ftco-animate">
 							<label><b>영양소별</b> </label>
 						</div>
-    					<div class="col-md-6 col-lg-2 ftco-animate">
-							<input type="checkbox" name="nutrType" id="nutrType1" value="1">&nbsp;&nbsp;&nbsp;탄수화물	
+    					<div class="col-md-6 col-lg-3 ftco-animate">
+							<input type="checkbox" name="nutrType" id="nutrType1" value="DIET_TOTAL_CARB">&nbsp;&nbsp;&nbsp;탄수 위주 식단	
 						</div>
-						<div class="col-md-6 col-lg-2 ftco-animate">
-							<input type="checkbox" name="nutrType" id="nutrType2" value="2">&nbsp;&nbsp;&nbsp;지방
+						<div class="col-md-6 col-lg-3 ftco-animate">
+							<input type="checkbox" name="nutrType" id="nutrType2" value="DIET_TOTAL_FAT">&nbsp;&nbsp;&nbsp;지방 위주 식단
 						</div>
-						<div class="col-md-6 col-lg-2 ftco-animate">
-							<input type="checkbox" name="nutrType" id="nutrType3" value="3">&nbsp;&nbsp;&nbsp;단백질
+						<div class="col-md-6 col-lg-3 ftco-animate">
+							<input type="checkbox" name="nutrType" id="nutrType3" value="DIET_TOTAL_PROTEIN">&nbsp;&nbsp;&nbsp;단백질 위주 식단
 						</div>
 					</div>
 		   	</div>
 		   	<div class="container d-flex justify-content-center">
-				<button id="seach_food" type="button" class="btn btn-primary">검색 하기</button>
+				<button id="seach_diet" type="button" class="btn btn-primary">검색 하기</button>
 	   		</div>
 		</section>
-    	<section class="ftco-section">
-	    	<div class="container">
-	    		<div class="row">
-	    			<div class="col-md-6 col-lg-3 ftco-animate" style="max-height:384px;">
-	    				<div class="product" style="max-height:354px;">
-	    					<a href="#" class="img-prod" data-toggle="modal" data-target="#myModal">
-							    <img  width="328px" height="232px"  src="images/bread.jpg" alt="Colorlib Template">
-	    						<div class="overlay"></div>
-	    					</a>
-	    					<img  style="position: relative; right:-5px; top: -35px;z-index:1000 " width="30px" height="30px" src="images/like.png" alt="like">
-	    					<span style="position: relative; right:-4px; top: -30px; z-index:1000"><b style="color:black;">124</b></span>
-	    					<div class="text py-3 pb-4 px-3 text-center">
-	    						<h3><a href="#">BREAD</a></h3>
-	    						<div class="d-flex">
-	    							<div class="pricing">
-			    						<p class="price"><span class="price-sale">고소한 빵과 샐러드와의 조합</span></p>
+    	
+    	
+    	<section class="ftco-section" id="reloadArea">
+	    	<div class="container" >
+	    		<s:if test="${listcount > 0 }">
+	    			 	<s:set var="index" value="1"/>
+						<s:forEach var="b" items="${dietList}">	
+							<s:if test="${index%4==1}">
+								 <div class="row"> 
+							</s:if>
+									<div class="col-md-6 col-lg-3 ftco-animate">
+					    				<div class="product">
+					    					<div class="img-prod" style="text-align : center;">
+					    						<img  width="328px" height="200px"  style="object-fit:fill !important;" src="images/food/${b.diet_img_name}.jpg" alt="Colorlib Template">
+	    										<div class="overlay"></div>
+	    									</div>
+	    									<img  style="position: relative; right:-5px; top: -35px; z-index:1000 " width="30px" height="30px" src="images/like.png" alt="like">
+	    									<span style="position: relative; right:-4px; top: -30px; z-index:1000"><b id="${b.diet_code}" style="color:black;">${b.diet_recomm}</b></span>
+					    					<div class="text py-3 pb-4 px-3 text-center">
+					    						<h3 id="food_name_text">${b.diet_name}</h3>
+					    						<div class="d-flex">
+					    							<div class="pricing">
+							    						<p class="price" style="">
+							    							<span class="price-sale">칼로리  : ${b.diet_total_cal}kcal</span>
+							    							<br>
+							    							<span class="price-sale">(탄:${b.diet_total_carb}g / 단:${b.diet_total_protein}g / 지:${b.diet_total_fat}g)</span>
+							    						</p>
+							    					</div>
+						    					</div>
+						    					<div class="bottom-area d-flex px-3">
+						    						<div class="m-auto d-flex">
+						    							<a href="javascript:addMyDietList('${b.diet_code}')" class="buy-now d-flex justify-content-center align-items-center mx-1">
+		    												<span><i class="ion-ios-cart"></i></span>
+		    											</a>
+		    											<a href="javascript:addlike('${b.diet_code}')" class="heart d-flex justify-content-center align-items-center ">
+															<span><i class="ion-ios-heart"></i></span>
+														</a>
+					    							</div>
+					    						</div>
+					    					</div>
+					    				</div>
 			    					</div>
-		    					</div>
-		    					<div class="bottom-area d-flex px-3">
-		    						<div class="m-auto d-flex">
-		    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-		    								<span><i class="ion-ios-cart"></i></span>
-		    							</a>
-		    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
-	    								<span><i class="ion-ios-heart"></i></span>
-	    							</a>
-	    							</div>
-	    						</div>
-	    					</div>
-	    				</div>
-	    			</div>
-	    			<div class="col-md-6 col-lg-3 ftco-animate">
-	    				<div class="product">
-	    					<a href="#" class="img-prod"><img  width="328px" height="232px"  src="images/fruit.jpg" alt="Colorlib Template">
-	    						<div class="overlay"></div>
-	    					</a>
-	    					<img  style="position: relative; right:-5px; top: -35px;" width="30px" height="30px" src="images/like.png" alt="like">
-	    					<span style="position: relative; right:-4px; top: -30px;"><b style="color:black;">124</b></span>
-	    					<div class="text py-3 pb-4 px-3 text-center">
-	    						<h3><a href="#">FRUIT</a></h3>
-	    						<div class="d-flex">
-	    							<div class="pricing">
-			    						<p class="price"><span>과일 식단</span></p>
-			    					</div>
-		    					</div>
-	    						<div class="bottom-area d-flex px-3">
-		    						<div class="m-auto d-flex">
-		    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-		    								<span><i class="ion-ios-cart"></i></span>
-		    							</a>
-		    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
-	    								<span><i class="ion-ios-heart"></i></span>
-	    							</a>
-	    							</div>
-	    						</div>
-	    					</div>
-	    				</div>
-	    			</div>
-	    			<div class="col-md-6 col-lg-3 ftco-animate">
-	    				<div class="product">
-	    					<a href="#" class="img-prod"><img  width="328px" height="232px" src="images/salad.jpg" alt="Colorlib Template">
-		    					<div class="overlay"></div>
-		    				</a>
-		    				<img  style="position: relative; right:-5px; top: -35px;" width="30px" height="30px" src="images/like.png" alt="like">
-	    					<span style="position: relative; right:-4px; top: -30px;"><b style="color:black;">124</b></span>
-	    					<div class="text py-3 pb-4 px-3 text-center">
-	    						<h3><a href="#">SALAD</a></h3>
-	    						<div class="d-flex">
-	    							<div class="pricing">
-			    						<p class="price"><span>영양만점 샐러드</span></p>
-			    					</div>
-		    					</div>
-	    						<div class="bottom-area d-flex px-3">
-		    						<div class="m-auto d-flex">
-		    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-		    								<span><i class="ion-ios-cart"></i></span>
-		    							</a>
-		    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
-	    								<span><i class="ion-ios-heart"></i></span>
-	    							</a>
-	    							</div>
-	    						</div>
-	    					</div>
-	    				</div>
-	    			</div>
-	    			<div class="col-md-6 col-lg-3 ftco-animate">
-	    				<div class="product">
-	    					<a href="#" class="img-prod"><img  width="328px" height="232px"  src="images/fish.jpg" alt="Colorlib Template">
-	    						<div class="overlay"></div>
-	    					</a>
-	    					<img  style="position: relative; right:-5px; top: -35px;" width="30px" height="30px" src="images/like.png" alt="like">
-	    					<span style="position: relative; right:-4px; top: -30px;"><b style="color:black;">124</b></span>
-	    					<div class="text py-3 pb-4 px-3 text-center">
-	    						<h3><a href="#">FISH</a></h3>
-	    						<div class="d-flex">
-	    							<div class="pricing">
-			    						<p class="price"><span>연어와새러드의 만남</span></p>
-			    					</div>
-		    					</div>
-	    						<div class="bottom-area d-flex px-3">
-		    						<div class="m-auto d-flex">
-		    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-		    								<span><i class="ion-ios-cart"></i></span>
-		    							</a>
-		    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
-	    								<span><i class="ion-ios-heart"></i></span>
-	    							</a>
-	    							</div>
-	    						</div>
-	    					</div>
-	    				</div>
-	    			</div>
-	    		</div>
-	    		<div class="row">
-	    			<div class="col-md-6 col-lg-3 ftco-animate">
-	    				<div class="product">
-	    					<a href="#" class="img-prod"><img  width="328px" height="232px"  src="images/bread.jpg" alt="Colorlib Template">
-	    						
-	    						<div class="overlay"></div>
-	    					</a>
-	    					<img  style="position: relative; right:-5px; top: -35px;" width="30px" height="30px" src="images/like.png" alt="like">
-	    					<span style="position: relative; right:-4px; top: -30px;"><b style="color:black;">124</b></span>
-	    					<div class="text py-3 pb-4 px-3 text-center">
-	    						<h3><a href="#">BREAD</a></h3>
-	    						<div class="d-flex">
-	    							<div class="pricing">
-			    						<p class="price"><span class="price-sale">고소한 빵과 샐러드와의 조합</span></p>
-			    					</div>
-		    					</div>
-		    					<div class="bottom-area d-flex px-3">
-		    						<div class="m-auto d-flex">
-		    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-		    								<span><i class="ion-ios-cart"></i></span>
-		    							</a>
-		    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
-	    								<span><i class="ion-ios-heart"></i></span>
-	    							</a>
-	    							</div>
-	    						</div>
-	    					</div>
-	    				</div>
-	    			</div>
-	    			<div class="col-md-6 col-lg-3 ftco-animate">
-	    				<div class="product">
-	    					<a href="#" class="img-prod"><img  width="328px" height="232px"  src="images/fruit.jpg" alt="Colorlib Template">
-	    						<div class="overlay"></div>
-	    					</a>
-	    					<img  style="position: relative; right:-5px; top: -35px;" width="30px" height="30px" src="images/like.png" alt="like">
-	    					<span style="position: relative; right:-4px; top: -30px;"><b style="color:black;">124</b></span>
-	    					<div class="text py-3 pb-4 px-3 text-center">
-	    						<h3><a href="#">FRUIT</a></h3>
-	    						<div class="d-flex">
-	    							<div class="pricing">
-			    						<p class="price"><span>과일 식단</span></p>
-			    					</div>
-		    					</div>
-	    						<div class="bottom-area d-flex px-3">
-		    						<div class="m-auto d-flex">
-		    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-		    								<span><i class="ion-ios-cart"></i></span>
-		    							</a>
-		    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
-	    								<span><i class="ion-ios-heart"></i></span>
-	    							</a>
-	    							</div>
-	    						</div>
-	    					</div>
-	    				</div>
-	    			</div>
-	    			<div class="col-md-6 col-lg-3 ftco-animate">
-	    				<div class="product">
-	    					<a href="#" class="img-prod"><img  width="328px" height="232px" src="images/salad.jpg" alt="Colorlib Template">
-		    					<div class="overlay"></div>
-		    				</a>
-		    				<img  style="position: relative; right:-5px; top: -35px;" width="30px" height="30px" src="images/like.png" alt="like">
-	    					<span style="position: relative; right:-4px; top: -30px;"><b style="color:black;">124</b></span>
-	    					<div class="text py-3 pb-4 px-3 text-center">
-	    						<h3><a href="#">SALAD</a></h3>
-	    						<div class="d-flex">
-	    							<div class="pricing">
-			    						<p class="price"><span>영양만점 샐러드</span></p>
-			    					</div>
-		    					</div>
-	    						<div class="bottom-area d-flex px-3">
-		    						<div class="m-auto d-flex">
-		    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-		    								<span><i class="ion-ios-cart"></i></span>
-		    							</a>
-		    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
-	    								<span><i class="ion-ios-heart"></i></span>
-	    							</a>
-	    							</div>
-	    						</div>
-	    					</div>
-	    				</div>
-	    			</div>
-	    			<div class="col-md-6 col-lg-3 ftco-animate">
-	    				<div class="product">
-	    					<a href="#" class="img-prod"><img  width="328px" height="232px"  src="images/fish.jpg" alt="Colorlib Template">
-	    						<div class="overlay"></div>
-	    					</a>
-	    					<img  style="position: relative; right:-5px; top: -35px;" width="30px" height="30px" src="images/like.png" alt="like">
-	    					<span style="position: relative; right:-4px; top: -30px;"><b style="color:black;">124</b></span>
-	    					<div class="text py-3 pb-4 px-3 text-center">
-	    						<h3><a href="#">FISH</a></h3>
-	    						<div class="d-flex">
-	    							<div class="pricing">
-			    						<p class="price"><span>연어와새러드의 만남</span></p>
-			    					</div>
-		    					</div>
-	    						<div class="bottom-area d-flex px-3">
-		    						<div class="m-auto d-flex">
-		    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-		    								<span><i class="ion-ios-cart"></i></span>
-		    							</a>
-		    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
-	    								<span><i class="ion-ios-heart"></i></span>
-	    							    </a>
-	    							</div>
-	    						</div>
-	    					</div>
-	    				</div>
-	    			</div>
-	    		</div>
-	    		<div class="row mt-5">
-	               <div class="col text-center">
-	                   <div class="block-27">
+	    					<s:if test="${index%4==0}">
+								 </div> 
+							</s:if>
+							<s:set var="index" value="${index+1}"/>
+	  					</s:forEach>
+	  					<s:if test="${index%4!=0}">
+								 </div> 
+						</s:if>
+				</s:if>	
+			</div>	
+		    	<s:if test="${listcount > 0 }">
+					<div class="row mt-5">
+			          <div class="col text-center">
+			            <div class="block-27">
 			              <ul>
-			                <li><a href="#">&lt;</a></li>
-			                <li class="active"><span>1</span></li>
-			                <li><a href="#">2</a></li>
-			                <li><a href="#">3</a></li>
-			                <li><a href="#">4</a></li>
-			                <li><a href="#">5</a></li>
-			                <li><a href="#">&gt;</a></li>
+			              	 <s:if test="${page <= 1 }">
+			              	 	<li>
+			              	 		<a style="background:gray; color:white">&lt;</a>
+			              	 	</li>
+				 			 </s:if>
+			                 <s:if test="${page > 1 }">
+			              	 	<li>
+			            			<a href="javascript:reloadPage(${page-1})">&gt;</a> 
+			              	 	</li>
+				 			 </s:if>
+				 			<s:forEach var="a" begin="${startpage}" end="${endpage}">
+								<s:if test="${a == page }">
+									<li class="active"><span>${a}</span></li>
+								</s:if>
+								<s:if test="${a != page }">
+									<li>
+										<a href="javascript:reloadPage(${a})"><span>${a}</span></a>
+									</li>
+								</s:if>
+							</s:forEach>
+				 			<s:if test="${page >= maxpage }">
+								<li>
+					   				<a style="background:gray; color:white">&gt;</a> 
+								</li>
+							</s:if>
+							<s:if test="${page < maxpage }">
+				  				<li>
+				  					<a href="javascript:reloadPage(${page+1})">&gt;</a>
+				  				</li>	
+							</s:if>
 			              </ul>
-	                  </div>
-	               </div>
-	            </div>
-	            
-	  		</div>
+			            </div>
+			          </div>
+			        </div>
+			   </s:if>
+	  		
    	   </section>
    </article>
 
@@ -523,9 +352,6 @@
 		</div>
 	</div>
    	
-   	
-   	<script>
-
-</script>
+   <script type="text/javascript" src="js/navi_shareDiet.js" charset="utf-8"></script>
   </body>
 </html>

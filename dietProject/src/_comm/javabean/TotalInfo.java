@@ -2,7 +2,6 @@ package _comm.javabean;
 
 
 public class TotalInfo {
-	//�ʵ�                 (�������)
 	private String id;
 	private String total_date;
 	private String total_bf;
@@ -16,7 +15,17 @@ public class TotalInfo {
 	private int total_fat;
 	private int total_protein;
 	private int total_cal;
+	private int total_num;
 	
+
+	public int getTotal_num() {
+		return total_num;
+	}
+
+	public void setTotal_num(int total_num) {
+		this.total_num = total_num;
+	}
+
 	public String getId() {
 		return id;
 	}
