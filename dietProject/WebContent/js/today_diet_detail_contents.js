@@ -12,11 +12,10 @@
     }); 
    });
      
-/*     
-$(document)ready(function(){
-	$
+/* 날짜변경  버튼 이미지 클릭 이벤트 */    
+$("#weekLeftbtn").click(function(){
+	location.href="todayDiet.to?today1=";
 })    
-*/
    
    
    

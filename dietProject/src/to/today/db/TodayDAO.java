@@ -7,45 +7,48 @@ import java.sql.SQLException;
 import javax.naming.*;
 import javax.sql.*;
 
+import _comm.javabean.Commondiet;
 import _comm.javabean.DietInfo;
 import _comm.javabean.MealInfo;
 import _comm.javabean.TotalInfo;
 
 
 /*
-   DAO Å¬·¡½º(Data Access Object)
-   -µ¥ÀÌÅÍ º£ÀÌ½º¿Í ¿¬µ¿ÇÏ¿© ·¹ÄÚµåÀÇ Ãß°¡ ,¼öÁ¤,»èÁ¦ ÀÛ¾÷ÀÌ ÀÌ·ïÁö´Â Å¬·¡½ºÀÔ´Ï´Ù.
+   DAO í´ë˜ìŠ¤(Data Access Object)
+   -ë°ì´í„° ë² ì´ìŠ¤ì™€ ì—°ë™í•˜ì—¬ ë ˆì½”ë“œì˜ ì¶”ê°€ ,ìˆ˜ì •,ì‚­ì œ ì‘ì—…ì´ ì´ë¤„ì§€ëŠ” í´ë˜ìŠ¤ì…ë‹ˆë‹¤.
  */
 public class TodayDAO {
 	private DataSource ds;
 	public TodayDAO() {
 		try {
-			//Context.xml¿¡ ¸®¼Ò½º¸¦ »ı¼ºÇØ ³õÀº (JNDI¿¡ ¼³Á¤ÇØ ³õÀº) jdbc/OracleDB¸¦
-			//ÂüÁ¶ÇÏ¿© Connection °´Ã¼¸¦ ¾ò¾î ¿É´Ï´Ù.
+			//Context.xmlì— ë¦¬ì†ŒìŠ¤ë¥¼ ìƒì„±í•´ ë†“ì€ (JNDIì— ì„¤ì •í•´ ë†“ì€) jdbc/OracleDBë¥¼
+			//ì°¸ì¡°í•˜ì—¬ Connection ê°ì²´ë¥¼ ì–»ì–´ ì˜µë‹ˆë‹¤.
 			Context init = new InitialContext();
 			ds = (DataSource)init.lookup("java:/comp/env/jdbc/OracleDB");
 		}catch(Exception ex) {
-			System.out.println("DB ¿¬°á ½ÇÆĞ : " + ex);
+			System.out.println("DB ì—°ê²° ì‹¤íŒ¨ : " + ex);
 			return;
 		}
 	}
 	
 	
 	public TotalInfo getTotalInfo(String userid, String date) {
-	//ÅäÅ»ÀÎÆ÷Å¬·¡½º Å¸ÀÔÀÇ º¯¼ö ÅäÅ»
-		TotalInfo total = new TotalInfo(); 
+	//í† íƒˆì¸í¬í´ë˜ìŠ¤ íƒ€ì…ì˜ ë³€ìˆ˜ í† íƒˆ
+		TotalInfo total = null; 
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement("select * from total_info "
-			                           + "where id= 'user001'" 
-			                           + "and to_date(total_date, 'YY/MM/DD') = '21/08/17'");
-			
+			                           + "where id= ?" 
+			                           + "and to_date(total_date, 'YY/MM/DD') = ?");
+			pstmt.setString(1, userid);
+			pstmt.setString(2, date);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-			    //º¯¼öÀÌ¸§.set(°¡Á®¿Ã ÄÃ·³) ÀúÀåÇÏ±â
+			    //ë³€ìˆ˜ì´ë¦„.set(ê°€ì ¸ì˜¬ ì»¬ëŸ¼) ì €ì¥í•˜ê¸°
+				total = new TotalInfo();
 			    total.setId(rs.getString("id"));
 			    total.setTotal_date(rs.getString("total_date"));
 			    total.setTotal_bf(rs.getString("total_bf"));
@@ -61,7 +64,7 @@ public class TodayDAO {
 			    total.setTotal_cal(rs.getInt("total_cal"));
 			}
 		} catch (Exception ex) {
-			System.out.println("getTotalInfo() ¿¡·¯: " + ex);
+			System.out.println("getTotalInfo() ì—ëŸ¬: " + ex);
 		} finally {
 			if (rs != null)
 				try {
@@ -82,11 +85,12 @@ public class TodayDAO {
 					ex.printStackTrace();
 				}
 		} return total;
-	} //TotalInfo() ¸Ş¼­µå end
+	} //TotalInfo() ë©”ì„œë“œ end
 
 
 	
 	public DietInfo getDietInfo(String code) {
+		Commondiet comdiet = null;
 		DietInfo diet = new DietInfo();
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -95,10 +99,18 @@ public class TodayDAO {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement("select * from diet_info where diet_code=?");
 			pstmt.setString(1, code);
-			//½ÇÇà                
+			//ì‹¤í–‰                
 			rs = pstmt.executeQuery();
 			if (rs.next()) {  
-			    //º¯¼öÀÌ¸§.set(¾µ º¯¼ö °ª) ÀúÀåÇÏ±â
+				comdiet = new Commondiet();
+			    //ë³€ìˆ˜ì´ë¦„.set(ì“¸ ë³€ìˆ˜ ê°’) ì €ì¥í•˜ê¸°
+				comdiet.setName(rs.getString("name"));
+				comdiet.setForm(rs.getString("form"));
+			    comdiet.setCarb(rs.getInt("carb"));
+			    comdiet.setFat(rs.getInt("fat"));
+			    comdiet.setPro(rs.getInt("pro"));
+			    comdiet.setCal(rs.getInt("cal"));
+			    
 			    diet.setId(rs.getString("id"));
 			    diet.setDiet_code(rs.getString("diet_code"));
 			    diet.setDiet_name(rs.getString("diet_name"));
@@ -117,7 +129,7 @@ public class TodayDAO {
 			    
 			}
 		} catch (Exception ex) {
-			System.out.println("getDietlInfo() ¿¡·¯: " + ex);
+			System.out.println("getDietlInfo() ì—ëŸ¬: " + ex);
 		} finally {
 			if (rs != null)
 				try {
@@ -145,6 +157,7 @@ public class TodayDAO {
 	
 
 	public MealInfo getMealInfo(String code) {
+        Commondiet comdiet = null;
         MealInfo meal = new MealInfo();
         Connection con = null;
 		PreparedStatement pstmt = null;
@@ -153,11 +166,19 @@ public class TodayDAO {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement("select * from meal_info where meal_code=?");
 			pstmt.setString(1, code);		
-			           //½ÇÇà                
+			           //ì‹¤í–‰                
 			rs = pstmt.executeQuery();
-			if (rs.next()) {  
-			    //º¯¼öÀÌ¸§.set(¾µ º¯¼ö °ª) ÀúÀåÇÏ±â
-				meal.setMeal_code(rs.getString("meal_code"));
+			if (rs.next()) { 
+				comdiet = new Commondiet();
+			    //ë³€ìˆ˜ì´ë¦„.set(ì“¸ ë³€ìˆ˜ ê°’) ì €ì¥í•˜ê¸°
+				comdiet.setName(rs.getString("name"));
+			    comdiet.setCarb(rs.getInt("carb"));
+			    comdiet.setFat(rs.getInt("fat"));
+			    comdiet.setPro(rs.getInt("pro"));
+			    comdiet.setCal(rs.getInt("cal"));
+			    comdiet.setImgname(rs.getString("img_name"));
+			    
+			    meal.setMeal_code(rs.getString("meal_code"));
 			    meal.setMeal_name(rs.getString("meal_name"));
 			    meal.setMeal_img_name(rs.getString("meal_img_name"));
 			    meal.setMeal_carb(rs.getInt("meal_carb"));
@@ -166,7 +187,7 @@ public class TodayDAO {
 			    meal.setMeal_cal(rs.getInt("meal_cal"));
 			}
 		} catch (Exception ex) {
-			System.out.println("getMealInfo() ¿¡·¯: " + ex);
+			System.out.println("getMealInfo() ì—ëŸ¬: " + ex);
 		} finally {
 			if (rs != null)
 				try {
@@ -188,9 +209,6 @@ public class TodayDAO {
 				}
 		} return meal;
 	}
-
-
-	
 }
 
 
