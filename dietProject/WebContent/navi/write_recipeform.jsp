@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <jsp:include page="../comm/header.jsp"/>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style>
 h1 {
 	font-size: 1.5rem;
@@ -27,7 +29,14 @@ img {
      background-color:white; 
      color:red;
 }
+
 </style>
+
+
+
+
+
+
 
 </head>
 <body class="goto-here">
@@ -82,8 +91,22 @@ img {
 				 <div id="file" style="margin:20px 10px">
 				<label for="recipe_file"> <img
 					src="images/attach.png" alt="파일 첨부">
-				</label> <input type="file" id="recipe_file"  name="recipe_file" accept="image/*"> <span
-					id="recipefilename"></span>
+				 
+				<span id="showImage">
+				  <c:if test='${empty recipeinfo.recipefile}'>
+				    <c:set var="src" value=''/>
+				  </c:if>
+				  <c:if test='${!empty recipeinfo.recipefile}'>
+				    <c:set var='src' value='${"images/" }${recipeinfo.recipefile }'/>
+				   </c:if>
+				   <img src="${src}" width="50px" ">   
+				    
+				</span>
+				
+				<input type="file" id="recipe_file" multiple="multiple" name="recipeFile" accept="image/*" 
+				          style="display:none"> 
+				
+				</label>	
 				</div> 	
 				</fieldset>	
 			</div>
@@ -93,9 +116,39 @@ img {
 				<button type="submit" class="btn btn-primary">작성</button>
 			</div>
 		</form>
+		
 
 	</div>
+<script>
+$('input[type=file]').change(function(event){
+	 
+    var inputfile = $(this).val().split('\\');
+    var filename = inputfile[inputfile.length-1];
+    var pattern =/(git|jpg|jpeg|png)$/i;
+    if(pattern.test(filename)){
+  	  $('#filename').text(filename);
+  	 //파일을 읽기 위한 객체 생성
+  	  //DataURL 형식으로 파일을 읽어옵니다.
+  	  //읽어온 결과는 reader객체의 result 속성에 저장됩니다.
+  	  //event.target.files[0]: 선택한 그림의 파일객체에서 첫번째 객체를 가져옵니다.
+  	  
+  	  for(var i=0;i<event.target.files.length;i++){
+  		var reader = new FileReader();
+  	  reader.readAsDataURL(event.target.files[i]);
+  	  
+  	  reader.onload=function(event){
+  		  $('#showImage').append('<img width="400px" height="100px" src="' + event.target.result + '">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
+  		  
+  	  };
+  	 };  
+    }else{
+  	  alert('확장자는 gif,jpg,jpeg,png가 가능합니다');
+  	  check=0;
+    }
 
+
+})
+</script>
 
 	<hr style="margin-top:4rem">
 

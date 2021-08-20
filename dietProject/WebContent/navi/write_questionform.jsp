@@ -99,6 +99,11 @@ img {
 
 
 			</div>
+			<div>
+			<input type="checkbox"  name="lock" id="lock" value="lock" >
+			<span>비밀글</span>
+			</div>
+			
 			<div class="register_box">
 				<div class="button btn_cancel">취소</div>
 				<div class="button btn_register">등록</div>

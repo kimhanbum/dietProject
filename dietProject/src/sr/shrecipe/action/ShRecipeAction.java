@@ -17,7 +17,7 @@ public class ShRecipeAction implements Action{
 		RecipeInfo recipeInfo= new RecipeInfo();
 		ShRecipeDAO sdao= new ShRecipeDAO();
 		
-		= sdao.getShareReciped();
+		 sdao.getShareReciped();
 		
 		
 		

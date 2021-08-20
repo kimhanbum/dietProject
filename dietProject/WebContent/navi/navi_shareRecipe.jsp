@@ -3,7 +3,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <jsp:include page="../comm/header.jsp"></jsp:include>
+
 <style>
 button {
 	float: right;
@@ -14,42 +16,126 @@ button {
 </style>
 
 <script>
-	$(document).ready(function() {
+	
 
-	});
+	
+	
+	
+	
 	
 	var data = {
-			boardlist: [
-				{BOARD_NUM: 1},
-				{BOARD_NUM: 2},
-				{BOARD_NUM: 3}
-				]
+			list:[{image_id: 1, name:'bread.jpg'}, 
+				{image_id: 2, name:'bread.jpg'}, 
+				{image_id: 3, name:'bread.jpg'}, 
+				{image_id: 4, name:'bread.jpg'}, 
+				{image_id: 5, name:'bread.jpg'}, 
+				{image_id: 6, name:'bread.jpg'}, 
+				{image_id: 7, name:'bread.jpg'}, 
+				{image_id: 8, name:'bread.jpg'}
+			],
+			maxIdx : 13
 	}
+	
+	function aaa(){alert("iamge click");};
+	
+	var html = '\
+		<div class="col-md-6 col-lg-3 ftco-animate fadeInUp ftco-animated">\
+		<div class="product">\
+			<a href="javascript:aaa();" class="img-prod"><img width="328px" height="232px" src="images/bread.jpg" alt="Colorlib Template">\
+				<div class="overlay"></div> </a>\
+			<div class="text py-3 pb-4 px-3 text-center">\
+				<h3>\
+					<a href="#">BREAD</a>\
+				</h3>\
+				<div class="d-flex">\
+					<div class="pricing">\
+						<p class="price">\
+							<span class="price-sale">고소한 빵과 샐러드와의 조합</span>\
+						</p>\
+					</div>\
+				</div>\
+				<div class="bottom-area d-flex px-3">\
+					<div class="m-auto d-flex">\
+						<a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">\
+							<span><i class="ion-ios-menu"></i></span>\
+						</a> <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">\
+							<span><i class="ion-ios-cart"></i></span>\
+						</a> <a href="#" class="heart d-flex justify-content-center align-items-center ">\
+							<span><i class="ion-ios-heart"></i></span>\
+						</a>\
+					</div>\
+				</div>\
+			</div>\
+		</div>\
+	</div>\
+	';
 
 	var pagesiz = 8;
-	var onActiveIdx = 2;
+	var onActiveIdx =7;
 	var res = function(data) {
-		if(data != undifined && data != null)
+		if(data != undefined && data != null)
 		{
-
+			$('#div_image').html('');
+			//이미지 바인딩
+			$.each(data.list, function(i, n){
+				$('#div_image').append(html);
+				
+			});
+			
+			//페이
 			var ul_list = $('#ul_paging');
 			ul_list.html('');
 			ul_list.append('<li><a href="#">&lt;</a></li>');
-			$.each(data.boardlist, function(i, n){
-				if(n.BOARD_NUM == onActiveIdx){
-					ul_list.append('<li class="active"><a href="javascript:fn_click(' + n.BOARD_NUM + ');">' + n.BOARD_NUM + '</a></li>');
+			var startIdx = Math.round(onActiveIdx/5) * 5 + 1;
+			for (var i = startIdx; i < startIdx + 5; ++i) {
+				if(i >= data.maxIdx) break;
+				if(i == onActiveIdx){
+					ul_list.append('<li class="active"><a href="javascript:fn_click(' + i + ');">' + i + '</a></li>');
 					
 				}
 				else{
 					
-					ul_list.append('<li><a href="javascript:fn_click(' + n.BOARD_NUM + ');">' + n.BOARD_NUM + '</a></li>');
+					ul_list.append('<li><a href="javascript:fn_click(' + i + ');">' + i + '</a></li>');
 				}
+			}
+			
+			$.each(data.paginglist, function(i, n){
+				
 				
 			});
 			ul_list.append('<li><a href="#">&gt;</a></li>');
 		}
 		
 	}
+	
+	$(document).ready(function(){
+		res(data);
+		
+		$("button").click(function(){
+			location.href='shareRecipeInsert.sr';
+		})
+		
+	});
+	
+ function fn_click(page){
+	 
+          $.ajax({
+              	  
+               url: 'recipePage.rc',
+               dataType:  'json',
+               data: {page: page},
+               type: 'post',
+               success: function(rdata){
+            	   
+               } 
+          
+          
+          })
+ 
+ 
+ 
+ }
+ 
 </script>
 </head>
 <body class="goto-here">
@@ -73,7 +159,141 @@ button {
 
 	<section class="ftco-section">
 		<div class="container">
-			<div class="row">
+			<div class="row" id='div_image'>
+				<div class="col-md-6 col-lg-3 ftco-animate">
+					<div class="product">
+						<a href="#" class="img-prod"><img width="328px" height="232px"
+							src="images/bread.jpg" alt="Colorlib Template">
+
+							<div class="overlay"></div> </a>
+						<div class="text py-3 pb-4 px-3 text-center">
+							<h3>
+								<a href="#">BREAD</a>
+							</h3>
+							<div class="d-flex">
+								<div class="pricing">
+									<p class="price">
+										<span class="price-sale">고소한 빵과 샐러드와의 조합</span>
+									</p>
+								</div>
+							</div>
+							<div class="bottom-area d-flex px-3">
+								<div class="m-auto d-flex">
+									<a href="#"
+										class="add-to-cart d-flex justify-content-center align-items-center text-center">
+										<span><i class="ion-ios-menu"></i></span>
+									</a> <a href="#"
+										class="buy-now d-flex justify-content-center align-items-center mx-1">
+										<span><i class="ion-ios-cart"></i></span>
+									</a> <a href="#"
+										class="heart d-flex justify-content-center align-items-center ">
+										<span><i class="ion-ios-heart"></i></span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-3 ftco-animate">
+					<div class="product">
+						<a href="#" class="img-prod"><img width="328px" height="232px"
+							src="images/fruit.jpg" alt="Colorlib Template">
+							<div class="overlay"></div> </a>
+						<div class="text py-3 pb-4 px-3 text-center">
+							<h3>
+								<a href="#">FRUIT</a>
+							</h3>
+							<div class="d-flex">
+								<div class="pricing">
+									<p class="price">
+										<span>과일 식단</span>
+									</p>
+								</div>
+							</div>
+							<div class="bottom-area d-flex px-3">
+								<div class="m-auto d-flex">
+									<a href="#"
+										class="add-to-cart d-flex justify-content-center align-items-center text-center">
+										<span><i class="ion-ios-menu"></i></span>
+									</a> <a href="#"
+										class="buy-now d-flex justify-content-center align-items-center mx-1">
+										<span><i class="ion-ios-cart"></i></span>
+									</a> <a href="#"
+										class="heart d-flex justify-content-center align-items-center ">
+										<span><i class="ion-ios-heart"></i></span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-3 ftco-animate">
+					<div class="product">
+						<a href="#" class="img-prod"><img width="328px" height="232px"
+							src="images/salad.jpg" alt="Colorlib Template">
+							<div class="overlay"></div> </a>
+						<div class="text py-3 pb-4 px-3 text-center">
+							<h3>
+								<a href="#">SALAD</a>
+							</h3>
+							<div class="d-flex">
+								<div class="pricing">
+									<p class="price">
+										<span>영양만점 샐러드</span>
+									</p>
+								</div>
+							</div>
+							<div class="bottom-area d-flex px-3">
+								<div class="m-auto d-flex">
+									<a href="#"
+										class="add-to-cart d-flex justify-content-center align-items-center text-center">
+										<span><i class="ion-ios-menu"></i></span>
+									</a> <a href="#"
+										class="buy-now d-flex justify-content-center align-items-center mx-1">
+										<span><i class="ion-ios-cart"></i></span>
+									</a> <a href="#"
+										class="heart d-flex justify-content-center align-items-center ">
+										<span><i class="ion-ios-heart"></i></span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-3 ftco-animate">
+					<div class="product">
+						<a href="#" class="img-prod"><img width="328px" height="232px"
+							src="images/fish.jpg" alt="Colorlib Template">
+							<div class="overlay"></div> </a>
+						<div class="text py-3 pb-4 px-3 text-center">
+							<h3>
+								<a href="#">FISH</a>
+							</h3>
+							<div class="d-flex">
+								<div class="pricing">
+									<p class="price">
+										<span>연어와새러드의 만남</span>
+									</p>
+								</div>
+							</div>
+							<div class="bottom-area d-flex px-3">
+								<div class="m-auto d-flex">
+									<a href="#"
+										class="add-to-cart d-flex justify-content-center align-items-center text-center">
+										<span><i class="ion-ios-menu"></i></span>
+									</a> <a href="#"
+										class="buy-now d-flex justify-content-center align-items-center mx-1">
+										<span><i class="ion-ios-cart"></i></span>
+									</a> <a href="#"
+										class="heart d-flex justify-content-center align-items-center ">
+										<span><i class="ion-ios-heart"></i></span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			
 				<div class="col-md-6 col-lg-3 ftco-animate">
 					<div class="product">
 						<a href="#" class="img-prod"><img width="328px" height="232px"
