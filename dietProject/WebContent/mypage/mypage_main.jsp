@@ -147,7 +147,7 @@ p {
 					</div>
 					<div style="position:absolute; z-index:1; top:247px" class="sh_content">
 					<br>
-					<a style="margin-left:-40px;" href="${pageContext.request.contextPath}/dietDetail.to" class="btn_model"onclick="clicker"><b class="btn2" >관리</b></a>
+					<a style="margin-left:-40px;" href="${pageContext.request.contextPath}/todayDiet.to" class="btn_model"onclick="clicker"><b class="btn2" >관리</b></a>
 				</div>
 			</div>
 		    </div>

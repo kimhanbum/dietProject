@@ -120,7 +120,6 @@ select::-ms-expand {
 
 	<!-- 마이페이지 중앙 article -->
 	<article class="ftco-section">
-	 <s:set var="s" value="${totalinfo}"/>
 		<div class="container" style="border:1px solid black; min-height: 500px;">
 			<div class="title_today" style="padding-top: 15px;">
 			   Today 식단
@@ -128,17 +127,20 @@ select::-ms-expand {
 			   
 			<hr>
 			<div class="week_today">
-			   <div><s:out value="${s.total_date}"/></div>
+			   <div> ${totalinfo.total_date}</div>
 			</div>
 			<hr>
-
+            
+    <!--          <s:if test="${totalinfo.tatal_date - 1}">  -->
 			<div class="week d-flex justify-content-around">
 			 <a href="이동될 페이지 주소"  style="padding:0px">
-				<img src="images/pointer_left.png" alt="pointer_left"
-						  class="pointer_left">  
+				<img  id="weekLeftbtn" src="images/pointer_left.png" alt="pointer_left"
+						  class="pointer_left" value="${totalinfo.total_date}">  
 			 </a> 
 		     <input class="sun" type="button" value="일">
-		     <div><s:out value="${s.total_date }"/></div>
+		     <div>
+<!-- 		     <s:out value="{}"/>    -->
+		     </div>
 		     </input> 
 			 <input class="mon" type="button" value="월"></input>
 			 <input class="tue" type="button" value="화"></input> 
@@ -147,7 +149,7 @@ select::-ms-expand {
 			 <input class="fri" type="button" value="금"></input>
 			 <input class="sat" type="button" value="토"></input> 
 			 <a href="이동될 페이지 주소" >
-			 <img src="images/pointer_right.png" alt="pointer_right"
+			 <img  id="weekRightbtn" src="images/pointer_right.png" alt="pointer_right"
 				  class="pointer_right" >
 			 </a> 
 			</div>
@@ -265,12 +267,12 @@ select::-ms-expand {
         <!-- Modal body -->
         <div class="modal-body">
           <textarea id="mo_body2" rows="5" cols="60" style="border-top-style:none;resize:none"></textarea>
-        <p></p>
+        <p id="showimgfile"></p>
         </div>
         
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button class="btn_submit" id="btn_submit" type="submit" onclick="ex3:클릭시 이동 할 주소">
+          <button class="btn_submit" id="btn_submit" type="submit" >
              <img src="images/btn_check.jpg" alt="btn_check"  ></button>  
         </div>
         
@@ -578,8 +580,31 @@ $('input[type=file]').change(function(event){
 		}else{
 			alert('확장자는 gif, jpg, jpeg, png가 가능합니다.');
 		}
-}); <!--  $('input[type=file]').change() end   -->
+}) <!--  $('input[type=file]').change() end   -->
 </script>
+
+
+
+
+
+
+<%--
+ loginForm.jsp 아이디값 받아서 처리 참조
+<script>
+$(function(){
+	$(".btn_submit").click(function(){
+	location.href="dietDetail.to";
+	
+})
+</script>
+
+--%>
+
+
+
+
+
+
 
 <!-- 서브모달 선택이미지 모달에 미리보기 0819-->
 <!-- 
