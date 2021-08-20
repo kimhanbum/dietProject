@@ -12,7 +12,7 @@ public class ShRecipeInsertAction implements Action{
 			throws ServletException, IOException {
 		ActionForward forward =new ActionForward();
 		forward.setRedirect(false);
-		forward.setPath("");
+		forward.setPath("navi/write_recipeform.jsp");
 		return forward;
 	}
 }
