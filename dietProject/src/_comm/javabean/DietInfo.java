@@ -12,7 +12,16 @@ public class DietInfo {
 	private int diet_total_protein;
 	private int diet_total_cal;
 	private String diet_date;
+	private String diet_img_name;
 	
+	public String getDiet_img_name() {
+		return diet_img_name;
+	}
+
+	public void setDiet_img_name(String diet_img_name) {
+		this.diet_img_name = diet_img_name;
+	}
+
 	public String getId() {
 		return id;
 	}

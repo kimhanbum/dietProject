@@ -120,7 +120,7 @@ insert into USER_INFO values('admin03','admin03','admin03','661024-1666666','남
 insert into USER_INFO values('user001','user001','user001','550925-2555555','여','user01@naver.com','010-1234-4321','서울시 강남구');
 insert into USER_INFO values('user002','user002','user002','440421-1444444','남','user02@naver.com','010-5678-8765','서울시 마포구');
 insert into USER_INFO values('user003','user003','user003','991010-1333333','남','user03@naver.com','010-7788-8899','서울시 서초구');
-
+insert into USER_INFO values('user004','user004','user004','880505-2666666','여','user04@naver.com','010-9900-1122','서울시 강동구');
 --유저 개인정보
 insert into PERSONAL_INFO values('user001',1,170,60,50,2400);
 insert into PERSONAL_INFO values('user002',2,180,60,60,2500);
@@ -130,6 +130,7 @@ insert into PERSONAL_INFO values('user003',3,190,60,65,2600);
 insert into DIET_INFO values('user001','D1','채소위주','1,2,3,4',0,0,10,20,30,300,sysdate);
 insert into DIET_INFO values('user002','D2','과일위주','11,12,13,14',0,0,20,30,10,310,sysdate);
 insert into DIET_INFO values('user003','D3','어류위주','21,22,23,24',0,0,30,20,10,320,sysdate);
+insert into DIET_INFO values('user004','D4','과일위주','11,12,13,14',0,0,20,30,10,310,sysdate);
 
 --식단 댓글
 insert into DIET_REPLY values('user001','D2',1,1,'과일이 좋습니다',sysdate);
@@ -137,9 +138,9 @@ insert into DIET_REPLY values('user002','D3',2,1,'어류가 좋습니다',sysdat
 insert into DIET_REPLY values('user003','D1',3,1,'채소가 좋습니다',sysdate);
 
 --전체 정보 
-insert into TOTAL_INFO values('user001','D1','D2','D3','M22',5,45,'러닝1시간',60,60,60,930,sysdate);
-insert into TOTAL_INFO values('user002','M1','M2','D2','M23',4,50,'자전거1시간',70,70,70,1000,sysdate);
-insert into TOTAL_INFO values('user003','M1','M2','D1','M24',3,55,'헬스1시간',80,80,80,1120,sysdate);
+insert into TOTAL_INFO values('user001','D1','D2','D3','M22',5,45,'러닝1시간',60,60,60,930,sysdate,1);
+insert into TOTAL_INFO values('user002','M1','M2','D2','M23',4,50,'자전거1시간',70,70,70,1000,sysdate,2);
+insert into TOTAL_INFO values('user003','M1','M2','D1','M24',3,55,'헬스1시간',80,80,80,1120,sysdate,3);
 
 --레시피
 insert into RECIPE_INFO values('user001','1','제육볶음','고기를 고추장에 볶음','달달하게만듬','gogi1.png',sysdate);

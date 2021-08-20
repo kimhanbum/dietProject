@@ -10,8 +10,8 @@
 				<ul>
 					<li><a href="infoCheck.my">내정보</a></li>
 					<li><a href="todayDiet.to">Today 식단</a></li>
-					<li><a href="dietpage.dt">식단 리스트</a></li>
-					<li><a href="#"></a></li>
+					<li><a href="dietpage.dt">내 식단 리스트</a></li>
+					<li><a href="dietShareAddpage.dt">담은 리스트</a></li>
 				</ul>
 			</li>
 			<hr>

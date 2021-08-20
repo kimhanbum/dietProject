@@ -159,16 +159,7 @@
 				 			 </s:if>
 			                 <s:if test="${page > 1 }">
 			              	 	<li>
-			            			<s:set var="PrevUrl" value="configDiet.cf?page=${page-1}"/>
-			              	 		<s:if test="${!empty searchText}">
-			              	 			<s:set var="PrevUrl" value="${PrevUrl}&search=${searchText}"/>
-			              	 		</s:if>
-			              	 		<s:if test="${!empty checkList}">
-			              	 			<s:forEach var="name" items="${checkList}">
-			              	 				<s:set var="PrevUrl" value="${PrevUrl}&${checkType}=${name}"/>
-	 									</s:forEach>
-			              	 		</s:if>
-			              	 		<a href="${PrevUrl}">&lt;</a>
+			            			<a href="javascript:reloadPage(${page-1})">&gt;</a> 
 			              	 	</li>
 				 			 </s:if>
 				 			<s:forEach var="a" begin="${startpage}" end="${endpage}">
@@ -176,16 +167,9 @@
 									<li class="active"><span>${a}</span></li>
 								</s:if>
 								<s:if test="${a != page }">
-									<s:set var="numUrl" value="configDiet.cf?page=${a}"/>
-			              	 		<s:if test="${!empty searchText}">
-			              	 			<s:set var="numUrl" value="${numUrl}&search=${searchText}"/>
-			              	 		</s:if>
-			              	 		<s:if test="${!empty checkList}">
-			              	 			<s:forEach var="name" items="${checkList}">
-			              	 				<s:set var="numUrl" value="${numUrl}&${checkType}=${name}"/>
-	 									</s:forEach>
-			              	 		</s:if>
-									<li><a href="${numUrl}"><span>${a}</span></a></li>
+									<li>
+										<a href="javascript:reloadPage(${a})"><span>${a}</span></a>
+									</li>
 								</s:if>
 							</s:forEach>
 				 			<s:if test="${page >= maxpage }">
@@ -195,17 +179,7 @@
 							</s:if>
 							<s:if test="${page < maxpage }">
 				  				<li>
-				  					<s:set var="nextUrl" value="configDiet.cf?page=${page+1}"/>
-			              	 		<s:if test="${!empty searchText}">
-			              	 			<s:set var="nextUrl" value="${nextUrl}&search=${searchText}"/>
-			              	 		</s:if>
-			              	 		<s:if test="${!empty checkList}">
-			              	 			<s:forEach var="name" items="${checkList}">
-			              	 				<s:set var="nextUrl" value="${nextUrl}&${checkType}=${name}"/>
-	 									</s:forEach>
-			              	 		</s:if>
-			              	 		
-									<a href="${nextUrl}">&gt;</a>
+				  					<a href="javascript:reloadPage(${page+1})">&gt;</a>
 				  				</li>	
 							</s:if>
 			              </ul>
@@ -219,27 +193,27 @@
 		
    <aside>
    		<div class="asideRight_container float_sidebar">
-   			<div> 내가 담은 식자재 갯수 : <span>0</span></div>
-   			<div> (0 kcal) </div>
+   			<div> 
+   			          내가 담은 식자재 갯수 : <span id="addCartCnt">0</span> 
+   			     (<span id="addCartCal">0</span> kcal)
+   			</div>
+   			<div>
+   			     (탄:<span id="addCartTan">0</span>g /
+   			           단:<span id="addCartDan">0</span>g /
+   			           지:<span id="addCartJi">0</span>g)
+   		    </div>
    			<div class="box" style="border:1px solid gray; min-height: 200px">
 				<table style='min-width: 0px !important;'class="table">
-					<tbody id="test11">
-							<tr class="text-center">
-								<td class="image-prod" ><div class="img" style="background-image: url(images/food/tomato.jpg)"></div></td>
-								<td class="product-name" style="width:130px;">
-									<h3 style="margin:5px !important;">토마토</h3>
-								</td>
-								<td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
-							</tr>
+					<tbody id="CartList">
 					</tbody>
 				</table>
 			</div>
 			<div> 식단 이름</div>
-			<input class="p-2" type="text" required maxlength="15">
+			<input id="dietnameText" class="p-2" type="text" required maxlength="15">
 			<br>
 			<br>
 			<button id="make_diet" type="button" class="btn btn-success">생성</button>
-			<button id="reset_diet" type="button" class="btn btn-danger">초기화</button>
+			<button id="reset_cart" type="button" class="btn btn-danger">초기화</button>
 		</div>
    </aside>	
 		

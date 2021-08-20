@@ -13,7 +13,6 @@ import com.google.gson.JsonObject;
 
 import _comm.javabean.DietInfo;
 import _comm.javabean.FoodInfo;
-import oracle.net.aso.f;
 
 
 public class ConfigDAO {
@@ -295,5 +294,67 @@ public class ConfigDAO {
 			}
 		}
 		return fooddata;
+	}
+	public int CreateDiet(DietInfo dInfo) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		int result = 0;
+		String code =null;
+		try {
+			conn = ds.getConnection();
+			String max_sql = "select nvl(max(diet_code),'D1') as code from diet_info";
+			pstmt = conn.prepareStatement(max_sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				int max=Integer.parseInt(rs.getString("code").substring(1))+1;
+				code="D"+String.valueOf(max);
+			}
+			pstmt.close();
+			
+			String sql = " insert into DIET_INFO "
+					   + " values(?,?,?,?,0,0,?,?,?,?,sysdate) ";
+			
+			//PreparedStatement 사용
+			pstmt = conn.prepareStatement(sql);
+			
+			//위치 홀더에 값 세팅 & 쿼리 실행
+			pstmt.setString(1,dInfo.getId());
+			pstmt.setString(2,code); 
+			pstmt.setString(3,dInfo.getDiet_name()); 
+			pstmt.setString(4,dInfo.getDiet_form()); 
+			pstmt.setInt(5, dInfo.getDiet_total_carb());
+			pstmt.setInt(6, dInfo.getDiet_total_fat());
+			pstmt.setInt(7, dInfo.getDiet_total_protein());
+			pstmt.setInt(8, dInfo.getDiet_total_cal());
+			result=pstmt.executeUpdate();
+
+			if(result == 0) {
+				System.out.println("데이터 삽입 실패");
+			}
+		}catch (Exception ex) {
+			System.out.println("CreateDiet()에러 : " + ex);
+			ex.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) 
+					rs.close();
+			}catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			try {
+				if(pstmt != null) 
+					pstmt.close();
+			}catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			try {
+				if(conn != null) 
+					conn.close();
+			}catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return result;
 	}
 }
