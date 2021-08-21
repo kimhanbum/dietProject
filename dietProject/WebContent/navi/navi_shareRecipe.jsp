@@ -35,7 +35,7 @@ button {
 			</div>
 		</div>
 	</div>
-
+ 
 	<section class="ftco-section">
 		<div class="container">
 			<c:if test="${listCount>0}">	

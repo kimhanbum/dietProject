@@ -75,7 +75,7 @@ public class ShRecipeAction implements Action{
 		  object.addProperty("startPage", startPage);
 		  object.addProperty("endPage", endPage);
 		  object.addProperty("listCount", listCount);
-		  
+		   
 		  JsonElement je= new Gson().toJsonTree(recipeList);
 		  object.add("recipeList", je);
 		  
