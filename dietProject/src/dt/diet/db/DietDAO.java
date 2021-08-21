@@ -843,4 +843,48 @@ public class DietDAO {
 		}
 		return list;
 	}
+	public boolean DietShareAddDelete(String dcode,String userId) {
+
+	    PreparedStatement pstmt = null;
+	    Connection conn = null;
+	    ResultSet rs =null;
+	    String delete_dietInfo_sql = " delete from cart_info "
+	    		                    +" where cart_code = ? and ID = ?";
+	    boolean result_check =false;
+	    try {
+			
+	    	conn = ds.getConnection();
+			pstmt = conn.prepareStatement(delete_dietInfo_sql);
+			pstmt.setString(1,dcode);
+			pstmt.setString(2,userId);
+			int count = pstmt.executeUpdate();
+			if(count == 1) {
+				result_check = true;
+			}
+			
+		}catch (SQLException ex) {
+			ex.printStackTrace();
+			System.out.println("DietDelete() 실패:  " + ex);
+		}finally {
+			try {
+				if(rs != null) 
+					rs.close();
+			}catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			try {
+				if(pstmt != null) 
+					pstmt.close();
+			}catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			try {
+				if(conn != null) 
+					conn.close();
+			}catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return result_check;
+	}
 }

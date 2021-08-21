@@ -333,18 +333,40 @@ public class ShDietDAO {
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				if(rs.getInt(1) == 0) {
-					System.out.println("이전에 담은 식단이 아닙니다.");
 					pstmt.close();
-					String max_sql = "(select nvl(max(cart_num),0)+1 from cart_info)";
-					String insert_sql = " INSERT INTO CART_INFO"
-						       		  + " VALUES("+max_sql+",?,?)";
-					System.out.println(insert_sql);
-					pstmt = conn.prepareStatement(insert_sql);
+					rs.close();
+					String find_sql2 = "select count(*) from diet_info where id =? and diet_code = ?";
+					System.out.println(find_sql2);
+					pstmt = conn.prepareStatement(find_sql2);
 					pstmt.setString(1, userId);
 					pstmt.setString(2, addDietCode);
-					result = pstmt.executeUpdate();
-					if(result == 1)
-						System.out.println("insert success");
+					rs = pstmt.executeQuery();
+					if(rs.next()) {
+						if(rs.getInt(1) == 0) {
+							pstmt.close();
+							String max_sql = "(select nvl(max(cart_num),0)+1 from cart_info)";
+							String insert_sql = " INSERT INTO CART_INFO"
+								       		  + " VALUES("+max_sql+",?,?)";
+							System.out.println(insert_sql);
+							pstmt = conn.prepareStatement(insert_sql);
+							pstmt.setString(1, userId);
+							pstmt.setString(2, addDietCode);
+							result = pstmt.executeUpdate();
+							if(result == 1)
+								System.out.println("insert success");
+						}
+						else {
+							//this diet is my diet
+							System.out.println("this diet is my diet,can't add list");
+							result = 3;
+						}
+					}
+					
+				}
+				else {
+					//already added
+					System.out.println("Already exist into cart");
+					result = 2;
 				}
 			}
 		}catch (SQLException ex) {

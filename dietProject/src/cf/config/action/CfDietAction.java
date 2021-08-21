@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import _comm.javabean.DietInfo;
 import _comm.javabean.FoodInfo;
 import cf.config.db.ConfigDAO;
 
@@ -23,7 +24,10 @@ public class CfDietAction implements Action{
 		ConfigDAO foodDao = new ConfigDAO();
 		List<FoodInfo> foodList = new ArrayList<FoodInfo>();
 		
-		
+		String updateState=null;
+		DietInfo updateDiet = null;
+		List<FoodInfo> updateFoodList = new ArrayList<FoodInfo>();
+		int updateSize=0;
 		
 		int page = 1;   
 		int limit = 8;
@@ -68,7 +72,15 @@ public class CfDietAction implements Action{
 		
 		foodList = foodDao.getfoodList(page,limit,search,checkType,list);
 		
-
+		
+		if(request.getParameter("updateDiet")!=null) {
+			updateState = request.getParameter("updateDiet");
+			String dcode = request.getParameter("dcode");
+			updateDiet = foodDao.getDetailDiet(dcode);
+			updateFoodList = foodDao.getUpdateFoodList(updateDiet.getDiet_form());
+			updateSize=updateFoodList.size();
+		}
+		
 		int maxpage=(listcount + limit-1)/limit;
 		System.out.println("maxPage : " + maxpage);
 		
@@ -82,7 +94,7 @@ public class CfDietAction implements Action{
 
 		if(endpage > maxpage)
 			endpage = maxpage;
-
+			
 		//ajax 상태가 아닌 페이지 처리
 		if(state == null) {
 			System.out.println("state == null");
@@ -97,6 +109,11 @@ public class CfDietAction implements Action{
 			request.setAttribute("checkType",checkType);
 			request.setAttribute("checkList",list);
 			request.setAttribute("searchText",search);
+			
+			request.setAttribute("updateState",updateState);
+			request.setAttribute("updateDiet",updateDiet);
+			request.setAttribute("updateFoodList",updateFoodList);
+			request.setAttribute("updateSize",updateSize);
 			/*
 			 * for(FoodInfo f:foodList) { System.out.println("code : " + f.getFood_code());
 			 * System.out.println("name : " + f.getFood_name());

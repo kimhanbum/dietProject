@@ -121,7 +121,7 @@ p {
 					<div class="sh_header">
 						<h5>내 정보</h5>
 					</div>
-					<div style="position : absolute; left:10px; bottom:113px;"class="sh_content">
+					<div style="position : absolute; left:50px; bottom:114px;"class="sh_content">
 					<a href="${pageContext.request.contextPath}/infoCheck.my" class="btn_model" 
 					    onclick="clicker"><b class="btn2">관리</b></a>
 					</div>
@@ -132,7 +132,7 @@ p {
 					<div class="sh_header">
 						<h5>내 식단 리스트</h5>
 					</div>
-					 <div style="position : absolute; left:10px; top:468px;" class="sh_content">
+					 <div style="position : absolute; left:50px; top:463px;" class="sh_content">
 						<a href="${pageContext.request.contextPath}/dietpage.dt" class="btn_model"
 							onclick="clicker"><b
 							class="btn2" >관리</b></a>
@@ -147,7 +147,7 @@ p {
 					</div>
 					<div style="position:absolute; z-index:1; top:247px" class="sh_content">
 					<br>
-					<a style="margin-left:-40px;" href="${pageContext.request.contextPath}/todayDiet.to" class="btn_model"onclick="clicker"><b class="btn2" >관리</b></a>
+					<a style="margin-left:-3px;" href="${pageContext.request.contextPath}/todayDiet.to" class="btn_model"onclick="clicker"><b class="btn2" >관리</b></a>
 				</div>
 			</div>
 		    </div>

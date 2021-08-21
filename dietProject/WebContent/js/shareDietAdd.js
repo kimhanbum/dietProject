@@ -278,6 +278,14 @@ $(function(){
 		$(selector + '>.comment_area').css('display','block');
 	});
 
+	/* 담은 식단 리스트 취소 클릭 이벤트*/
+	$("#DeleteDietbtn").click(function(){
+		var dcode=$(this).val();
+		if(confirm('담은 식단을 제거하시겠습니까?')) 
+		{ 
+			location.href="dietShareAddDelete.dt?dcode="+dcode;
+		}
+	});
 	
 });
 

@@ -357,4 +357,145 @@ public class ConfigDAO {
 		}
 		return result;
 	}
+	public DietInfo getDetailDiet(String dcode) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		DietInfo dietdata= null;
+		String select_sql ="select * from diet_info where diet_code= ? ";
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(select_sql);
+			pstmt.setString(1,dcode);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				dietdata= new DietInfo();
+				dietdata.setDiet_code(rs.getString("DIET_CODE"));
+				dietdata.setDiet_name(rs.getString("DIET_NAME"));
+				dietdata.setDiet_form(rs.getString("DIET_FORM"));
+				dietdata.setDiet_total_carb(rs.getInt("DIET_TOTAL_CARB"));
+				dietdata.setDiet_total_fat(rs.getInt("DIET_TOTAL_FAT"));
+				dietdata.setDiet_total_protein(rs.getInt("DIET_TOTAL_PROTEIN"));
+				dietdata.setDiet_total_cal(rs.getInt("DIET_TOTAL_CAL"));
+			}
+		}catch (Exception ex) {
+			System.out.println("getDetailDiet() 실패 : " + ex);
+		}finally {
+			try {
+				if(rs != null) 
+					rs.close();
+			}catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			try {
+				if(pstmt != null) 
+					pstmt.close();
+			}catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			try {
+				if(conn != null) 
+					conn.close();
+			}catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return dietdata;
+	}
+	public List<FoodInfo> getUpdateFoodList(String foodForm) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		String food_list_sql;
+		List<FoodInfo> list = new ArrayList<FoodInfo>();
+
+		try {
+			conn = ds.getConnection();
+			food_list_sql = "SELECT * FROM FOOD_INFO WHERE FOOD_CODE = ?";
+			pstmt = conn.prepareStatement(food_list_sql);
+			String[] foodList=foodForm.split(",");
+			for(String fcode:foodList) {
+				pstmt = conn.prepareStatement(food_list_sql);
+				pstmt.setInt(1,Integer.parseInt(fcode));
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					FoodInfo f = new FoodInfo();
+					f.setFood_code(rs.getInt("food_code"));
+					f.setFood_name(rs.getString("food_name"));
+					f.setFood_carb(rs.getInt("food_carb"));
+					f.setFood_fat(rs.getInt("food_fat"));
+					f.setFood_protein(rs.getInt("food_protein"));
+					f.setFood_cal(rs.getInt("food_cal"));
+					f.setFood_img_name(rs.getString("food_img_name"));
+					list.add(f);
+				}
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("getfoodList() 실패  : " + e);
+		}finally {
+			try {
+				if(rs != null) 
+					rs.close();
+			}catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			try {
+				if(pstmt != null) 
+					pstmt.close();
+			}catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			try {
+				if(conn != null) 
+					conn.close();
+			}catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return list;
+	}
+	public int UpdateDiet(DietInfo dietinfo) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int result=0;
+		String sql = " UPDATE DIET_INFO "
+			       + " SET DIET_NAME = ? , DIET_FORM = ? , DIET_TOTAL_CARB = ? , "
+			       + "     DIET_TOTAL_FAT = ? , DIET_TOTAL_PROTEIN = ? , DIET_TOTAL_CAL = ? "
+				   + " WHERE DIET_CODE = ? ";
+		try {
+			System.out.println(sql);
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,dietinfo.getDiet_name());  //name
+			pstmt.setString(2,dietinfo.getDiet_form());  //form
+			pstmt.setInt(3,dietinfo.getDiet_total_carb());     //carb
+			pstmt.setInt(4,dietinfo.getDiet_total_fat());     //fat
+			pstmt.setInt(5,dietinfo.getDiet_total_protein());     //protein
+			pstmt.setInt(6,dietinfo.getDiet_total_cal());     //cal
+			pstmt.setString(7,dietinfo.getDiet_code());  //code
+			if(pstmt.executeUpdate() == 1) {
+				System.out.println("update success");
+				result = 1;
+			}
+		
+		}catch (SQLException ex) {
+			ex.printStackTrace();
+			System.out.println("UpdateDiet() 실패  :" + ex);
+		}finally {
+			try {
+				if(pstmt != null) 
+					pstmt.close();
+			}catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			try {
+				if(conn != null) 
+					conn.close();
+			}catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return result;
+	}
 }

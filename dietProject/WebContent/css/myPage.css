@@ -65,7 +65,7 @@ aside a{
 li{
 	list-style: none;
 }
-div >a{
+aside>div>a{
 	padding-left: 40px;
 }
 aside>div>ul , aside>div>ul>li>ul{
