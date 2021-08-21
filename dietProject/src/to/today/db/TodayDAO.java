@@ -89,9 +89,8 @@ public class TodayDAO {
 
 
 	
-	public DietInfo getDietInfo(String code) {
+	public Commondiet getDietInfo(String code) {
 		Commondiet comdiet = null;
-		DietInfo diet = new DietInfo();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -104,28 +103,12 @@ public class TodayDAO {
 			if (rs.next()) {  
 				comdiet = new Commondiet();
 			    //변수이름.set(쓸 변수 값) 저장하기
-				comdiet.setName(rs.getString("name"));
-				comdiet.setForm(rs.getString("form"));
-			    comdiet.setCarb(rs.getInt("carb"));
-			    comdiet.setFat(rs.getInt("fat"));
-			    comdiet.setPro(rs.getInt("pro"));
-			    comdiet.setCal(rs.getInt("cal"));
-			    
-			    diet.setId(rs.getString("id"));
-			    diet.setDiet_code(rs.getString("diet_code"));
-			    diet.setDiet_name(rs.getString("diet_name"));
-			    diet.setDiet_form(rs.getString("diet_form"));
-			    diet.setDiet_recomm(rs.getInt("diet_recomm"));
-			    diet.setDiet_total_carb(rs.getInt("diet_total_carb"));
-			    diet.setDiet_total_fat(rs.getInt("diet_total_fat"));
-			    diet.setDiet_total_protein(rs.getInt("diet_total_protein"));
-			    diet.setDiet_total_cal(rs.getInt("diet_total_cal"));
-			    diet.setDiet_date(rs.getString("diet_date"));
-			    if(rs.getInt("diet_share") == 0) {
-			    	diet.setDiet_share(false);
-			    }else if(rs.getInt("diet_share") == 1) {
-			    	diet.setDiet_share(true);
-			    } return diet;
+				comdiet.setName(rs.getString("DIET_NAME"));
+				comdiet.setForm(rs.getString("DIET_FORM"));
+			    comdiet.setCarb(rs.getInt("DIET_TOTAL_CARB"));
+			    comdiet.setFat(rs.getInt("DIET_TOTAL_FAT"));
+			    comdiet.setPro(rs.getInt("DIET_TOTAL_PROTEIN"));
+			    comdiet.setCal(rs.getInt("DIET_TOTAL_CAL"));
 			    
 			}
 		} catch (Exception ex) {
@@ -149,16 +132,15 @@ public class TodayDAO {
 				} catch (SQLException ex) {
 					ex.printStackTrace();
 				}
-		} return diet;
-		
+		} 
+		return comdiet;
 	}
 
 	
 	
 
-	public MealInfo getMealInfo(String code) {
+	public Commondiet getMealInfo(String code) {
         Commondiet comdiet = null;
-        MealInfo meal = new MealInfo();
         Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -171,20 +153,12 @@ public class TodayDAO {
 			if (rs.next()) { 
 				comdiet = new Commondiet();
 			    //변수이름.set(쓸 변수 값) 저장하기
-				comdiet.setName(rs.getString("name"));
-			    comdiet.setCarb(rs.getInt("carb"));
-			    comdiet.setFat(rs.getInt("fat"));
-			    comdiet.setPro(rs.getInt("pro"));
-			    comdiet.setCal(rs.getInt("cal"));
-			    comdiet.setImgname(rs.getString("img_name"));
-			    
-			    meal.setMeal_code(rs.getString("meal_code"));
-			    meal.setMeal_name(rs.getString("meal_name"));
-			    meal.setMeal_img_name(rs.getString("meal_img_name"));
-			    meal.setMeal_carb(rs.getInt("meal_carb"));
-			    meal.setMeal_fat(rs.getInt("meal_fat"));
-			    meal.setMeal_protein(rs.getInt("meal_protein"));
-			    meal.setMeal_cal(rs.getInt("meal_cal"));
+				comdiet.setName(rs.getString("MEAL_NAME"));
+			    comdiet.setCarb(rs.getInt("MEAL_CARB"));
+			    comdiet.setFat(rs.getInt("MEAL_FAT"));
+			    comdiet.setPro(rs.getInt("MEAL_PROTEIN"));
+			    comdiet.setCal(rs.getInt("MEAL_CAL"));
+			    comdiet.setImgname(rs.getString("MEAL_IMG_NAME"));
 			}
 		} catch (Exception ex) {
 			System.out.println("getMealInfo() 에러: " + ex);
@@ -207,7 +181,7 @@ public class TodayDAO {
 				} catch (SQLException ex) {
 					ex.printStackTrace();
 				}
-		} return meal;
+		} return comdiet;
 	}
 }
 
