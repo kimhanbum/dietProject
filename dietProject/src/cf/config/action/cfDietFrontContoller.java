@@ -57,6 +57,9 @@ public class cfDietFrontContoller extends javax.servlet.http.HttpServlet{
 			case "/cfDietProcess.cf":
 				action = new CfDietProcessAction();
 				break;
+			case "/cfDietUpdateProcess.cf":
+				action = new CfDietUpdateProcessAction();
+				break;
 		}
 		
 		forward = action.execute(request,response);

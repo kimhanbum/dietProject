@@ -193,27 +193,72 @@
 		
    <aside>
    		<div class="asideRight_container float_sidebar">
-   			<div> 
-   			          내가 담은 식자재 갯수 : <span id="addCartCnt">0</span> 
-   			     (<span id="addCartCal">0</span> kcal)
-   			</div>
-   			<div>
-   			     (탄:<span id="addCartTan">0</span>g /
-   			           단:<span id="addCartDan">0</span>g /
-   			           지:<span id="addCartJi">0</span>g)
-   		    </div>
+   			<s:if test="${empty updateState}">
+	   			<div> 
+	   			          내가 담은 식자재 갯수 : <span id="addCartCnt">0</span> 
+	   			     (<span id="addCartCal">0</span> kcal)
+	   			</div>
+	   			<div>
+	   			     (탄:<span id="addCartTan">0</span>g /
+	   			           단:<span id="addCartDan">0</span>g /
+	   			           지:<span id="addCartJi">0</span>g)
+	   		    </div>
+   		    </s:if>
+   		    <s:if test="${!empty updateState}">
+   		    	<div> 
+	   			          내가 담은 식자재 갯수 : <span id="addCartCnt">${updateSize}</span> 
+	   			     (<span id="addCartCal">${updateDiet.diet_total_cal}</span> kcal)
+	   			</div>
+	   			<div>
+	   			     (탄:<span id="addCartTan">${updateDiet.diet_total_carb}</span>g /
+	   			           단:<span id="addCartDan">${updateDiet.diet_total_protein}</span>g /
+	   			           지:<span id="addCartJi">${updateDiet.diet_total_fat}</span>g)
+	   		    </div>
+	   		    <input id="updateCode" type="hidden" value="${updateDiet.diet_code}">
+   			</s:if>
+   			<s:set var="cIndex" value="1"/>
    			<div class="box" style="border:1px solid gray; min-height: 200px">
 				<table style='min-width: 0px !important;'class="table">
 					<tbody id="CartList">
+						<s:if test="${!empty updateState}">
+						    <s:forEach var="b" items="${updateFoodList}">
+								<tr id="${cIndex}" class="text-center">
+					   				<input type="hidden" value="${b.food_code}">
+						       		<td class="image-prod" >
+							   			<div class="img" style="background-image: url(images/food/${b.food_img_name}.jpg)">
+							   			</div>
+							  		</td>
+							   		<td class="product-name" style="width:130px;">
+							   			<h3 style="margin:5px !important;">${b.food_name}</h3>		
+							  		</td>
+							   		<td class="product-remove">
+							   			<a href="javascript:removeDietCart('${cIndex}','${b.food_cal}','${b.food_carb}','${b.food_protein}','${b.food_fat}')">
+							   				<span class="ion-ios-close"></span>
+							   			</a>
+							   		</td>
+							   	</tr> 
+							   	<s:set var="cIndex" value="${cIndex+1}"/>
+						   	</s:forEach>	 
+						</s:if>
 					</tbody>
 				</table>
 			</div>
+			<input id="indexVal" type="hidden" value="${cIndex}">
 			<div> 식단 이름</div>
-			<input id="dietnameText" class="p-2" type="text" required maxlength="15">
-			<br>
-			<br>
-			<button id="make_diet" type="button" class="btn btn-success">생성</button>
-			<button id="reset_cart" type="button" class="btn btn-danger">초기화</button>
+			<s:if test="${empty updateState}">
+				<input id="dietnameText" class="p-2" type="text" required maxlength="15">
+				<br>
+				<br>
+				<button id="make_diet" type="button" class="btn btn-success">생성</button>
+				<button id="reset_cart" type="button" class="btn btn-danger">초기화</button>
+			</s:if>	
+			<s:if test="${!empty updateState}">
+				<input id="dietnameText" class="p-2" type="text" required maxlength="15" value="${updateDiet.diet_name}">
+				<br>
+				<br>
+				<button id="update_diet" type="button" class="btn btn-success">수정</button>
+				<button id="reset_cart" type="button" class="btn btn-danger">초기화</button>
+			</s:if>
 		</div>
    </aside>	
 		

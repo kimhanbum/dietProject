@@ -197,10 +197,14 @@ function removeDietCart(addindex,food_cal,food_carb,food_protein,food_fat){
 	var removeid='#'+addindex;
 	$(removeid).remove();
 	
-	$(".box").scrollTop($('.box')[0].scrollHeight);
+	//$(".box").scrollTop($('.box')[0].scrollHeight);
 }
 $(function(){
-	cartindex=1;
+	var jstlindex=$(indexVal).val();
+	cartindex=Number(jstlindex);
+	console.log("cartindex = " + cartindex);
+	
+	//cartindex=1;
 	var $win = $(window); 
 	var top = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다. 
 	
@@ -308,6 +312,57 @@ $(function(){
 			$("#addCartJi").text('0');
 			$('#CartList').empty();
 			
+		}
+	});
+	//식단 업데이트 버튼 클릭시,해당 식단 업데이트
+	$('#update_diet').click(function(){
+		if($('#addCartCnt').text() == '0'){
+			alert('하나이상의 식자재를 담아주세요.');
+			return false;
+		}
+		if($.trim($("#dietnameText").val())==""){
+			alert('식단이름을 작성해주세요.');
+			return false;
+		}
+		if(confirm('식단을 업데이트 하시겠습니까?')){
+			var diet_name = $('#dietnameText').val();
+			var totalTan=$("#addCartTan").text();
+			var totalDan=$("#addCartDan").text();
+			var totalJi=$("#addCartJi").text();
+			var totalCal=$("#addCartCal").text();
+			var updateCode=$("#updateCode").val();
+			console.log("updateCode : " + updateCode);
+			var count=Number($('#addCartCnt').text());
+			var diet_form=""
+			$('tr>input:hidden').each(function(index,item){
+				diet_form+=$(this).val();
+				if((index+1) != count)
+					diet_form+=',';
+			});
+	
+			$.ajax({
+				type:"post",
+				url:"cfDietUpdateProcess.cf",
+				data : { 
+					    "diet_code" : updateCode,
+						"diet_name" : diet_name,
+						"diet_form" : diet_form,
+						"total_tan" : totalTan,
+						"total_dan" : totalDan,
+						"total_ji"  : totalJi,
+						"total_cal" : totalCal,
+					},
+				dataType:"json",
+				success:function(data){
+					alert($('#dietnameText').val() + ' 식단이 업데이트 되었습니다.');
+					location.href="configDiet.cf";
+				},//success end
+				error:function(data){
+					alert('로그인이 필요한 서비스입니다.');
+					location.href='login.net';
+				}//success end
+			});//ajax end
+		
 		}
 	});
 });

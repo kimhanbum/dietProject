@@ -160,9 +160,9 @@ $(function(){
 	/* 식단 수정 버튼 이벤트*/
 	$("td").on("click","#UpdateDietbtn",function(){
 		var dcode=$(this).val();
-		if(confirm('해당 식단을 수정하시겠습니까?')) 
+		if(confirm('해당 식단을 수정하시겠습니까??')) 
 		{ 
-			location.href="configDiet.cf?dcode="+dcode;
+			location.href="configDiet.cf?dcode="+dcode+'&updateDiet=1';
 		}
 	});
 	

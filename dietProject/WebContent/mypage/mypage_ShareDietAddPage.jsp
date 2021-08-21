@@ -134,8 +134,8 @@ thead input[type=text]{
 										<button style="visibility: hidden ! important;" type="button" id="shareDietbtn"  value="${b.diet_code}" class="btn btn-secondary">공유</button>
 									</s:if>
 									<button id="DetailDietbtn" value="${b.diet_code}" class="btn btn-secondary" data-toggle="modal" data-target="#myModal">상세보기</button>
+									<button id="DeleteDietbtn" value="${b.diet_code}" class="btn btn-secondary">담기 취소</button>
 									<button style="visibility: hidden ! important;" id="UpdateDietbtn" value="${b.diet_code}" class="btn btn-secondary">수정</button>
-									<button style="visibility: hidden ! important;" id="DeleteDietbtn" value="${b.diet_code}" class="btn btn-secondary">삭제</button>
 								</td>	
 	  					</s:forEach>
 					</s:if>	
@@ -156,7 +156,7 @@ thead input[type=text]{
 			 			 </s:if>
 		                 <s:if test="${page > 1 }">
 		              	 	<li>
-		              	 		<a href="dietpage.dt?page=${page-1}">&lt;</a>
+		              	 		<a href="dietShareAddpage.dt?page=${page-1}">&lt;</a>
 		              	 	</li>
 			 			 </s:if>
 			 			<s:forEach var="a" begin="${startpage}" end="${endpage}">
@@ -164,7 +164,7 @@ thead input[type=text]{
 								<li class="active"><span>${a}</span></li>
 							</s:if>
 							<s:if test="${a != page }">
-								<li><a href="dietpage.dt?page=${a}"><span>${a}</span></a></li>
+								<li><a href="dietShareAddpage.dt?page=${a}"><span>${a}</span></a></li>
 							</s:if>
 						</s:forEach>
 			 			<s:if test="${page >= maxpage }">
@@ -174,7 +174,7 @@ thead input[type=text]{
 						</s:if>
 						<s:if test="${page < maxpage }">
 			  				<li>
-								<a href="dietpage.dt?page=${page+1}">&gt;</a>
+								<a href="dietShareAddpage.dt?page=${page+1}">&gt;</a>
 			  				</li>	
 						</s:if>
 		              </ul>

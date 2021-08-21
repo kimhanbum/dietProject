@@ -13,6 +13,13 @@
 	article{
 		width:100% !important;
 	}
+	#seach_diet{
+	   margin-top : 30px;
+	   font-size:1.4rem;
+	   border-radius:10px;
+	   width: 300px;
+	   height: 50px;
+	}
  </style>
  </head>
   <body class="goto-here">
@@ -72,12 +79,15 @@
 									<div class="col-md-6 col-lg-3 ftco-animate">
 					    				<div class="product">
 					    					<div class="img-prod" style="text-align : center;">
-					    						<img  width="328px" height="200px"  style="object-fit:fill !important;" src="images/food/${b.diet_img_name}.jpg" alt="Colorlib Template">
-	    										<div class="overlay"></div>
+					    						<button id="DetailDietbtn" value="${b.diet_code}" class="img-prod" data-toggle="modal" data-target="#myModal">
+						    						<img width="328px" height="200px"  style="object-fit:fill !important;" src="images/food/${b.diet_img_name}.jpg" alt="Colorlib Template">
+		    										<div class="overlay"></div>
+	    										</button>
 	    									</div>
 	    									<img  style="position: relative; right:-5px; top: -35px; z-index:1000 " width="30px" height="30px" src="images/like.png" alt="like">
 	    									<span style="position: relative; right:-4px; top: -30px; z-index:1000"><b id="${b.diet_code}" style="color:black;">${b.diet_recomm}</b></span>
 					    					<div class="text py-3 pb-4 px-3 text-center">
+					    						<input type="hidden" name="num" value="0" id=reply_dietCode>
 					    						<h3 id="food_name_text">${b.diet_name}</h3>
 					    						<div class="d-flex">
 					    							<div class="pricing">
@@ -172,102 +182,27 @@
    	<jsp:include page="../comm/footer_Subcribe.jsp"/>
    	<jsp:include page="../comm/footer_info.jsp"/>
    	
-   		<%-- 게시판 view end --%>
+   	
+   	
 	<%-- modal시작 --%>
 	<div class="modal" id="myModal" style="overflow:auto;">
 		<div class="modal-dialog modal-lg" style="width:700px;">
 			<div class="modal-content"style=" padding:30px;">
 					<div class="row">
 						<div class="col-sm-12 text-center" style="background:#82AD46">
-							<div style="font-size:30px; color:black; margin-bottom:-10px;">채소 인간 식단</div>
-							<div style="font-size:20px;">(1200kcal/탄수화물100g/단백질100g/지방100g)</div>
+							<div id="detailTitle" style="font-size:30px; color:black; margin-bottom:-10px;">채소 인간 식단</div>
+							<div id="detailNutr" style="font-size:20px;">(1200kcal/탄수화물100g/단백질100g/지방100g)</div>
 						</div>
 					</div>
 					<br>
-					<div class="row">
-						<div class="col-sm-12 text-center">
-							<div style="font-size:20px; margin-bottom:-10px;">채소위주의 저열량 저지방 식단입니다.</div>
-						</div>
+					<div>
 					</div>
-					<br>
-					<div class="row"  style="text-align: center; ">
-						<div class="col-sm-2 img" style="background-image:url(images/product-1.jpg); background-size: 100px; "></div>
-						<div class="col-sm-2"><h5>파프리카</h5></div>
-						<div class="col-sm-2 img" style="background-image:url(images/product-2.jpg); background-size: 100px;"></div>
-						<div class="col-sm-2"><h5>딸기</h5></div>
-						<div class="col-sm-2 img" style="background-image:url(images/product-3.jpg); background-size: 100px;"></div>
-						<div class="col-sm-2"><h5>콩</h5></div>
-					</div>
-	    			<div class="row"  style="text-align: center; ">
-						<div class="col-sm-2 img" style="background-image:url(images/product-4.jpg); background-size: 100px;"></div>
-						<div class="col-sm-2"><h5>양상추</h5></div>
-						<div class="col-sm-2 img" style="background-image:url(images/product-5.jpg); background-size: 100px;"></div>
-						<div class="col-sm-2"><h5>토마토</h5></div>
-						<div class="col-sm-2 img" style="background-image:url(images/product-6.jpg); background-size: 100px;"></div>
-						<div class="col-sm-2"><h5>브루콜리</h5></div>
-					</div>
-					<div class="row"  style="text-align: center; ">
-						<div class="col-sm-2 img" style="background-image:url(images/product-7.jpg); background-size: 100px;"></div>
-						<div class="col-sm-2"><h5>당근</h5></div>
-						<div class="col-sm-2 img" style="background-image:url(images/product-8.jpg); background-size: 100px;"></div>
-						<div class="col-sm-2"><h5>과일주스</h5></div>
-						<div class="col-sm-2 img" style="background-image:url(images/product-9.jpg); background-size: 100px;"></div>
-						<div class="col-sm-2"><h5>양파</h5></div>
-				   </div>	
-				   <div class="row"  style="text-align: center; ">
-						<div class="col-sm-2 img" style="background-image:url(images/product-1.jpg); background-size: 100px; "></div>
-						<div class="col-sm-2"><h5>파프리카</h5></div>
-						<div class="col-sm-2 img" style="background-image:url(images/product-2.jpg); background-size: 100px;"></div>
-						<div class="col-sm-2"><h5>딸기</h5></div>
-						<div class="col-sm-2 img" style="background-image:url(images/product-3.jpg); background-size: 100px;"></div>
-						<div class="col-sm-2"><h5>콩</h5></div>
-					</div>
-	    			<div class="row"  style="text-align: center; ">
-						<div class="col-sm-2 img" style="background-image:url(images/product-4.jpg); background-size: 100px;"></div>
-						<div class="col-sm-2"><h5>양상추</h5></div>
-						<div class="col-sm-2 img" style="background-image:url(images/product-5.jpg); background-size: 100px;"></div>
-						<div class="col-sm-2"><h5>토마토</h5></div>
-						<div class="col-sm-2 img" style="background-image:url(images/product-6.jpg); background-size: 100px;"></div>
-						<div class="col-sm-2"><h5>브루콜리</h5></div>
-					</div>
-					<div class="row"  style="text-align: center; ">
-						<div class="col-sm-2 img" style="background-image:url(images/product-7.jpg); background-size: 100px;"></div>
-						<div class="col-sm-2"><h5>당근</h5></div>
-						<div class="col-sm-2 img" style="background-image:url(images/product-8.jpg); background-size: 100px;"></div>
-						<div class="col-sm-2"><h5>과일주스</h5></div>
-						<div class="col-sm-2 img" style="background-image:url(images/product-9.jpg); background-size: 100px;"></div>
-						<div class="col-sm-2"><h5>양파</h5></div>
-				   </div>	
-				   				   <div class="row"  style="text-align: center; ">
-						<div class="col-sm-2 img" style="background-image:url(images/product-1.jpg); background-size: 100px; "></div>
-						<div class="col-sm-2"><h5>파프리카</h5></div>
-						<div class="col-sm-2 img" style="background-image:url(images/product-2.jpg); background-size: 100px;"></div>
-						<div class="col-sm-2"><h5>딸기</h5></div>
-						<div class="col-sm-2 img" style="background-image:url(images/product-3.jpg); background-size: 100px;"></div>
-						<div class="col-sm-2"><h5>콩</h5></div>
-					</div>
-	    			<div class="row"  style="text-align: center; ">
-						<div class="col-sm-2 img" style="background-image:url(images/product-4.jpg); background-size: 100px;"></div>
-						<div class="col-sm-2"><h5>양상추</h5></div>
-						<div class="col-sm-2 img" style="background-image:url(images/product-5.jpg); background-size: 100px;"></div>
-						<div class="col-sm-2"><h5>토마토</h5></div>
-						<div class="col-sm-2 img" style="background-image:url(images/product-6.jpg); background-size: 100px;"></div>
-						<div class="col-sm-2"><h5>브루콜리</h5></div>
-					</div>
-					<div class="row"  style="text-align: center; ">
-						<div class="col-sm-2 img" style="background-image:url(images/product-7.jpg); background-size: 100px;"></div>
-						<div class="col-sm-2"><h5>당근</h5></div>
-						<div class="col-sm-2 img" style="background-image:url(images/product-8.jpg); background-size: 100px;"></div>
-						<div class="col-sm-2"><h5>과일주스</h5></div>
-						<div class="col-sm-2 img" style="background-image:url(images/product-9.jpg); background-size: 100px;"></div>
-						<div class="col-sm-2"><h5>양파</h5></div>
-				   </div>	
-				   <br>
-				   <span style="padding-bottom:10px; text-align: right;">
+				    <br>
+				    <span style="padding-bottom:10px; text-align: right;">
 				        <img width="30px" height="30px" src="images/like.png" alt="like">
-				        <b style="color:black; padding-left:5px;">124</b>
-				   </span>		
-				   <br>
+				        <b id="detailComm" style="color:black; padding-left:5px;">124</b>
+				    </span>		
+				    <br>
 				   
 					<div class="CommentBox">
 						<div class="comment_option">
@@ -276,53 +211,16 @@
 							</h3>
 							<div class="comment_tab">
 								<ul class="comment_tab_list">
-									<li class="comment_tab_item red " >
+									<li id="order_olddate" class="comment_tab_item" >
 										<a href="javascript:getList(1)" class="comment_tab_button">등록순</a>
 									</li>
-									<li class="comment_tab_item red " >
+									<li id="order_newdate" class="comment_tab_item" >
 										<a href="javascript:getList(2)" class="comment_tab_button">최신순</a>
 									</li>
 								</ul>
 							</div>
 						</div>
 						<ul class="comment_list">
-							<li id="10" class="CommentItem">
-								<div class="comment_area">
-									<img  src="images/profile.png" alt="pic" width="36" height="36">
-									<div class="comment_box">
-										<div class="comment_nick_box">
-											<div class="comment_nick_info">
-												<div class="comment_nickname">admin</div>
-											</div>                 
-										</div>
-									</div>
-								
-									<div class="comment_text_box">
-										<p class="comment_text_view">
-											<span class="text_comment">댓글 샘플입니다.</span>
-										</p>
-									</div>
-									<div class="comment_info_box">
-										<span class="comment_info_date">2021-08-14 13:00:00</span>
-										<a href="javascript:replyform(1,0,0,1)" class="comment_info_button">답글쓰기</a>
-									</div>
-													   
-									<div class="comment_tool">
-										<div title="더보기" class="comment_tool_button">
-											<div>&#46;&#46;&#46;</div>
-										</div>
-										<div id="commentItem1"  class="LayerMore"> //스타일에서 display:none; 설정함
-											<ul class="layer_list">							   
-												<li class="layer_item">
-													<a href="javascript:updateForm(1)" class="layer_button">수정</a>
-													&nbsp;&nbsp;
-													<a href="javascript:del(1)" class="layer_button">삭제</a>
-												</li>
-											</ul>
-										</div>
-									</div>			   
-								</div>
-							</li>
 						</ul>
 						<div class="CommentWriter">
 							<div class="comment_inbox">
@@ -336,22 +234,14 @@
 								<div class="button btn_register">등록</div>
 							</div>
 						</div>
-					</div>
-				   
-				   
-				   
-				   <div class="row">
-						<div class="col-sm-6 text-center" >
-				   			<button id="add_diet" type="button" class="btn btn-dark">담기</button>
-						</div>
-						<div class="col-sm-6 text-center" >
-				   			<button id="recomm_diet" type="button" class="btn btn-dark">추천하기</button>
-						</div>
-					</div>
+				   </div>
     		</div>
 		</div>
+		<input type="hidden" name="num" value="0" id=reply_dietCode>
+		<input type="hidden" id="loginid" value="${id}" name="loginid">
 	</div>
-   	
+   
+   
    <script type="text/javascript" src="js/navi_shareDiet.js" charset="utf-8"></script>
   </body>
 </html>

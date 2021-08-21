@@ -7,6 +7,9 @@ import java.sql.SQLException;
 import javax.naming.*;
 import javax.sql.*;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
 import _comm.javabean.Commondiet;
 import _comm.javabean.DietInfo;
 import _comm.javabean.MealInfo;
@@ -183,6 +186,95 @@ public class TodayDAO {
 				}
 		} return comdiet;
 	}
+	
+
+	public JsonArray getMonthTotalData(String userId,String yearMonth) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		JsonObject object = null;
+		JsonArray jArray = new JsonArray();
+		String select_sql =" SELECT TOTAL_BF,TOTAL_LUNCH,TOTAL_DINNER,TOTAL_SNACK, "
+				          +" TOTAL_WATER, TO_CHAR(TOTAL_DATE,'YYYY-MM-DD') YEARMONTH "
+						  +" FROM TOTAL_INFO "
+						  + "WHERE TO_CHAR(TOTAL_DATE,'YYYY/MM') = ? "
+						  + "AND ID = ? ";
+		
+		//"where to_char(hiredate,'YYMM') = '8111'";
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(select_sql);
+			pstmt.setString(1,yearMonth);
+			pstmt.setString(2,userId);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				if(rs.getString("TOTAL_BF") != null) {
+					object =new JsonObject();
+					object.addProperty("title","1.아침");
+					object.addProperty("start",rs.getString("YEARMONTH"));
+					object.addProperty("end", rs.getString("YEARMONTH"));
+					object.addProperty("color", "green");
+					jArray.add(object);
+				}
+				if(rs.getString("TOTAL_LUNCH") != null) {
+					object =new JsonObject();
+					object.addProperty("title","2.점심");
+					object.addProperty("start",rs.getString("YEARMONTH"));
+					object.addProperty("end", rs.getString("YEARMONTH"));
+					object.addProperty("color", "orange");
+					jArray.add(object);
+					
+				}
+				if(rs.getString("TOTAL_DINNER") != null) {
+					object =new JsonObject();
+					object.addProperty("title","3.저녁");
+					object.addProperty("start",rs.getString("YEARMONTH"));
+					object.addProperty("end", rs.getString("YEARMONTH"));
+					object.addProperty("color", "yellow");
+					jArray.add(object);
+				}
+				if(rs.getString("TOTAL_SNACK") != null) {
+					object =new JsonObject();
+					object.addProperty("title","4.간식");
+					object.addProperty("start",rs.getString("YEARMONTH"));
+					object.addProperty("end", rs.getString("YEARMONTH"));
+					object.addProperty("color", "blue");
+					jArray.add(object);
+				}
+				if(rs.getString("TOTAL_WATER") != null) {
+					object =new JsonObject();
+					object.addProperty("title","5.물");
+					object.addProperty("start",rs.getString("YEARMONTH"));
+					object.addProperty("end", rs.getString("YEARMONTH"));
+					object.addProperty("color", "pink");
+					jArray.add(object);
+				}
+			}
+		}catch (Exception ex) {
+			System.out.println("getFoodDetail() 실패 :  " + ex);
+		}finally {
+			try {
+				if(rs != null) 
+					rs.close();
+			}catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			try {
+				if(pstmt != null) 
+					pstmt.close();
+			}catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			try {
+				if(conn != null) 
+					conn.close();
+			}catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return jArray;
+	}
+
 }
 
 
