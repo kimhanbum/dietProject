@@ -25,42 +25,35 @@ public class TodayDietAction implements Action {
 			throws ServletException, IOException {
 		//자료형        변수이름 --선언   -- 담을 자료형 생성
 				TodayDAO todaydao = new TodayDAO(); //db값을 가져오는 메소드 사용해서 값을 가져옴(삽입,취소,저장등)
+				//
+				
 				
 			    Calendar cal = Calendar.getInstance();
 		        cal.setTime(new Date(System.currentTimeMillis()));
 				String today1 = new SimpleDateFormat("YY/MM/dd").format(cal.getTime()); 
-				System.out.println(today1);
+				System.out.println("today1: " + today1);
 				
-				if(request.getParameter("today1") != null) {
+				if(request.getParameter("today") != null) {  //(today)값이 있는지 체크
+					int today = Integer.parseInt(request.getParameter("today"));  //값을 쓰기위해 변수선언
 					cal.add(Calendar.MONTH, 0);
-					cal.add(Calendar.DATE, -1);
-				    System.out.println(today1);
-				    
-				} else if (request.getParameter("today1") != null) {
-					cal.add(Calendar.MONTH, 0);
-					cal.add(Calendar.DATE, +1);
-					
-					
-					
-					
+					cal.add(Calendar.DATE, today);
+				    System.out.println("today= " + today);
 				}
 				
-				
-		
-		 				
 				//오늘날짜 기준으로 전날,다음날 구하기+1,-1
 				//null 조건에 따라 날짜계산 (DietSharePageAction.java32,33참조)
 				//같은 Action을 쓰니까
-				
-				
 				
 			    //세션에서 id를 가져옵니다.
 			    HttpSession session = request.getSession();
 			    String userId = (String) session.getAttribute("id"); 
 			    System.out.println("sessionid: " + userId);
-			       
-				//                     db 저장                                      인자값
-         		TotalInfo totalinfo = todaydao.getTotalInfo(userId, today1);
+			    
+			    
+			    //임의 테스트용 날짜 
+				String testday = "21/08/21";
+			    //                     db 저장                                      인자값
+         		TotalInfo totalinfo = todaydao.getTotalInfo(userId, testday);
 				
 				System.out.println(totalinfo.getId());
 				System.out.println(totalinfo.getTotal_date());
@@ -100,58 +93,81 @@ public class TodayDietAction implements Action {
 			   
 			   
 			   
-			   
-			   
-			   
-			   MealInfo meal_bf = null;
-			   MealInfo meal_lunch = null;
-			   MealInfo meal_dinner = null;
-			   MealInfo meal_snack = null;
-			   DietInfo diet_bf = null;
-			   DietInfo diet_lunch = null;
-			   DietInfo diet_dinner = null;
-			   DietInfo diet_snack = null;
-			   String id = "";
+			   Commondiet bf_comm=null;
+			   Commondiet lunch_comm=null;
+			   Commondiet dinner_comm=null;
+			   Commondiet snack_comm=null;
 			   if(bf.contains("M")) {
-				   meal_bf = todaydao.getMealInfo(bf);
+				    bf_comm = todaydao.getMealInfo(bf);
 			   		System.out.println("M이 포함되어 MealInfo에서 정보를 가져왔습니다.");
-			   		System.out.println(meal_bf.getMeal_name());
+			   		//System.out.println(meal_bf.getMeal_name());
 			   }else if(bf.contains("D")){
-				   diet_bf = todaydao.getDietInfo(bf);
+				    bf_comm = todaydao.getDietInfo(bf);
 				   System.out.println("D가 포함되어 DietInfo에서 정보를 가져왔습니다.");
-				   System.out.println(diet_bf.getDiet_name());
+				   //System.out.println(diet_bf.getDiet_name());
 			   }
+			   
+				System.out.println("-----bf_comm------");
+				System.out.println(bf_comm.getName());
+				System.out.println(bf_comm.getForm());
+				System.out.println(bf_comm.getCarb());
+				System.out.println(bf_comm.getFat());
+				System.out.println(bf_comm.getPro());
+				System.out.println(bf_comm.getCal());
+			   
 			   
 			   if(lunch.contains("M")) {
-				   meal_lunch = todaydao.getMealInfo(lunch);
+				   lunch_comm = todaydao.getMealInfo(lunch);
 				   System.out.println("M이 포함되어 MealInfo에서 정보를 가져왔습니다.");
-				   System.out.println(meal_lunch.getMeal_name());
+				   //System.out.println(meal_lunch.getMeal_name());
 			   }else if(lunch.contains("D")){
-				   diet_lunch = todaydao.getDietInfo(lunch);
+				   lunch_comm = todaydao.getDietInfo(lunch);
 				   System.out.println("D가 포함되어 DietInfo에서 정보를 가져왔습니다.");
-				   System.out.println(diet_lunch.getDiet_name());
+				   //System.out.println(diet_lunch.getDiet_name());
 			   }
+			   
+				System.out.println("-----lunch_comm------");
+				System.out.println(lunch_comm.getName());
+				System.out.println(lunch_comm.getForm());
+				System.out.println(lunch_comm.getCarb());
+				System.out.println(lunch_comm.getFat());
+				System.out.println(lunch_comm.getPro());
+				System.out.println(lunch_comm.getCal());
 			   
 			   if(dinner.contains("M")) {
-				   meal_dinner = todaydao.getMealInfo(dinner);
+				   dinner_comm = todaydao.getMealInfo(dinner);
 				   System.out.println("M이 포함되어 MealInfo에서 정보를 가져왔습니다.");
-				   System.out.println(meal_dinner.getMeal_name());
+				   //System.out.println(meal_dinner.getMeal_name());
 			   }else if(dinner.contains("D")){
-				   diet_dinner = todaydao.getDietInfo(dinner);
+				   dinner_comm = todaydao.getDietInfo(dinner);
 				   System.out.println("D가 포함되어 DietInfo에서 정보를 가져왔습니다.");
-				   System.out.println(diet_dinner.getDiet_name());
+				   //System.out.println(diet_dinner.getDiet_name());
 			   }
+			   
+				System.out.println("-----dinner_comm------");
+				System.out.println(dinner_comm.getName());
+				System.out.println(dinner_comm.getForm());
+				System.out.println(dinner_comm.getCarb());
+				System.out.println(dinner_comm.getFat());
+				System.out.println(dinner_comm.getPro());
+				System.out.println(dinner_comm.getCal());
 			   
 			   if(snack.contains("M")) {
-				   meal_snack = todaydao.getMealInfo(snack);
+				   snack_comm = todaydao.getMealInfo(snack);
 				   System.out.println("M이 포함되어 MealInfo에서 정보를 가져왔습니다.");
-				   System.out.println(meal_snack.getMeal_name());
+				  // System.out.println(meal_snack.getMeal_name());
 			   }else if(snack.contains("D")){
-				   diet_snack = todaydao.getDietInfo(snack);
+				   snack_comm = todaydao.getDietInfo(snack);
 				   System.out.println("D가 포함되어 DietInfo에서 정보를 가져왔습니다.");
-				   System.out.println(diet_snack.getDiet_name());
+				   //System.out.println(diet_snack.getDiet_name());
 			   }
-			   
+				System.out.println("-----snack_comm------");
+				System.out.println(snack_comm.getName());
+				System.out.println(snack_comm.getForm());
+				System.out.println(snack_comm.getCarb());
+				System.out.println(snack_comm.getFat());
+				System.out.println(snack_comm.getPro());
+				System.out.println(snack_comm.getCal());
 			   
 			   
 			   
@@ -172,15 +188,11 @@ public class TodayDietAction implements Action {
 		        request.setAttribute("totalinfo", totalinfo);
 		        
 		        
-		        request.setAttribute("bf", meal_bf==null?diet_bf:meal_bf);
-		        request.setAttribute("lunch", meal_lunch==null?diet_lunch:meal_lunch);
-		        request.setAttribute("dinner", meal_dinner==null?diet_dinner:meal_dinner);
-		        request.setAttribute("snack", meal_snack==null?diet_snack:meal_snack);
-		        
-		        
-	            
-		       
-		 				
+		        request.setAttribute("bf",bf_comm);
+		        request.setAttribute("lunch",lunch_comm );
+		        request.setAttribute("dinner",dinner_comm);
+		        request.setAttribute("snack",snack_comm);
+		           	
 				ActionForward forward =new ActionForward();
 				forward.setRedirect(false);
 				// Today 식단으로 이동하기 위해 경로를 설정합니다.

@@ -131,30 +131,24 @@ select::-ms-expand {
 			</div>
 			<hr>
             
-    <!--          <s:if test="${totalinfo.tatal_date - 1}">  -->
+         <%--    <s:if test="${totalinfo.tatal_date - 1}">  --%>
 			<div class="week d-flex justify-content-around">
-			 <a href="이동될 페이지 주소"  style="padding:0px">
-				<img  id="weekLeftbtn" src="images/pointer_left.png" alt="pointer_left"
-						  class="pointer_left" value="${totalinfo.total_date}">  
-			 </a> 
-		     <input class="sun" type="button" value="일">
-		     <div>
-<!-- 		     <s:out value="{}"/>    -->
-		     </div>
-		     </input> 
+			<button id="weekLeftbtn" type="button" style="background:white; border:0px;ourline:0px">
+			     ◀</button> 
+		<%-- 		<img  id="weekLeftbtn" src="images/pointer_left.png" alt="pointer_left"
+						  class="pointer_left" value="${totalinfo.total_date}">   --%>
+		     <input class="sun" type="button" value="일"></input> 
 			 <input class="mon" type="button" value="월"></input>
 			 <input class="tue" type="button" value="화"></input> 
 			 <input class="wed" type="button" value="수"></input> 
 			 <input class="thu" type="button" value="목"></input> 
 			 <input class="fri" type="button" value="금"></input>
 			 <input class="sat" type="button" value="토"></input> 
-			 <a href="이동될 페이지 주소" >
-			 <img  id="weekRightbtn" src="images/pointer_right.png" alt="pointer_right"
-				  class="pointer_right" >
-			 </a> 
+			 <button id="weekRightbtn" type="button" style="background:white; border:0px;ourline:0px">
+			       ▶</button>
 			</div>
 			
-			<!-- Button to Open the Modal -->
+			
 			<hr>
 			
 			<span id="record">물/체중/운동 추가</span> 
@@ -197,12 +191,6 @@ select::-ms-expand {
 			</div>
 			<hr>
 
-				
-				
-				
-				
-				
-				
 	<!-- modal detail_contents  -->
 	<div class="container">
   <!-- Button to Open the Modal -->
@@ -230,7 +218,66 @@ select::-ms-expand {
 	</article>	
 
 
-  <!-- The Modal -->
+ 
+		
+
+	<!-- 마이페이지 우측 side -->
+	<aside class="ftco-section">
+		<div class="asideRight_container">
+			<fieldset>
+				<span class='title'>목 표 / 현재 / 섭취가능</span>
+				<div>
+					<div class="one">
+						<div>칼로리</div>
+					</div>
+					<div class='title'>${personalinfo.rmr} / ${totalinfo.total_cal} / 900</div>
+				</div>
+				<div>
+					<div class="two">
+						<div>영양소</div>
+						<div>탄수화물</div>
+					</div>
+					<div class='title'>100 / ${totalinfo.total_carb} / 30</div>
+				</div>
+				<div>
+					<div class="three">
+						<div>영양소</div>
+						<div>단백질</div>
+					</div>
+					<div class='title'>100 / ${totalinfo.total_protein} / 40</div>
+				</div>
+				<div>
+					<div class="four">
+						<div>영양소</div>
+						<div>지방</div>
+					</div>
+					<div class='title'>100 / ${totalinfo.total_fat} / 50</div>
+				</div>
+				<div>
+					<div class="five">
+						<div>물</div>
+					</div>
+					<div class='title'>8잔 / ${totalinfo.total_water} / 3잔</div>
+				</div>
+				<div>
+					<div class="six">
+						<div>운동</div>
+						<div>(kcal)</div>
+					</div>
+					<div class='title'>800 / ${totalinfo.total_workout} / 600</div>
+				</div>
+			</fieldset>
+		</div>
+	</aside>
+
+	<!-- footer 영역1 -->
+	<jsp:include page="../comm/footer_Subcribe.jsp" />
+
+	<!-- footer 영역2 -->
+	<jsp:include page="../comm/footer_info.jsp" />
+	
+
+ <!-- The Modal -->
   <div class="modal" id="myModal">
     <div class="modal-dialog">
       <div class="modal-content modal-xl">
@@ -296,26 +343,26 @@ select::-ms-expand {
         <div class="modal-body">
 			<div class="snack_container">
 	    			<img src="images/dietSnack/kimstew.jpg" class="imgsnack">
-	    			<input type="checkbox" class="snack_checkbox" id="check1" />
+	    			<input type="checkbox" class="snack_checkbox" id="check1" onclick='Chk();'>
 			</div>
 			<div class="snack_container">
 	    			<img src="images/dietSnack/kimrice.jpg" class="imgsnack">
-	    			<input type="checkbox" class="snack_checkbox" id="check1" />
+	    			<input type="checkbox" class="snack_checkbox" id="check1" onclick='Chk();'>
 			</div>
 			<div class="snack_container">
 	    			<img src="images/dietSnack/pork.jpg" class="imgsnack">
-	    			<input type="checkbox" class="snack_checkbox" id="check1" />
+	    			<input type="checkbox" class="snack_checkbox" id="check1" onclick='Chk();'>
 			</div>
 			<div class="snack_container">
 	    			<img src="images/dietSnack/hotdog.jpg" class="imgsnack">
+	    			<input type="checkbox" class="snack_checkbox" id="check1" name="snackimg">
+			</div>
+			<div class="snack_container">
+	    			<img src="images/dietSnack/hamburger.jpg" class="imgsnack" name="snackimg">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
-	    			<img src="images/dietSnack/hamburger.jpg" class="imgsnack">
-	    			<input type="checkbox" class="snack_checkbox" id="check1" />
-			</div>
-			<div class="snack_container">
-	    			<img src="images/dietSnack/soystew.jpg" class="imgsnack">
+	    			<img src="images/dietSnack/soystew.jpg" class="imgsnack" name="snackimg">
 	    			<input type="checkbox" class="snack_checkbox" id="check1" />
 			</div>
 			<div class="snack_container">
@@ -499,63 +546,7 @@ select::-ms-expand {
 		});
 	});
 </script>		
-		
 
-	<!-- 마이페이지 우측 side -->
-	<aside class="ftco-section">
-		<div class="asideRight_container">
-			<fieldset>
-				<span class='title'>목 표 / 현재 / 섭취가능</span>
-				<div>
-					<div class="one">
-						<div>칼로리</div>
-					</div>
-					<div class='title'>${personalinfo.rmr} / ${totalinfo.total_cal} / 900</div>
-				</div>
-				<div>
-					<div class="two">
-						<div>영양소</div>
-						<div>탄수화물</div>
-					</div>
-					<div class='title'>100 / ${totalinfo.total_carb} / 30</div>
-				</div>
-				<div>
-					<div class="three">
-						<div>영양소</div>
-						<div>단백질</div>
-					</div>
-					<div class='title'>100 / ${totalinfo.total_protein} / 40</div>
-				</div>
-				<div>
-					<div class="four">
-						<div>영양소</div>
-						<div>지방</div>
-					</div>
-					<div class='title'>100 / ${totalinfo.total_fat} / 50</div>
-				</div>
-				<div>
-					<div class="five">
-						<div>물</div>
-					</div>
-					<div class='title'>8잔 / ${totalinfo.total_water} / 3잔</div>
-				</div>
-				<div>
-					<div class="six">
-						<div>운동</div>
-						<div>(kcal)</div>
-					</div>
-					<div class='title'>800 / ${totalinfo.total_workout} / 600</div>
-				</div>
-			</fieldset>
-		</div>
-	</aside>
-
-	<!-- footer 영역1 -->
-	<jsp:include page="../comm/footer_Subcribe.jsp" />
-
-	<!-- footer 영역2 -->
-	<jsp:include page="../comm/footer_info.jsp" />
-	
 
 <!-- submodal 이미지 미리보기 -->
 <script> 
@@ -585,30 +576,37 @@ $('input[type=file]').change(function(event){
 
 
 
-
-
-
-<%--
- loginForm.jsp 아이디값 받아서 처리 참조
+<!-- 서브모달 체크박스 이미지 모달에 띄우기 -->
 <script>
-$(function(){
-	$(".btn_submit").click(function(){
-	location.href="dietDetail.to";
+$('input:checkbox[name=snackimg]:checked').each(function(){
+	var checkVal = $(this).val();  //체크된 값의 value값 가져오기
+	console.log(checkVal);
 	
-})
+	
+/* 	reader.onload = function(event){
+		$('#myModal p ').append('<img  class="textimg" src="' 
+	              + event.target.result + '">');
+    };  */
+});
+
 </script>
 
---%>
 
 
 
 
 
-
+<%-- 요일 버튼
+<script>
+   function Chk() {
+	   var reault = 
+   }
+	
+</script>
+ --%>
 
 <!-- 서브모달 선택이미지 모달에 미리보기 0819-->
-<!-- 
-
+<%-- 
 <script>
 reader.onload = function(event) {
     $('button[type=submit]').change(function(event){
@@ -619,8 +617,7 @@ reader.onload = function(event) {
            };
 })
 </script>
-
--->
+--%>
 
 
 
