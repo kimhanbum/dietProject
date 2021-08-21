@@ -1,6 +1,7 @@
 package rc.recipe.action;
-
+ 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class RecipePageAction implements Action{
 		 page=Integer.parseInt(request.getParameter("page"));
 		}
 		
-		int listcount =  recipedao.getListCount();
+		//int listcount =  recipedao.getListCount();
 		
 		recipeList= recipedao.getRecipeList(page,limit);
 		
@@ -33,7 +34,7 @@ public class RecipePageAction implements Action{
 		
 		
 		
-	     PrintWriter out = response.
+	     PrintWriter out = response.getWriter();
 		
 		forward.setRedirect(false);
 		forward.setPath("");

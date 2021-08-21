@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,128 +16,6 @@ button {
 }
 </style>
 
-<script>
-	
-
-	
-	
-	
-	
-	
-	var data = {
-			list:[{image_id: 1, name:'bread.jpg'}, 
-				{image_id: 2, name:'bread.jpg'}, 
-				{image_id: 3, name:'bread.jpg'}, 
-				{image_id: 4, name:'bread.jpg'}, 
-				{image_id: 5, name:'bread.jpg'}, 
-				{image_id: 6, name:'bread.jpg'}, 
-				{image_id: 7, name:'bread.jpg'}, 
-				{image_id: 8, name:'bread.jpg'}
-			],
-			maxIdx : 13
-	}
-	
-	function aaa(){alert("iamge click");};
-	
-	var html = '\
-		<div class="col-md-6 col-lg-3 ftco-animate fadeInUp ftco-animated">\
-		<div class="product">\
-			<a href="javascript:aaa();" class="img-prod"><img width="328px" height="232px" src="images/bread.jpg" alt="Colorlib Template">\
-				<div class="overlay"></div> </a>\
-			<div class="text py-3 pb-4 px-3 text-center">\
-				<h3>\
-					<a href="#">BREAD</a>\
-				</h3>\
-				<div class="d-flex">\
-					<div class="pricing">\
-						<p class="price">\
-							<span class="price-sale">고소한 빵과 샐러드와의 조합</span>\
-						</p>\
-					</div>\
-				</div>\
-				<div class="bottom-area d-flex px-3">\
-					<div class="m-auto d-flex">\
-						<a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">\
-							<span><i class="ion-ios-menu"></i></span>\
-						</a> <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">\
-							<span><i class="ion-ios-cart"></i></span>\
-						</a> <a href="#" class="heart d-flex justify-content-center align-items-center ">\
-							<span><i class="ion-ios-heart"></i></span>\
-						</a>\
-					</div>\
-				</div>\
-			</div>\
-		</div>\
-	</div>\
-	';
-
-	var pagesiz = 8;
-	var onActiveIdx =7;
-	var res = function(data) {
-		if(data != undefined && data != null)
-		{
-			$('#div_image').html('');
-			//이미지 바인딩
-			$.each(data.list, function(i, n){
-				$('#div_image').append(html);
-				
-			});
-			
-			//페이
-			var ul_list = $('#ul_paging');
-			ul_list.html('');
-			ul_list.append('<li><a href="#">&lt;</a></li>');
-			var startIdx = Math.round(onActiveIdx/5) * 5 + 1;
-			for (var i = startIdx; i < startIdx + 5; ++i) {
-				if(i >= data.maxIdx) break;
-				if(i == onActiveIdx){
-					ul_list.append('<li class="active"><a href="javascript:fn_click(' + i + ');">' + i + '</a></li>');
-					
-				}
-				else{
-					
-					ul_list.append('<li><a href="javascript:fn_click(' + i + ');">' + i + '</a></li>');
-				}
-			}
-			
-			$.each(data.paginglist, function(i, n){
-				
-				
-			});
-			ul_list.append('<li><a href="#">&gt;</a></li>');
-		}
-		
-	}
-	
-	$(document).ready(function(){
-		res(data);
-		
-		$("button").click(function(){
-			location.href='shareRecipeInsert.sr';
-		})
-		
-	});
-	
- function fn_click(page){
-	 
-          $.ajax({
-              	  
-               url: 'recipePage.rc',
-               dataType:  'json',
-               data: {page: page},
-               type: 'post',
-               success: function(rdata){
-            	   
-               } 
-          
-          
-          })
- 
- 
- 
- }
- 
-</script>
 </head>
 <body class="goto-here">
 
@@ -156,24 +35,27 @@ button {
 			</div>
 		</div>
 	</div>
-
+ 
 	<section class="ftco-section">
 		<div class="container">
+			<c:if test="${listCount>0}">	
 			<div class="row" id='div_image'>
+			  <c:forEach var="list" items="${recipeList}">
+				
 				<div class="col-md-6 col-lg-3 ftco-animate">
 					<div class="product">
-						<a href="#" class="img-prod"><img width="328px" height="232px"
-							src="images/bread.jpg" alt="Colorlib Template">
+						<a href="recipeDetail.rc?recipeCode=${list.recipe_code}" class="img-prod"><img width="328px" height="232px"
+							src="images/${list.recipe_file}" alt="Colorlib Template">
 
 							<div class="overlay"></div> </a>
 						<div class="text py-3 pb-4 px-3 text-center">
 							<h3>
-								<a href="#">BREAD</a>
+								<a href="recipeDetail.rc?recipeCode=${list.recipe_code}">${list.recipe_subject}</a>
 							</h3>
 							<div class="d-flex">
 								<div class="pricing">
 									<p class="price">
-										<span class="price-sale">고소한 빵과 샐러드와의 조합</span>
+										<span class="price-sale">${list.recipe_content }</span>
 									</p>
 								</div>
 							</div>
@@ -194,255 +76,42 @@ button {
 						</div>
 					</div>
 				</div>
-				<div class="col-md-6 col-lg-3 ftco-animate">
-					<div class="product">
-						<a href="#" class="img-prod"><img width="328px" height="232px"
-							src="images/fruit.jpg" alt="Colorlib Template">
-							<div class="overlay"></div> </a>
-						<div class="text py-3 pb-4 px-3 text-center">
-							<h3>
-								<a href="#">FRUIT</a>
-							</h3>
-							<div class="d-flex">
-								<div class="pricing">
-									<p class="price">
-										<span>과일 식단</span>
-									</p>
-								</div>
-							</div>
-							<div class="bottom-area d-flex px-3">
-								<div class="m-auto d-flex">
-									<a href="#"
-										class="add-to-cart d-flex justify-content-center align-items-center text-center">
-										<span><i class="ion-ios-menu"></i></span>
-									</a> <a href="#"
-										class="buy-now d-flex justify-content-center align-items-center mx-1">
-										<span><i class="ion-ios-cart"></i></span>
-									</a> <a href="#"
-										class="heart d-flex justify-content-center align-items-center ">
-										<span><i class="ion-ios-heart"></i></span>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6 col-lg-3 ftco-animate">
-					<div class="product">
-						<a href="#" class="img-prod"><img width="328px" height="232px"
-							src="images/salad.jpg" alt="Colorlib Template">
-							<div class="overlay"></div> </a>
-						<div class="text py-3 pb-4 px-3 text-center">
-							<h3>
-								<a href="#">SALAD</a>
-							</h3>
-							<div class="d-flex">
-								<div class="pricing">
-									<p class="price">
-										<span>영양만점 샐러드</span>
-									</p>
-								</div>
-							</div>
-							<div class="bottom-area d-flex px-3">
-								<div class="m-auto d-flex">
-									<a href="#"
-										class="add-to-cart d-flex justify-content-center align-items-center text-center">
-										<span><i class="ion-ios-menu"></i></span>
-									</a> <a href="#"
-										class="buy-now d-flex justify-content-center align-items-center mx-1">
-										<span><i class="ion-ios-cart"></i></span>
-									</a> <a href="#"
-										class="heart d-flex justify-content-center align-items-center ">
-										<span><i class="ion-ios-heart"></i></span>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6 col-lg-3 ftco-animate">
-					<div class="product">
-						<a href="#" class="img-prod"><img width="328px" height="232px"
-							src="images/fish.jpg" alt="Colorlib Template">
-							<div class="overlay"></div> </a>
-						<div class="text py-3 pb-4 px-3 text-center">
-							<h3>
-								<a href="#">FISH</a>
-							</h3>
-							<div class="d-flex">
-								<div class="pricing">
-									<p class="price">
-										<span>연어와새러드의 만남</span>
-									</p>
-								</div>
-							</div>
-							<div class="bottom-area d-flex px-3">
-								<div class="m-auto d-flex">
-									<a href="#"
-										class="add-to-cart d-flex justify-content-center align-items-center text-center">
-										<span><i class="ion-ios-menu"></i></span>
-									</a> <a href="#"
-										class="buy-now d-flex justify-content-center align-items-center mx-1">
-										<span><i class="ion-ios-cart"></i></span>
-									</a> <a href="#"
-										class="heart d-flex justify-content-center align-items-center ">
-										<span><i class="ion-ios-heart"></i></span>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			
-				<div class="col-md-6 col-lg-3 ftco-animate">
-					<div class="product">
-						<a href="#" class="img-prod"><img width="328px" height="232px"
-							src="images/bread.jpg" alt="Colorlib Template">
+			</c:forEach>	
 
-							<div class="overlay"></div> </a>
-						<div class="text py-3 pb-4 px-3 text-center">
-							<h3>
-								<a href="#">BREAD</a>
-							</h3>
-							<div class="d-flex">
-								<div class="pricing">
-									<p class="price">
-										<span class="price-sale">고소한 빵과 샐러드와의 조합</span>
-									</p>
-								</div>
-							</div>
-							<div class="bottom-area d-flex px-3">
-								<div class="m-auto d-flex">
-									<a href="#"
-										class="add-to-cart d-flex justify-content-center align-items-center text-center">
-										<span><i class="ion-ios-menu"></i></span>
-									</a> <a href="#"
-										class="buy-now d-flex justify-content-center align-items-center mx-1">
-										<span><i class="ion-ios-cart"></i></span>
-									</a> <a href="#"
-										class="heart d-flex justify-content-center align-items-center ">
-										<span><i class="ion-ios-heart"></i></span>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6 col-lg-3 ftco-animate">
-					<div class="product">
-						<a href="#" class="img-prod"><img width="328px" height="232px"
-							src="images/fruit.jpg" alt="Colorlib Template">
-							<div class="overlay"></div> </a>
-						<div class="text py-3 pb-4 px-3 text-center">
-							<h3>
-								<a href="#">FRUIT</a>
-							</h3>
-							<div class="d-flex">
-								<div class="pricing">
-									<p class="price">
-										<span>과일 식단</span>
-									</p>
-								</div>
-							</div>
-							<div class="bottom-area d-flex px-3">
-								<div class="m-auto d-flex">
-									<a href="#"
-										class="add-to-cart d-flex justify-content-center align-items-center text-center">
-										<span><i class="ion-ios-menu"></i></span>
-									</a> <a href="#"
-										class="buy-now d-flex justify-content-center align-items-center mx-1">
-										<span><i class="ion-ios-cart"></i></span>
-									</a> <a href="#"
-										class="heart d-flex justify-content-center align-items-center ">
-										<span><i class="ion-ios-heart"></i></span>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6 col-lg-3 ftco-animate">
-					<div class="product">
-						<a href="#" class="img-prod"><img width="328px" height="232px"
-							src="images/salad.jpg" alt="Colorlib Template">
-							<div class="overlay"></div> </a>
-						<div class="text py-3 pb-4 px-3 text-center">
-							<h3>
-								<a href="#">SALAD</a>
-							</h3>
-							<div class="d-flex">
-								<div class="pricing">
-									<p class="price">
-										<span>영양만점 샐러드</span>
-									</p>
-								</div>
-							</div>
-							<div class="bottom-area d-flex px-3">
-								<div class="m-auto d-flex">
-									<a href="#"
-										class="add-to-cart d-flex justify-content-center align-items-center text-center">
-										<span><i class="ion-ios-menu"></i></span>
-									</a> <a href="#"
-										class="buy-now d-flex justify-content-center align-items-center mx-1">
-										<span><i class="ion-ios-cart"></i></span>
-									</a> <a href="#"
-										class="heart d-flex justify-content-center align-items-center ">
-										<span><i class="ion-ios-heart"></i></span>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6 col-lg-3 ftco-animate">
-					<div class="product">
-						<a href="#" class="img-prod"><img width="328px" height="232px"
-							src="images/fish.jpg" alt="Colorlib Template">
-							<div class="overlay"></div> </a>
-						<div class="text py-3 pb-4 px-3 text-center">
-							<h3>
-								<a href="#">FISH</a>
-							</h3>
-							<div class="d-flex">
-								<div class="pricing">
-									<p class="price">
-										<span>연어와새러드의 만남</span>
-									</p>
-								</div>
-							</div>
-							<div class="bottom-area d-flex px-3">
-								<div class="m-auto d-flex">
-									<a href="#"
-										class="add-to-cart d-flex justify-content-center align-items-center text-center">
-										<span><i class="ion-ios-menu"></i></span>
-									</a> <a href="#"
-										class="buy-now d-flex justify-content-center align-items-center mx-1">
-										<span><i class="ion-ios-cart"></i></span>
-									</a> <a href="#"
-										class="heart d-flex justify-content-center align-items-center ">
-										<span><i class="ion-ios-heart"></i></span>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+		<c:if test="${listCount==0}">
+		    <font size=5>등록된 레시피가 없습니다.</font>
+		 </c:if>		
+				
 			</div>
 			<div class="row mt-5">
 				<div class="col text-center">
 					<div class="block-27">
 						<ul id='ul_paging'>
-							<!-- <li><a href="#">&lt;</a></li>
-                <li class="active"><span>1</span></li>
-                <li><a href="javascript:fn_click(2);">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">&gt;</a></li> -->
+						<c:if test="${page<1}">
+						    <li><a class="active">&lt;</a></li>	
+						</c:if>
+						<c:if test="${page>1}">
+						   <li><a href="javascript:go(${page-1})">&lt;</a></li>
+						</c:if>
+						
+						<c:forEach var="p" begin="${startPage}" end="${endPage}">
+						   <c:if test="${p==page}">
+						      <li><a class="active">${p}</a></li>
+						   </c:if>
+						   <c:if test="${p!=page}">
+						    <li><a href="javascript:go(${p})">${p}</a></li>
+						    </c:if>
+						</c:forEach>
+						
+						<c:if test="${page>=maxPage}">
+						   <li><a class="active">&gl;</a></li>
+						 </c:if>
+
 						</ul>
 					</div>
 				</div>
 			</div>
+		</c:if>	
 			<button type="button" class="btn btn-primary"
 				style="font-size: 1.2rem; border-radius: 10px">레시피 작성</button>
 		</div>
