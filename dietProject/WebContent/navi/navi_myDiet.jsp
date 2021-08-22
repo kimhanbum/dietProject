@@ -62,9 +62,9 @@
 				class="row no-gutters slider-text align-items-center justify-content-center">
 				<div class="col-md-9 ftco-animate text-center">
 					<p class="breadcrumbs">
-						<span class="mr-2"><a href="mypage.my">My</a></span> <span>식단</span>
+						<span class="mr-2"><a href="mypage.my">Home</a></span> <span>Diet</span>
 					</p>
-					<h1 class="mb-0 bread">My 식단</h1>
+					<h1 class="mb-0 bread">My Diet</h1>
 				</div>
 			</div>
 		</div>

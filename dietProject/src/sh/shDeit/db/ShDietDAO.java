@@ -39,13 +39,14 @@ public class ShDietDAO {
 			if(search == null) {
 				//1.검색어와 체크박스 값이 둘다 없는 경우
 				if(nVal == null) {
-					select_sql = "select count(*) from diet_info";
+					select_sql = "select count(*) from diet_info where DIET_SHARE = 1";
 					System.out.println("1. " + select_sql);
 				}
 				//2.검색어는 없지만 체크박스 값이 있는 경우 
 				else {
 					select_sql = "select count(*) from diet_info "
-					           + " where " +nVal+" = GREATEST(diet_total_fat,diet_total_protein,diet_total_carb)";
+					           + " where " +nVal+" = GREATEST(diet_total_fat,diet_total_protein,diet_total_carb)"
+					           + " and DIET_SHARE = 1";
 					System.out.println("2. " + select_sql);
 				}
 				pstmt = conn.prepareStatement(select_sql);
@@ -53,14 +54,15 @@ public class ShDietDAO {
 			else {
 				//3.검색어는 있지만 체크박스 값이 없는 경우
 				if(nVal == null) {
-					select_sql = "select count(*) from diet_info where diet_name like ? ";
+					select_sql = "select count(*) from diet_info where diet_name like ? and DIET_SHARE = 1";
 					System.out.println("3. " + select_sql);
 				}
 				//4.검색어도 있고 체크박스 값도 있는 경우 
 				else {
 					select_sql = "select count(*) from diet_info "
 							   + " where diet_name like ? and "
-					           + nVal +" = GREATEST(diet_total_fat,diet_total_protein,diet_total_carb)";
+					           + nVal +" = GREATEST(diet_total_fat,diet_total_protein,diet_total_carb)"
+					           + " and DIET_SHARE = 1";
 					System.out.println("4. " + select_sql);
 				}
 				pstmt = conn.prepareStatement(select_sql);
@@ -119,6 +121,7 @@ public class ShDietDAO {
 			           				+"      DIET_TOTAL_FAT,DIET_TOTAL_PROTEIN,"
 			           				+"      DIET_TOTAL_CAL  FROM "
 			           				+"                      (SELECT * FROM DIET_INFO "
+			           				+"                       WHERE DIET_SHARE = 1 "
 			           				+"						 ORDER BY DIET_RECOMM DESC) "
 			           				+"     ) "
 			           				+" WHERE RNUM>=? AND RNUM<=?";
@@ -134,6 +137,7 @@ public class ShDietDAO {
 			           				+"      DIET_TOTAL_CAL  FROM "
 			           				+"                      (SELECT * FROM DIET_INFO "
 			           				+"						 WHERE "+ nVal+" = GREATEST(diet_total_fat,diet_total_protein,diet_total_carb)"   
+			           				+"                       AND DIET_SHARE = 1 "
 			           				+"                       ORDER BY DIET_RECOMM DESC) "
 			           				+"     ) "
 			           				+" WHERE RNUM>=? AND RNUM<=?";
@@ -155,6 +159,7 @@ public class ShDietDAO {
 			           				+"      DIET_TOTAL_CAL  FROM "
 			           				+"                      (SELECT * FROM DIET_INFO "
 			           				+"                       WHERE 	DIET_NAME LIKE ? "
+			           				+"                       AND DIET_SHARE = 1 "
 			           				+"						 ORDER BY DIET_RECOMM DESC) "
 			           				+"     ) "
 			           				+" WHERE RNUM>=? AND RNUM<=?";
@@ -171,6 +176,7 @@ public class ShDietDAO {
 			           				+"                      (SELECT * FROM DIET_INFO "
 			           				+"                       WHERE 	DIET_NAME LIKE ? "
 			           				+"						 AND "+ nVal+" = GREATEST(diet_total_fat,diet_total_protein,diet_total_carb)"   
+			           				+"                       AND DIET_SHARE = 1 "
 			           				+"						 ORDER BY DIET_RECOMM DESC) "
 			           				+"     ) "
 			           				+" WHERE RNUM>=? AND RNUM<=?";
