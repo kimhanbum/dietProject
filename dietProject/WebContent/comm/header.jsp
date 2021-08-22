@@ -48,12 +48,10 @@
        <li class="nav-item active"><a href="main.net" class="nav-link">홈</a></li>
        <li class="nav-item dropdown">
           <a class="nav-link " href="configDiet.cf"  class="nav-link" >식단 구성</a>
- 
         </li>
        <li class="nav-item"><a href="shareDietMain.sd" class="nav-link">식단 공유</a></li>
        <li class="nav-item"><a href="shareRecipe.sr" class="nav-link">레시피 공유</a></li>
-       <li class="nav-item"><a href="myDiet.to" class="nav-link">My 식단</a></li>
-        <li class="nav-item"><a href="noticeMain.nt" class="nav-link">공지 사항&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+       <li class="nav-item"><a href="myDiet.to" class="nav-link">My 식단&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
        <li class="nav-item cta cta-colored"><a href="replyFrom.rp" class="nav-link"><span class="icon-markunread"></span>[0]</a></li>
              
      </ul>

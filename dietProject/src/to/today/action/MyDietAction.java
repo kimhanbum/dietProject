@@ -25,6 +25,22 @@ public class MyDietAction implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ActionForward forward =new ActionForward();
+		HttpSession session = request.getSession();
+		String id= (String)session.getAttribute("id");
+		
+		if(id==null) {
+			
+		   response.setContentType("text/html;charset=utf-8");
+		   PrintWriter out= response.getWriter();
+		   out.println("<script>");
+		   out.println("alert('로그인을 해주세요')");
+		   out.println("location.href='login.net'");
+		   out.println("</script>");
+		   out.close();
+		   return null;
+		}
+		request.setAttribute("id", id);
+		
 		forward.setRedirect(false);
 		forward.setPath("navi/navi_myDiet.jsp");
 		return forward;
