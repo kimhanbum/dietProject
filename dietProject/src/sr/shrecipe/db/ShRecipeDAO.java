@@ -36,16 +36,17 @@ public class ShRecipeDAO {
 		PreparedStatement pstmt= null;
 		ResultSet rs= null;
 		int x= 0;
-		String sql=" select count(*) from recipe_info ";
+		
 			try	{
 				con=ds.getConnection();
-				pstmt=con.prepareStatement(sql);
+				pstmt=con.prepareStatement("select count(recipe_code) from recipe_info ");
 				rs=pstmt.executeQuery();
-				
+			    
 				if(rs.next()) {
 				    x=rs.getInt(1);
 				
 			}
+				System.out.println("결과:" +x );
 		}catch(Exception ex) {
 			System.out.println("getRecipeListCount()에러:" + ex);
 		}finally {
@@ -84,7 +85,7 @@ public class ShRecipeDAO {
 		int start= (page-1)*limit+1;
 		int end = start + limit -1;
 		
-		String sql= " select recipe_code, recipe_subject, recipe_content, recipe_filefrom "
+		String sql= " select recipe_code, recipe_subject, recipe_content, recipe_file from "
 				  + " (select rownum rnum, recipe_code, recipe_subject, recipe_content, recipe_file  from "
 				  + "  (select * from recipe_info "
 				  + "  order by recipe_code desc, recipe_date desc)"
@@ -108,7 +109,7 @@ public class ShRecipeDAO {
 			  list.add(recipeinfo);			
 			}
 		}catch(Exception ex) {
-			System.out.println("getRecipeListCount()에러:" + ex);
+			System.out.println("getRecipeList()에러:" + ex);
 		}finally {
 			if(rs!=null) {
 				try {
