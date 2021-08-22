@@ -31,8 +31,13 @@
 		    	  return false;
 		      }
 		      
-		     
+		      if(!pandan2){
+		    	  return false;
+		      }
 		      
+		      if(!pandan3){
+		    	  return false;
+		      }
 		      
 		    });
 
@@ -148,34 +153,49 @@
 		    
 		    
 		    })
-		    $('#tel_1').focusout(function(){
-			    pattern=/^[0][0-7]{2,3}$/ 
-			    pandan = pattern.test( $('#tel_1').val());
-		       if(!pandan){
-		    	   alert("전화번호를 앞자리를 형식에 맞게 입력해주세요");
-		       }	
+		   
 		    
-			  });
 		    
-		    $('#tel_2').focusout(function(){
-			    pattern=/^[0-9]{4}$/ 
-			    pandan = pattern.test( $('#tel_2').val());
-		       if(!pandan){
-		    	   alert("전화번호 중간자리를 형식에 맞게 입력해주세요");
-		       }	
-		    
-			  });
-		    $('#tel_3').focusout(function(){
-			    pattern=/^[0-9]{4}$/ 
-			    pandan = pattern.test( $('#tel_3').val());
-		       if(!pandan){
-		    	   alert("전화번호 중간자리를 형식에 맞게 입력해주세요");
-		       }	
-		    
-			  });
+	
 		    
 		
-		   
+		    $('#tel_1').focusout(function(){
+		    	pattern=/^[0][0-7]{2,3}$/
+		    	pandan= pattern.test( $('#tel_1').val());
+		    	if(!pandan){
+		    		$("#span4").css("visibility","visible"); 
+		    		$("#span4").html("전화번호 앞자리 첫번째는 0부터 시작하고 2~3자리 입니다");
+		    		 $('#tel_1').focus();
+		        }else{
+		        	$("#span4").css("visibility","hidden");
+		        }
+		    })	
+		    	
+		  
+		    $('#tel_2').focusout(function(){
+		    	 pattern=/^[0-9]{4}$/ 
+		    	pandan= pattern.test( $('#tel_2').val());
+		    	if(!pandan){
+		    		$("#span4").css("visibility","visible"); 
+		    		$("#span4").html("전화번호  두번째숫자4자리 입력해주세요");
+		    		 $('#tel_2').focus();
+		        }else{
+		        	$("#span4").css("visibility","hidden");
+		        }
+		    })	
+		     $('#tel_3').focusout(function(){
+		    	 pattern=/^[0-9]{4}$/ 
+		    	pandan= pattern.test( $('#tel_3').val());
+		    	if(!pandan){
+		    		$("#span4").css("visibility","visible"); 
+		    		$("#span4").html("전화번호 뒤자리 숫자4자리 입력해주세요");
+		    		 $('#tel_3').focus();
+		        }else{
+		        	$("#span4").css("visibility","hidden");
+		        }
+		    })	
+		    	
+
 		    $('#pass').focusout(function(){
 		     	
 				
@@ -349,6 +369,7 @@
 						for="tel_3"><b> - </b></label> <input type="text"
 						placeholder="뒤번호 4자리" name="tel_3" id="tel_3" maxLength="4"
 						style="width: 32%" required>
+						<span id='span4' style="color: red"></span><br>
 				</div>
 				<br> <label><b>우편번호</b></label><br> <input type="text"
 					size="5" maxLength="5" name="post1" id="post1" required> <input

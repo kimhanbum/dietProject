@@ -78,7 +78,7 @@ img {
 				<fieldset style="border:1px solid #80808040">
 				   <legend style="text-align:center;width:35%">만드는 방법</legend>
 				<textarea name="recipe_content" rows="5" class="form-control" 
-				     id="recipe_content" placeholder="방법을 작성해주세" style="border:none;text-align:center"></textarea>
+				     id="recipe_content" placeholder="방법을 작성해주세요" style="border:none;text-align:center"></textarea>
 				  </fieldset> 	
 			</div>
 
