@@ -47,20 +47,11 @@ public class TodayFrontController extends javax.servlet.http.HttpServlet{
 			case "/bottomProcess.to":
 				action = new TodayDietBottomProcessAction();
 				break;
-			case "/topProcess.to":
-				action = new TodyaDietTopProcessAction();
-				break;
 			case "/dietDetailMeal.to":
 				action = new TodayDietDetailMealAction();
 				break;
 			case "/dietDetailDiet.to":
 				action = new TodayDietDetailDietAction();
-				break;
-			case "/dietmeal.to":
-				action = new TodayDietMealAction();
-				break;
-			case "/dietSelect.to":
-				action = new TodayDietSelectAction();
 				break;
 			case "/myDiet.to":
 				action = new MyDietAction();
