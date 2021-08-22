@@ -72,40 +72,7 @@ body>fieldset:last-child {
 	width: 100px;
 }
 
-.sun, .mon, .tue, .wed, .thu, .fri, .sat {
-	border-radius: 50%;
-	background-color: #f8ffb3;
-}
 
-.sun:hover {
-	color: #ffc107
-}
-
-.mon:hover {
-	color: #ffc107
-}
-
-.tue:hover {
-	color: #ffc107
-}
-
-.wed:hover {
-	color: #ffc107
-}
-
-.thu:hover {
-	color: #ffc107
-}
-
-.fri:hover {
-	color: #ffc107
-}
-
-.sat:hover {
-	color: #ffc107
-}
-
-/* modal */
 /* 모달 파일 label을 div로 감싸서 원하는 모양
           만들고 input(upfile)태그 숨기기*/
          
@@ -125,13 +92,6 @@ label{
    height:200px;
    width:200px;
 }
-
-
-
-
-
-
-
 
 /*modal 스크롤*/
  

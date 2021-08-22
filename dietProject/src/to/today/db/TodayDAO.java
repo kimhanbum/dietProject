@@ -11,8 +11,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import _comm.javabean.Commondiet;
-import _comm.javabean.DietInfo;
-import _comm.javabean.MealInfo;
 import _comm.javabean.TotalInfo;
 
 
@@ -112,7 +110,7 @@ public class TodayDAO {
 			    comdiet.setFat(rs.getInt("DIET_TOTAL_FAT"));
 			    comdiet.setPro(rs.getInt("DIET_TOTAL_PROTEIN"));
 			    comdiet.setCal(rs.getInt("DIET_TOTAL_CAL"));
-			    
+			    comdiet.setImgname(rs.getString("DIET_IMG_NAME"));
 			}
 		} catch (Exception ex) {
 			System.out.println("getDietlInfo() 에러: " + ex);
