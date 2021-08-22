@@ -57,7 +57,7 @@ img {
 	</div>
 
 	<div class="container" style="width: 65%;margin-top:40px">
-		<form action="RecipeAddAction.bo" method="post"
+		<form action="shareRecipeInsertProcess.sr" method="post"
 			enctype="multipart/form-data" name="RecipeAddform">
 			<div class="form-group">
 				 <fieldset style="border:1px solid #80808040">
@@ -93,19 +93,14 @@ img {
 					src="images/attach.png" alt="파일 첨부">
 				 
 				<span id="showImage">
-				  <c:if test='${empty recipeinfo.recipefile}'>
-				    <c:set var="src" value=''/>
-				  </c:if>
-				  <c:if test='${!empty recipeinfo.recipefile}'>
-				    <c:set var='src' value='${"images/" }${recipeinfo.recipefile }'/>
-				   </c:if>
-				   <img src="${src}" width="50px" ">   
-				    
+				  				    
 				</span>
 				
-				<input type="file" id="recipe_file" multiple="multiple" name="recipeFile" accept="image/*" 
+				<input type="file" id="recipe_file" multiple="multiple" name="recipe_file" accept="image/*" 
 				          style="display:none"> 
-				
+				          
+				 <input type="hidden" id="id" name="id" value="${sessionScope.id}">          
+				 <input type="hidden" id="recipefile" name="recipefile" value="">   
 				</label>	
 				</div> 	
 				</fieldset>	
@@ -126,7 +121,7 @@ $('input[type=file]').change(function(event){
     var filename = inputfile[inputfile.length-1];
     var pattern =/(git|jpg|jpeg|png)$/i;
     if(pattern.test(filename)){
-  	  $('#filename').text(filename);
+  	 
   	 //파일을 읽기 위한 객체 생성
   	  //DataURL 형식으로 파일을 읽어옵니다.
   	  //읽어온 결과는 reader객체의 result 속성에 저장됩니다.
@@ -140,6 +135,7 @@ $('input[type=file]').change(function(event){
   		  $('#showImage').append('<img width="400px" height="100px" src="' + event.target.result + '">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
   		  
   	  };
+  	  
   	 };  
     }else{
   	  alert('확장자는 gif,jpg,jpeg,png가 가능합니다');
@@ -147,6 +143,35 @@ $('input[type=file]').change(function(event){
     }
 
 
+})
+
+
+$(function(){
+	
+
+$("form").submit(function(){
+    if($("#id").val()==""){
+    	alert("로그인을 해주세요");
+        location.href="login.net";
+        return false;
+    } 
+    
+    var fileInput= document.getElementById("recipe_file");  
+    var files= fileInput.files;
+    var recipeImgName='';
+    
+    for(var i=0; i< files.length; i++){
+    	
+    	if((i+1)==files.length){
+    		recipeImgName+=files[i].name;
+    	}else{
+            recipeImgName += files[i].name + ',' ;
+    	}
+    }
+    
+    $("#recipefile").val(recipeImgName);
+    console.log(recipeImgName);
+  }) 
 })
 </script>
 
