@@ -65,7 +65,11 @@ select::-ms-expand {
 	background-color: white;
 	border: none;
 }
-
+.snack_container{
+	width: 160px !important;
+	padding-right: 0px !important;
+}
+/* 
 .snack_container {
 	position: relative;
 	width: 100px;
@@ -73,16 +77,19 @@ select::-ms-expand {
 	float: left;
 	margin: 20px;
 }
-
+*/
 .snack_checkbox {
-	position: absolute !important;
-	bottom: 84px !important;
-	right: 84px !important;
-}
+	position: absolute;
+    left: 18px;
+    top: 29px;
+} 
 
 #recordimg {
 	width: 200px;
 	height: 200px;
+}
+.snack_container > div{
+	text-align: center;
 }
 </style>
 
@@ -324,23 +331,34 @@ select::-ms-expand {
 					</select>
 
 					<!-- submodal 이동버튼 -->
-					<button type="button" class="btn btn-primary" data-toggle="modal"
+					<button type="button" id="mealCheck" class="btn btn-primary" data-toggle="modal"
 						data-target="#submodal">meal</button>
+					<br>
+						<!-- submodal 이동버튼 -->
+					<button type="button" id="dietCheck" class="btn btn-primary" data-toggle="modal"
+						data-target="#submodal2">Diet</button>
 
 					<!-- modal 창 닫기 버튼 -->
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 
 				<!-- Modal body -->
-				<div class="modal-body">
-					<textarea id="mo_body2" rows="5" cols="60"
+				<div id="selectedMealDiet" class="modal-body">
+<%-- 					<img src="images/dietSnack/pork.jpg" id="recordimg">
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<span> 돈까스</span>
+					 <s:out value="돈까스" /> 
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<span> 500kcal</span>
+					 <s:out value="500" />kcal&nbsp;&nbsp;  --%>
+					<!-- <textarea id="mo_body2" rows="5" cols="60"
 						style="border-top-style: none; resize: none"></textarea>
-					<p id="showimgfile"></p>
+					<p id="showimgfile"></p> -->
 				</div>
 
 				<!-- Modal footer -->
 				<div class="modal-footer">
-					<button class="btn_submit" id="btn_submit" type="submit">
+					<button id="insertTotalInfo" class="btn_submit" id="btn_submit" type="submit">
 						<img src="images/btn_check.jpg" alt="btn_check">
 					</button>
 				</div>
@@ -358,186 +376,16 @@ select::-ms-expand {
 				<!-- SubModal Header -->
 				<div class="modal-header">
 					<h4 class="modal-title">Meal</h4>
-					<button type="button" class="close" data-dismiss="modal">×</button>
+					<button type="button" class="close" data-dismiss="modal">x</button>
 				</div>
 
 				<!-- SubModal body -->
-				<div class="modal-body">
-					<div class="snack_container">
-						<img src="images/dietSnack/kimstew.jpg" class="imgsnack"> <input
-							type="checkbox" class="snack_checkbox" id="check1"
-							onclick='Chk();'>
-					</div>
-					<div class="snack_container">
-						<img src="images/dietSnack/kimrice.jpg" class="imgsnack"> <input
-							type="checkbox" class="snack_checkbox" id="check1"
-							onclick='Chk();'>
-					</div>
-					<div class="snack_container">
-						<img src="images/dietSnack/pork.jpg" class="imgsnack"> <input
-							type="checkbox" class="snack_checkbox" id="check1"
-							onclick='Chk();'>
-					</div>
-					<div class="snack_container">
-						<img src="images/dietSnack/hotdog.jpg" class="imgsnack"> <input
-							type="checkbox" class="snack_checkbox" id="check1"
-							name="snackimg">
-					</div>
-					<div class="snack_container">
-						<img src="images/dietSnack/hamburger.jpg" class="imgsnack"
-							name="snackimg"> <input type="checkbox"
-							class="snack_checkbox" id="check1" />
-					</div>
-					<div class="snack_container">
-						<img src="images/dietSnack/soystew.jpg" class="imgsnack"
-							name="snackimg"> <input type="checkbox"
-							class="snack_checkbox" id="check1" />
-					</div>
-					<div class="snack_container">
-						<img src="images/dietSnack/jaeyuk.jpg" class="imgsnack"> <input
-							type="checkbox" class="snack_checkbox" id="check1" />
-					</div>
-					<div class="snack_container">
-						<img src="images/dietSnack/mul.jpg" class="imgsnack"> <input
-							type="checkbox" class="snack_checkbox" id="check1" />
-					</div>
-					<div class="snack_container">
-						<img src="images/dietSnack/bibim.jpg" class="imgsnack"> <input
-							type="checkbox" class="snack_checkbox" id="check1" />
-					</div>
-					<div class="snack_container">
-						<img src="images/dietSnack/pizza.png" class="imgsnack"> <input
-							type="checkbox" class="snack_checkbox" id="check1" />
-					</div>
-					<div class="snack_container">
-						<img src="images/dietSnack/soynoodle.jpg" class="imgsnack">
-						<input type="checkbox" class="snack_checkbox" id="check1" />
-					</div>
-					<div class="snack_container">
-						<img src="images/dietSnack/sundu.jpg" class="imgsnack"> <input
-							type="checkbox" class="snack_checkbox" id="check1" />
-					</div>
-					<div class="snack_container">
-						<img src="images/dietSnack/haemulrice.jpg" class="imgsnack">
-						<input type="checkbox" class="snack_checkbox" id="check1" />
-					</div>
-					<div class="snack_container">
-						<img src="images/dietSnack/man.jpg" class="imgsnack"> <input
-							type="checkbox" class="snack_checkbox" id="check1" />
-					</div>
-					<div class="snack_container">
-						<img src="images/dietSnack/pasta.jpg" class="imgsnack"> <input
-							type="checkbox" class="snack_checkbox" id="check1" />
-					</div>
-					<div class="snack_container">
-						<img src="images/dietSnack/tang.jpg" class="imgsnack"> <input
-							type="checkbox" class="snack_checkbox" id="check1" />
-					</div>
-					<div class="snack_container">
-						<img src="images/dietSnack/jajang.jpg" class="imgsnack"> <input
-							type="checkbox" class="snack_checkbox" id="check1" />
-					</div>
-					<div class="snack_container">
-						<img src="images/dietSnack/jjam.jpg" class="imgsnack"> <input
-							type="checkbox" class="snack_checkbox" id="check1" />
-					</div>
-					<div class="snack_container">
-						<img src="images/dietSnack/porkrib.jpg" class="imgsnack"> <input
-							type="checkbox" class="snack_checkbox" id="check1" />
-					</div>
-					<div class="snack_container">
-						<img src="images/dietSnack/sobul.jpg" class="imgsnack"> <input
-							type="checkbox" class="snack_checkbox" id="check1" />
-					</div>
-					<div class="snack_container">
-						<img src="images/dietSnack/chickenrib.jpg" class="imgsnack">
-						<input type="checkbox" class="snack_checkbox" id="check1" />
-					</div>
-					<div class="snack_container">
-						<img src="images/dietSnack/haemulcal.jpg" class="imgsnack">
-						<input type="checkbox" class="snack_checkbox" id="check1" />
-					</div>
-					<div class="snack_container">
-						<img src="images/dietSnack/tteok.jpg" class="imgsnack"> <input
-							type="checkbox" class="snack_checkbox" id="check1" />
-					</div>
-					<div class="snack_container">
-						<img src="images/dietSnack/sundae.jpg" class="imgsnack"> <input
-							type="checkbox" class="snack_checkbox" id="check1" />
-					</div>
-					<div class="snack_container">
-						<img src="images/dietSnack/fried.jpg" class="imgsnack"> <input
-							type="checkbox" class="snack_checkbox" id="check1" />
-					</div>
-					<div class="snack_container">
-						<img src="images/dietSnack/cake.jpg" class="imgsnack"> <input
-							type="checkbox" class="snack_checkbox" id="check1" />
-					</div>
-					<div class="snack_container">
-						<img src="images/dietSnack/tira.jpg" class="imgsnack"> <input
-							type="checkbox" class="snack_checkbox" id="check1" />
-					</div>
-					<div class="snack_container">
-						<img src="images/dietSnack/muffin.jpg" class="imgsnack"> <input
-							type="checkbox" class="snack_checkbox" id="check1" />
-					</div>
-					<div class="snack_container">
-						<img src="images/dietSnack/brownie.jpg" class="imgsnack"> <input
-							type="checkbox" class="snack_checkbox" id="check1" />
-					</div>
-					<div class="snack_container">
-						<img src="images/dietSnack/cheesecake.jpg" class="imgsnack">
-						<input type="checkbox" class="snack_checkbox" id="check1" />
-					</div>
-					<div class="snack_container">
-						<img src="images/dietSnack/cookie.jpg" class="imgsnack"> <input
-							type="checkbox" class="snack_checkbox" id="check1" />
-					</div>
-					<div class="snack_container">
-						<img src="images/dietSnack/waffle.jpg" class="imgsnack"> <input
-							type="checkbox" class="snack_checkbox" id="check1" />
-					</div>
-					<div class="snack_container">
-						<img src="images/dietSnack/darkchoco.jpg" class="imgsnack">
-						<input type="checkbox" class="snack_checkbox" id="check1" />
-					</div>
-					<div class="snack_container">
-						<img src="images/dietSnack/garlic.jpg" class="imgsnack"> <input
-							type="checkbox" class="snack_checkbox" id="check1" />
-					</div>
-					<div class="snack_container">
-						<img src="images/dietSnack/pudding.jpg" class="imgsnack"> <input
-							type="checkbox" class="snack_checkbox" id="check1" />
-					</div>
-					<div class="snack_container">
-						<img src="images/dietSnack/icecream.jpg" class="imgsnack"> <input
-							type="checkbox" class="snack_checkbox" id="check1" />
-					</div>
-					<div class="snack_container">
-						<img src="images/dietSnack/chip.jpg" class="imgsnack"> <input
-							type="checkbox" class="snack_checkbox" id="check1" />
-					</div>
-					<div class="snack_container">
-						<img src="images/dietSnack/applepie.jpg" class="imgsnack"> <input
-							type="checkbox" class="snack_checkbox" id="check1" />
-					</div>
-					<div class="snack_container">
-						<img src="images/dietSnack/milk.jpg" class="imgsnack"> <input
-							type="checkbox" class="snack_checkbox" id="check1" />
-					</div>
-					<div class="snack_container">
-						<img src="images/dietSnack/sandwich.jpg" class="imgsnack"> <input
-							type="checkbox" class="snack_checkbox" id="check1" />
-					</div>
-					<div class="snack_container">
-						<img src="images/dietSnack/yogurt.jpg" class="imgsnack"> <input
-							type="checkbox" class="snack_checkbox" id="check1" />
-					</div>
+				<div id="mealbody" class="modal-body">
 				</div>
 
 				<!-- SubModal footer -->
 				<div class="modal-footer">
-					<button class="btn_submit" type="submit">
+					<button id="selectMeal" class="btn_submit" type="submit">
 						<img src="images/btn_check.jpg" alt="btn_check">
 					</button>
 				</div>
@@ -546,109 +394,35 @@ select::-ms-expand {
 		</div>
 	</div>
 
-	<!--  모달 저장 -->
-	<script>
- $(#btn_submit).on('click', function(){
-	$.ajax({
-		url:'${pageContext.request.contextPath}/',
-		type: 'post',
-		succes: function(result){
-			$(#btn_submit).modal('show');
-			console.log(result);
-		}
-	});
- });
-</script>
 
+		<!--submodal-->
+	<!-- The Modal -->
+	<div class="modal" id="submodal2">
+		<div class="modal-dialog">
+			<div class="modal-content">
 
-	<!-- 서브모달 -->
-	<script>
-	$(document).ready(function() {
-		$('#submodal').on('beforeShow', function() {
-			console.log('Submodal beforeShow event');
-		}).on('show', function() {
-			console.log('Submodal show event');
-		}).on('beforeHide', function() {
-			console.log('Submodal beforeHide event');
-		}).on('hide', function() {
-			console.log('Submodal hide event');
-		});
-	});
-</script>
+				<!-- SubModal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title">Diet</h4>
+					<button type="button" class="close" data-dismiss="modal">×</button>
+				</div>
 
+				<!-- SubModal body -->
+				<div id="dietbody" class="modal-body">
+				</div>
 
-	<!-- submodal 이미지 미리보기 -->
-	<script> 
-$('input[type=file]').change(function(event){
-   console.log('change');
-	  var inputfile = $(this).val().split('\\');
-	  var filename=inputfile[inputfile.length - 1];
-	  var pattern = /(gif|jpg|jpeg|png)$/i;//플래그 i는 대소문자 구분 없는 검색
-	  if (pattern.test(filename)) {
-			$('#filename').text(filename);//inputfile.length - 1=2
-	      
-			var reader = new FileReader(); //파일을 읽기 위한 객체 생성		       
-	     //DataURL 형식으로 파일을 읽어옵니다. 
-	     //읽어온 결과는 reader객체의 result 속성에 저장됩니다.
-	     //event.target.files[0] : 선택한 그림의 파일객체에서 첫번째  객체를 가져옵니다.
-		   reader.readAsDataURL(event.target.files[0]);
-	         
-	       reader.onload = function(event) {//읽기에 성공했을 때 실행되는 이벤트 핸들러	
-		     $('#myModal p ').append('<img  class="textimg" src="' 
-		    		              + event.target.result + '">');
-	       }; 
-		}else{
-			alert('확장자는 gif, jpg, jpeg, png가 가능합니다.');
-		}
-}) <!--  $('input[type=file]').change() end   -->
-</script>
+				<!-- SubModal footer -->
+				<div class="modal-footer">
+					<button id="selectDiet"class="btn_submit" type="submit">
+						<img src="images/btn_check.jpg" alt="btn_check">
+					</button>
+				</div>
 
-
-
-	<!-- 서브모달 체크박스 이미지 모달에 띄우기 -->
-	<script>
-$('input:checkbox[name=snackimg]:checked').each(function(){
-	var checkVal = $(this).val();  //체크된 값의 value값 가져오기
-	console.log(checkVal);
+			</div>
+		</div>
+	</div>
 	
+	<input type="hidden" id="loginid" value="${id}" name="loginid">
 	
-/* 	reader.onload = function(event){
-		$('#myModal p ').append('<img  class="textimg" src="' 
-	              + event.target.result + '">');
-    };  */
-});
-
-</script>
-
-
-
-
-
-
-	<%-- 요일 버튼
-<script>
-   function Chk() {
-	   var reault = 
-   }
-	
-</script>
- --%>
-
-	<!-- 서브모달 선택이미지 모달에 미리보기 0819-->
-	<%-- 
-<script>
-reader.onload = function(event) {
-    $('button[type=submit]').change(function(event){
-       console.log('change');
-           reader.onload = function(event){
-             $('#mymodal p ').append('<img class="textimg" src="'
-                                     + event.target.result + '">');
-           };
-})
-</script>
---%>
-
-
-
 </body>
 </html>

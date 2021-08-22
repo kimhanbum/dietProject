@@ -63,7 +63,7 @@ public class TodayDietAction implements Action {
 				String testday = "21/08/22";
 			    //                     db 저장                                      인자값
          		TotalInfo totalinfo = todaydao.getTotalInfo(userId, today1);
-				
+				if(totalinfo != null) {
 				System.out.println(totalinfo.getId());
 				System.out.println(totalinfo.getTotal_date());
 				System.out.println(totalinfo.getTotal_bf());
@@ -198,8 +198,8 @@ public class TodayDietAction implements Action {
 		        request.setAttribute("bf",        bf_comm);
 		        request.setAttribute("lunch", lunch_comm );
 		        request.setAttribute("dinner",dinner_comm);
-		        request.setAttribute("snack",  snack_comm);
-		           	
+		        request.setAttribute("snack",snack_comm);
+				}
 				ActionForward forward =new ActionForward();
 				forward.setRedirect(false);
 				// Today 식단으로 이동하기 위해 경로를 설정합니다.
