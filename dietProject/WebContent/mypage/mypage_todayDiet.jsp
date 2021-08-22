@@ -202,34 +202,39 @@ select::-ms-expand {
 					data-target="#myModal">+</button>
 
 				<div style="overflow: auto; max-height: 200px;">
-					<div style="border: 1px solid black; min-height: 400px; margin: 10px">
-					  <h5>아침</h5>
-				<%-- 		<img src="images/dietSnack/${bf.imgname}" id="recordimg">  --%>
+					<div
+						style="border: 1px solid black; min-height: 400px; margin: 10px">
+						<h5> 아침</h5>
 						<s:out value="${bf.name}" />
 						&nbsp;&nbsp;
-						<s:out value="${bf.cal}" />kcal&nbsp;&nbsp;
-					  <hr>
-					  <h5>점심</h5>
-				<%-- 		<img src="images/dietSnack/${lunch.imgname}" id="recordimg">  --%>
+						<s:out value="${bf.cal}" />
+						kcal&nbsp;(100g 당)&nbsp; <br> 
+						<img src="images/dietSnack/${bf.imgname}" onerror="this.src='images/dietSnack/imgmessage.jpg'" id="recordimg">
+						<hr>
+						<h5> 점심</h5>
 						<s:out value="${lunch.name}" />
 						&nbsp;&nbsp;
-						<s:out value="${lunch.cal}" />kcal&nbsp;&nbsp;
-					  <hr>
-					  <h5>저녁</h5>
-				<%-- 	    <img src="images/dietSnack/${dinner.imgname}" id="recordimg">    --%>
+						<s:out value="${lunch.cal}" />
+						kcal&nbsp;(100g 당)&nbsp; <br> 
+						<img src="images/dietSnack/${lunch.imgname}" onerror="this.src='images/dietSnack/imgmessage.jpg'" id="recordimg">
+						<hr>
+						<h5> 저녁</h5>
 						<s:out value="${dinner.name}" />
 						&nbsp;&nbsp;
-						<s:out value="${dinner.cal}" />kcal&nbsp;&nbsp;
-					  <hr>
-					  <h5>간식</h5>
-				<%-- 		<img src="images/dietSnack/${snack.imgname}" id="recordimg">  --%>
+						<s:out value="${dinner.cal}" />
+						kcal&nbsp;(100g 당)&nbsp; <br> 
+						<img src="images/dietSnack/${dinner.imgname}" onerror="this.src='images/dietSnack/imgmessage.jpg'" id="recordimg">
+						<hr>
+						<h5> 간식</h5>
 						<s:out value="${snack.name}" />
 						&nbsp;&nbsp;
-						<s:out value="${snack.cal}" />kcal&nbsp;&nbsp;
-					  <hr>
-					  </div>
+						<s:out value="${snack.cal}" />
+						kcal&nbsp;(100g 당)&nbsp; <br> 
+						<img src="images/dietSnack/${snack.imgname}" onerror="this.src='images/dietSnack/imgmessage.jpg'" id="recordimg">
+						<hr>
 					</div>
 				</div>
+			</div>
 		</div>
 	</article>
 
@@ -246,43 +251,43 @@ select::-ms-expand {
 					<div class="one">
 						<div>칼로리</div>
 					</div>
-					<div class='title'>${personalinfo.rmr}/
-						${totalinfo.total_cal} / 900</div>
+					<div class='title'>${totalrmr} / ${totalinfo.total_cal} / ${totalrmr - totalinfo.total_cal}</div>
 				</div>
 				<div>
 					<div class="two">
 						<div>영양소</div>
 						<div>탄수화물</div>
 					</div>
-					<div class='title'>100 / ${totalinfo.total_carb} / 30</div>
+					<div class='title'>${calcucarbpro} / ${totalinfo.total_carb} / ${calcucarbpro - totalinfo.total_carb}</div>
 				</div>
 				<div>
 					<div class="three">
 						<div>영양소</div>
 						<div>단백질</div>
 					</div>
-					<div class='title'>100 / ${totalinfo.total_protein} / 40</div>
+					<div class='title'>${calcucarbpro} / ${totalinfo.total_protein} / ${calcucarbpro - totalinfo.total_protein}</div>
 				</div>
 				<div>
 					<div class="four">
 						<div>영양소</div>
 						<div>지방</div>
 					</div>
-					<div class='title'>100 / ${totalinfo.total_fat} / 50</div>
+					<div class='title'>${calcufat} / ${totalinfo.total_fat} /${calcufat - totalinfo.total_fat}</div>
 				</div>
 				<div>
 					<div class="five">
 						<div>물</div>
+						<div>(mL)</div>
 					</div>
-					<div class='title'>8잔 / ${totalinfo.total_water} / 3잔</div>
+					<div class='title'>${calcuwater} / ${totalinfo.total_water * 240} / ${calcuwater- totalinfo.total_water}</div>
 				</div>
-				<div>
+				<%-- <div>
 					<div class="six">
 						<div>운동</div>
-						<div>(kcal)</div>
+						<div>(주 150분)</div>
 					</div>
-					<div class='title'>800 / ${totalinfo.total_workout} / 600</div>
-				</div>
+					<div class='title'> / ${totalinfo.total_workout} / 600</div>
+				</div> --%>
 			</fieldset>
 		</div>
 	</aside>
