@@ -47,8 +47,7 @@ public class TodayDAO {
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(
-					"select * from total_info " + "where id= ?" 
-			        + "and to_date(total_date, 'YY/MM/DD') = ?");
+					"select * from total_info " + "where id= ?" + "and to_date(total_date, 'YY/MM/DD') = ?");
 			pstmt.setString(1, userid);
 			pstmt.setString(2, date);
 			rs = pstmt.executeQuery();
@@ -118,17 +117,16 @@ public class TodayDAO {
 			}
 			pstmt.close();
 			rs.close();
-			
-			String img_sql="select food_img_name from food_info where food_code = ?"; 
-			pstmt = con.prepareStatement(img_sql);	 
-			String food_code=comdiet.getForm().split(",")[0];
+
+			String img_sql = "select food_img_name from food_info where food_code = ?";
+			pstmt = con.prepareStatement(img_sql);
+			String food_code = comdiet.getForm().split(",")[0];
 			System.out.println("food_code : " + food_code);
-			pstmt.setInt(1,Integer.parseInt(food_code)); 
+			pstmt.setInt(1, Integer.parseInt(food_code));
 			rs = pstmt.executeQuery();
-			if(rs.next()) 
-			{ 
-				comdiet.setImgname(rs.getString(1)); 
-			} 
+			if (rs.next()) {
+				comdiet.setImgname(rs.getString(1));
+			}
 		} catch (Exception ex) {
 			System.out.println("getDietlInfo() 에러: " + ex);
 		} finally {
@@ -172,7 +170,7 @@ public class TodayDAO {
 				comdiet.setCarb(rs.getInt("MEAL_CARB"));
 				comdiet.setFat(rs.getInt("MEAL_FAT"));
 				comdiet.setPro(rs.getInt("MEAL_PROTEIN"));
-				comdiet.setCal(rs.getInt("MEALL_CAL"));   /*meall_cal -> meal_cal로 변경 필요*/
+				comdiet.setCal(rs.getInt("MEAL_CAL")); /* meall_cal -> meal_cal로 변경 필요 */
 				comdiet.setImgname(rs.getString("MEAL_IMG_NAME"));
 				comdiet.setMeal(1);
 			}
@@ -285,65 +283,66 @@ public class TodayDAO {
 		}
 		return jArray;
 	}
-	
-	public List<MealInfo> getAllMealList(){
+
+	public List<MealInfo> getAllMealList() {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		ResultSet rs =null;
+		ResultSet rs = null;
 		List<MealInfo> list = new ArrayList<MealInfo>();
-		MealInfo m=null;
-		
-		/*meall_cal -> meal_cal로 변경 필요*/
-		String select_sql ="select meal_code,meal_name,meal_img_name,meall_cal from meal_info";
+		MealInfo m = null;
+
+		/* meall_cal -> meal_cal로 변경 필요 */
+		String select_sql = "select meal_code,meal_name,meal_img_name,meal_cal from meal_info";
 		try {
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(select_sql);
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				m= new MealInfo();
+			while (rs.next()) {
+				m = new MealInfo();
 				m.setMeal_code(rs.getString(1));
 				m.setMeal_name(rs.getString(2));
 				m.setMeal_img_name(rs.getString(3));
 				m.setMeal_cal(rs.getInt(4));
 				list.add(m);
 			}
-		}catch (Exception ex) {
+		} catch (Exception ex) {
 			System.out.println("getAllMealList() 실패 : " + ex);
-		}finally {
+		} finally {
 			try {
-				if(rs != null) 
+				if (rs != null)
 					rs.close();
-			}catch (SQLException e) {
+			} catch (SQLException e) {
 				System.out.println(e.getMessage());
 			}
 			try {
-				if(pstmt != null) 
+				if (pstmt != null)
 					pstmt.close();
-			}catch (SQLException e) {
+			} catch (SQLException e) {
 				System.out.println(e.getMessage());
 			}
 			try {
-				if(conn != null) 
+				if (conn != null)
 					conn.close();
-			}catch (SQLException e) {
+			} catch (SQLException e) {
 				System.out.println(e.getMessage());
 			}
 		}
 		return list;
 	}
+
 	public List<DietInfo> getAllDietList() {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		ResultSet rs =null;
+		ResultSet rs = null;
 		String Diet_list_sql;
 		List<DietInfo> list = new ArrayList<DietInfo>();
 
 		try {
 			conn = ds.getConnection();
-			Diet_list_sql ="select diet_code,diet_name,diet_form,diet_total_cal from diet_info";
+			Diet_list_sql = "select diet_code,diet_name,diet_form,diet_total_cal from diet_info";
 			pstmt = conn.prepareStatement(Diet_list_sql);
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				DietInfo d = new DietInfo();
 				d.setDiet_code(rs.getString("diet_code"));
 				d.setDiet_name(rs.getString("diet_name"));
@@ -351,214 +350,211 @@ public class TodayDAO {
 				d.setDiet_total_cal(rs.getInt("diet_total_cal"));
 				list.add(d);
 			}
-			
-			//현재 공유 식단 정보에서 출력할 이미지를 구성 식자재중 첫번쨰 식자재의 이미지를 사용
+
+			// 현재 공유 식단 정보에서 출력할 이미지를 구성 식자재중 첫번쨰 식자재의 이미지를 사용
 			pstmt.close();
-			String img_sql="select food_img_name from food_info where food_code = ?"; 
-			pstmt = conn.prepareStatement(img_sql);	 
-			for(DietInfo data:list) {
-				String food_code=data.getDiet_form().split(",")[0];
+			String img_sql = "select food_img_name from food_info where food_code = ?";
+			pstmt = conn.prepareStatement(img_sql);
+			for (DietInfo data : list) {
+				String food_code = data.getDiet_form().split(",")[0];
 				System.out.println("food_code : " + food_code);
-				pstmt.setInt(1,Integer.parseInt(food_code)); 
+				pstmt.setInt(1, Integer.parseInt(food_code));
 				rs = pstmt.executeQuery();
-				if(rs.next()) 
-				{ 
-					data.setDiet_img_name(rs.getString(1)); 
-				} 
+				if (rs.next()) {
+					data.setDiet_img_name(rs.getString(1));
+				}
 			}
-			
-		}catch (Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("getAllDietList() 실패  : " + e);
-		}finally {
+		} finally {
 			try {
-				if(rs != null) 
+				if (rs != null)
 					rs.close();
-			}catch (SQLException e) {
+			} catch (SQLException e) {
 				System.out.println(e.getMessage());
 			}
 			try {
-				if(pstmt != null) 
+				if (pstmt != null)
 					pstmt.close();
-			}catch (SQLException e) {
+			} catch (SQLException e) {
 				System.out.println(e.getMessage());
 			}
 			try {
-				if(conn != null) 
+				if (conn != null)
 					conn.close();
-			}catch (SQLException e) {
+			} catch (SQLException e) {
 				System.out.println(e.getMessage());
 			}
 		}
 		return list;
 	}
-	public int setTotalInfo(String userId,String code,String mealtype) {
+
+	public int setTotalInfo(String userId, String code, String mealtype,String resultDate) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		ResultSet rs =null;
-		Commondiet c=null;
-		int result=0;
+		ResultSet rs = null;
+		Commondiet c = null;
+		int result = 0;
 		try {
 			conn = ds.getConnection();
-			if(code.contains("M")) {
-				String select_code ="SELECT * FROM MEAL_INFO WHERE MEAL_CODE = ? ";
+			if (code.contains("M")) {
+				String select_code = "SELECT * FROM MEAL_INFO WHERE MEAL_CODE = ? ";
 				System.out.println(select_code);
 				pstmt = conn.prepareStatement(select_code);
-				pstmt.setString(1,code); 
+				pstmt.setString(1, code);
 				rs = pstmt.executeQuery();
-				if(rs.next()) {
+				if (rs.next()) {
 					c = new Commondiet();
 					c.setCarb(rs.getInt("meal_carb"));
 					c.setFat(rs.getInt("meal_fat"));
 					c.setPro(rs.getInt("meal_protein"));
-					c.setCal(rs.getInt("meall_cal"));  /*meall_cal -> meal_cal로 변경 필요*/
+					c.setCal(rs.getInt("meal_cal")); /* meall_cal -> meal_cal로 변경 필요 */
 				}
-			}
-		    else if(code.contains("D")) {
-		    	String select_code ="SELECT * FROM DIET_INFO WHERE DIET_CODE = ? ";
-		    	System.out.println(select_code);
+			} else if (code.contains("D")) {
+				String select_code = "SELECT * FROM DIET_INFO WHERE DIET_CODE = ? ";
+				System.out.println(select_code);
 				pstmt = conn.prepareStatement(select_code);
-				pstmt.setString(1,code); 
+				pstmt.setString(1, code);
 				rs = pstmt.executeQuery();
-				if(rs.next()) {
+				if (rs.next()) {
 					c = new Commondiet();
 					c.setCarb(rs.getInt("diet_total_carb"));
 					c.setFat(rs.getInt("diet_total_fat"));
 					c.setPro(rs.getInt("diet_total_protein"));
 					c.setCal(rs.getInt("diet_total_cal"));
 				}
-				
-		    }
+
+			}
 			rs.close();
 			pstmt.close();
-			
-			
-			
-			String checkDate_sql =" SELECT COUNT(*) "
-			          			 +" FROM TOTAL_INFO "
-			          			 +" WHERE to_date(TOTAL_DATE, 'YY/MM/DD') = to_date(SYSDATE, 'YY/MM/DD') "
-			          			 +" AND ID = ? ";
+
+			String checkDate_sql = " SELECT COUNT(*) " + " FROM TOTAL_INFO "
+					+ " WHERE to_date(TOTAL_DATE, 'YY/MM/DD') = ? AND ID = ? ";
 			pstmt = conn.prepareStatement(checkDate_sql);
 			System.out.println(checkDate_sql);
-			pstmt.setString(1,userId); 
+			pstmt.setString(1, resultDate);
+			pstmt.setString(2, userId);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				//오늘 날짜로 등록된 값이 없으면 insert 수행
-				if(rs.getInt(1) == 0) {
+			if (rs.next()) {
+				// 해당 날짜로 등록된 값이 없으면 insert 수행
+				if (rs.getInt(1) == 0) {
 					rs.close();
 					pstmt.close();
 					String max_sql = "(select nvl(max(total_num),0)+1 from total_info)";
-					String insert_sql=" INSERT INTO "
-							         +" TOTAL_INFO(ID,"+mealtype+",TOTAL_CARB,TOTAL_FAT,TOTAL_PROTEIN,TOTAL_CAL,TOTAL_DATE,TOTAL_NUM)"
-							         +" VALUES(?,?,?,?,?,?,SYSDATE,"+max_sql+")";
+					String insert_sql = " INSERT INTO " + " TOTAL_INFO(ID," + mealtype
+							+ ",TOTAL_CARB,TOTAL_FAT,TOTAL_PROTEIN,TOTAL_CAL,TOTAL_DATE,TOTAL_NUM)"
+							+ " VALUES(?,?,?,?,?,?,?," + max_sql + ")";
 					System.out.println(insert_sql);
 					pstmt = conn.prepareStatement(insert_sql);
-					pstmt.setString(1,userId); 
-					pstmt.setString(2,code); 
-					pstmt.setInt(3,c.getCarb()); 
-					pstmt.setInt(4,c.getFat()); 
-					pstmt.setInt(5,c.getPro()); 
-					pstmt.setInt(6,c.getCal());
-					result=pstmt.executeUpdate();
-					if(result == 0) {
+					pstmt.setString(1, userId);
+					pstmt.setString(2, code);
+					pstmt.setInt(3, c.getCarb());
+					pstmt.setInt(4, c.getFat());
+					pstmt.setInt(5, c.getPro());
+					pstmt.setInt(6, c.getCal());
+					pstmt.setString(7, resultDate);
+					result = pstmt.executeUpdate();
+					if (result == 0) {
 						System.out.println("데이터 삽입 실패");
 					}
 				}
-				//이미 오늘 날짜로 값이 있으면 update 수행 
+				// 이미 해당 날짜로 값이 있으면 update 수행
 				else {
 					rs.close();
 					pstmt.close();
-					
-					//update할려는 열(아/점/저/간)이 비어있는지 확인
-					String check_sql=" select " + mealtype
-							        +" from total_info "
-							        +" where "+mealtype+" is not null"
-							        +" and to_date(TOTAL_DATE, 'YY/MM/DD') = to_date(SYSDATE, 'YY/MM/DD')"
-									+" and id = ? ";
+
+					// update할려는 열(아/점/저/간)이 비어있는지 확인
+					String check_sql = " select " + mealtype + " from total_info " + " where " + mealtype
+							+ " is not null" + " and to_date(TOTAL_DATE, 'YY/MM/DD') = ? "
+							+ " and id = ? ";
 					System.out.println(check_sql);
 					pstmt = conn.prepareStatement(check_sql);
-					pstmt.setString(1,userId); 
+					pstmt.setString(1, resultDate);
+					pstmt.setString(2, userId);
 					rs = pstmt.executeQuery();
-					
-					
-					//update할 열에 값이 있다면 계산하여 update
-					if(rs.next()) {
-						String prevCode=rs.getString(1);
+
+					// update할 열에 값이 있다면 계산하여 update
+					if (rs.next()) {
+						String prevCode = rs.getString(1);
 						rs.close();
 						pstmt.close();
-						if(prevCode.contains("M")) {
+						if (prevCode.contains("M")) {
 							String select_sql = "SELECT * FROM MEAL_INFO WHERE MEAL_CODE = ? ";
 							System.out.println(select_sql);
 							pstmt = conn.prepareStatement(select_sql);
-							pstmt.setString(1,prevCode); 
+							pstmt.setString(1, prevCode);
 							rs = pstmt.executeQuery();
-							if(rs.next()) {
-								c.setCarb(c.getCarb()-rs.getInt("meal_carb"));
-								c.setFat(c.getFat()-rs.getInt("meal_fat"));
-								c.setPro(c.getPro()-rs.getInt("meal_protein"));
-								c.setCal(c.getCal()-rs.getInt("meall_cal"));  /*meall_cal -> meal_cal로 변경 필요*/
+							if (rs.next()) {
+								c.setCarb(c.getCarb() - rs.getInt("meal_carb"));
+								c.setFat(c.getFat() - rs.getInt("meal_fat"));
+								c.setPro(c.getPro() - rs.getInt("meal_protein"));
+								c.setCal(c.getCal() - rs.getInt("meal_cal")); /* meall_cal -> meal_cal로 변경 필요 */
 							}
-						}else if(prevCode.contains("D")) {
-							String select_sql ="SELECT * FROM DIET_INFO WHERE DIET_CODE = ? ";
+						} else if (prevCode.contains("D")) {
+							String select_sql = "SELECT * FROM DIET_INFO WHERE DIET_CODE = ? ";
 							System.out.println(select_sql);
-							pstmt.setString(1,prevCode); 
+							pstmt.setString(1, prevCode);
 							pstmt = conn.prepareStatement(select_sql);
 							rs = pstmt.executeQuery();
-							if(rs.next()) {
-								c.setCarb(c.getCarb()-rs.getInt("diet_total_carb"));
-								c.setFat(c.getFat()-rs.getInt("diet_total_fat"));
-								c.setPro(c.getPro()-rs.getInt("diet_total_protein"));
-								c.setCal(c.getCal()-rs.getInt("diet_total_cal"));
+							if (rs.next()) {
+								c.setCarb(c.getCarb() - rs.getInt("diet_total_carb"));
+								c.setFat(c.getFat() - rs.getInt("diet_total_fat"));
+								c.setPro(c.getPro() - rs.getInt("diet_total_protein"));
+								c.setCal(c.getCal() - rs.getInt("diet_total_cal"));
 							}
 						}
 					}
-					//update할 열에 값이 없다면 그냥 업데이트	
+					// update할 열에 값이 없다면 그냥 업데이트
 					rs.close();
 					pstmt.close();
-					String update_sql=" UPDATE TOTAL_INFO "
-							         +" SET " +mealtype+" = ? , TOTAL_CARB = TOTAL_CARB + ? , TOTAL_FAT = TOTAL_FAT + ? ,"
-							         +"     TOTAL_PROTEIN = TOTAL_PROTEIN + ? , TOTAL_CAL = TOTAL_CAL + ? "
-							         +" WHERE to_date(TOTAL_DATE, 'YY/MM/DD') = to_date(SYSDATE, 'YY/MM/DD') and ID= ? ";
+					String update_sql = " UPDATE TOTAL_INFO " + " SET " + mealtype
+							+ " = ? , TOTAL_CARB = TOTAL_CARB + ? , TOTAL_FAT = TOTAL_FAT + ? ,"
+							+ "     TOTAL_PROTEIN = TOTAL_PROTEIN + ? , TOTAL_CAL = TOTAL_CAL + ? "
+							+ " WHERE to_date(TOTAL_DATE, 'YY/MM/DD') = ? and ID= ? ";
 					System.out.println(update_sql);
 					pstmt = conn.prepareStatement(update_sql);
-					pstmt.setString(1,code);
-					pstmt.setInt(2,c.getCarb());
-					pstmt.setInt(3,c.getFat());
-					pstmt.setInt(4,c.getPro());
-					pstmt.setInt(5,c.getCal());
-					pstmt.setString(6,userId);
-					result=pstmt.executeUpdate();
-					if(result == 0) {
+					pstmt.setString(1, code);
+					pstmt.setInt(2, c.getCarb());
+					pstmt.setInt(3, c.getFat());
+					pstmt.setInt(4, c.getPro());
+					pstmt.setInt(5, c.getCal());
+					pstmt.setString(6, resultDate);
+					pstmt.setString(7, userId);
+					result = pstmt.executeUpdate();
+					if (result == 0) {
 						System.out.println("데이터 삽입 실패");
 					}
 				}
 			}
-			
-		}catch (Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("setTotalInfo() 실패  : " + e);
-		}finally {
+		} finally {
 			try {
-				if(rs != null) 
+				if (rs != null)
 					rs.close();
-			}catch (SQLException e) {
+			} catch (SQLException e) {
 				System.out.println(e.getMessage());
 			}
 			try {
-				if(pstmt != null) 
+				if (pstmt != null)
 					pstmt.close();
-			}catch (SQLException e) {
+			} catch (SQLException e) {
 				System.out.println(e.getMessage());
 			}
 			try {
-				if(conn != null) 
+				if (conn != null)
 					conn.close();
-			}catch (SQLException e) {
+			} catch (SQLException e) {
 				System.out.println(e.getMessage());
 			}
 		}
 		return result;
 	}
+
 	public PersonalInfo selectrmr(String id) {
 		PersonalInfo personalinformr = null;
 		Connection con = null;

@@ -182,13 +182,15 @@ $(document).ready(function() {
 		}
 		
 		var code = $('#selectedMealDiet>input:hidden').val();
+		var setDate = $('#currDate').text();
 		if(confirm($('#downbtn').val() + "을 변경하시겠습니까?")){
 			$.ajax({
 				type:"post",
 				url:"bottomProcess.to",
 				data : { 
 					"mealtype" : mealtype,
-					"code" : code
+					"code" : code,
+					"setDate" : setDate
 				},
 				dataType:"json",
 				success:function(data){

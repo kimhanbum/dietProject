@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.taglibs.standard.tag.el.sql.SetDataSourceTag;
+
 import to.today.db.TodayDAO;
 
 public class TodayDietBottomProcessAction implements Action{
@@ -28,8 +30,12 @@ public class TodayDietBottomProcessAction implements Action{
 		String userId = (String) session.getAttribute("id"); 
 		System.out.println("sessionid: " + userId);
 		
-
-		int result= tdao.setTotalInfo(userId,code,mealtype);
+		//2021-06-12
+		String[] setDate = ((String)request.getParameter("setDate")).split("-");
+		String resulDate= setDate[0].substring(2)+"/"+setDate[1]+"/"+setDate[2];
+		System.out.println("resulDate : " + resulDate);
+		
+		int result= tdao.setTotalInfo(userId,code,mealtype,resulDate);
 		System.out.println("result :" + result);
 		if(result==0) {
 			System.out.println(mealtype+"넣기에 실패했습니다.");
