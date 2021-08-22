@@ -82,7 +82,7 @@ public class ShRecipeAction implements Action{
 		  JsonElement je= new Gson().toJsonTree(recipeList);
 		  object.add("recipeList", je);
 		  
-		  response.setContentType("text/html;charset:utf-8");
+		  response.setContentType("text/html;charset=utf-8");
 		  response.getWriter().append(object.toString());
 		  System.out.println(object.toString());
 		  

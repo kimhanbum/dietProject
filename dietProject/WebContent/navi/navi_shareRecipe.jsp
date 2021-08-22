@@ -49,7 +49,7 @@ ul>li>.lin:hover{
 				
 				<div class="col-md-6 col-lg-3 ftco-animate">
 					<div class="product">
-						<a href="recipeDetail.rc?recipeCode=${list.recipe_code}" class="img-prod"><img width="328px" height="232px"
+						<a href="shareRecipeDetail.sr?recipeCode=${list.recipe_code}" class="img-prod"><img width="328px" height="232px"
 							src="images/${list.recipe_file}" alt="Colorlib Template">
 
 							<div class="overlay"></div> </a>
