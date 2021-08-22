@@ -14,6 +14,11 @@ button {
 	top: -90px;
 	right: 5px;
 }
+ul>li>.lin:hover{
+  background-color:#8bc34a;
+  color:white;
+
+}
 </style>
 
 </head>
@@ -37,7 +42,7 @@ button {
 	</div>
  
 	<section class="ftco-section">
-		<div class="container">
+		<div class="container" id="cont">
 			<c:if test="${listCount>0}">	
 			<div class="row" id='div_image'>
 			  <c:forEach var="list" items="${recipeList}">
@@ -78,20 +83,18 @@ button {
 				</div>
 			</c:forEach>	
 
-		<c:if test="${listCount==0}">
-		    <font size=5>등록된 레시피가 없습니다.</font>
-		 </c:if>		
+	</div>		
 				
-			</div>
+			
 			<div class="row mt-5">
 				<div class="col text-center">
 					<div class="block-27">
 						<ul id='ul_paging'>
-						<c:if test="${page<1}">
+						<c:if test="${page<=1}">
 						    <li><a class="active">&lt;</a></li>	
 						</c:if>
 						<c:if test="${page>1}">
-						   <li><a href="javascript:go(${page-1})">&lt;</a></li>
+						   <li><a href="javascript:go(${page-1})" class="lin" >&lt;</a></li>
 						</c:if>
 						
 						<c:forEach var="p" begin="${startPage}" end="${endPage}">
@@ -99,19 +102,24 @@ button {
 						      <li><a class="active">${p}</a></li>
 						   </c:if>
 						   <c:if test="${p!=page}">
-						    <li><a href="javascript:go(${p})">${p}</a></li>
+						    <li><a href="javascript:go(${p})" class="lin">${p}</a></li>
 						    </c:if>
 						</c:forEach>
 						
 						<c:if test="${page>=maxPage}">
-						   <li><a class="active">&gl;</a></li>
+						   <li><a class="active">&gt;</a></li>
 						 </c:if>
-
+                       <c:if test="${page<maxPage}">
+                           <li><a href="javascript:go(${page+1})" class="lin">&gt;</a></li>
+                       </c:if>    
 						</ul>
 					</div>
 				</div>
 			</div>
-		</c:if>	
+		</c:if>
+		<c:if test="${listCount==0}">
+		    <font size=5>등록된 레시피가 없습니다.</font>
+		 </c:if>		
 			<button type="button" class="btn btn-primary"
 				style="font-size: 1.2rem; border-radius: 10px">레시피 작성</button>
 		</div>
@@ -149,7 +157,7 @@ button {
 	<jsp:include page="../comm/footer_Subcribe.jsp" />
 	<jsp:include page="../comm/footer_info.jsp" />
 
-
+<script src="js/shareRecipe.js"></script>
 
 
 

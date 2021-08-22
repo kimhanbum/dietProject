@@ -1,6 +1,7 @@
 package sr.shrecipe.action;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,9 +40,9 @@ public class ShRecipeAction implements Action{
 		
 		int listCount= dao.getRecipeListCount();
 		recipeList= dao.getRecipeList(page,limit);
-		
+		System.out.println("listCount=" + listCount);
 		int maxPage= (listCount + limit -1)/limit;
-		System.out.println("Maxpage=" + page);
+		System.out.println("Maxpage=" + maxPage);
 		
 		int startPage= (page-1)/5*5+1;
 		
@@ -59,8 +60,10 @@ public class ShRecipeAction implements Action{
 		  request.setAttribute("startPage", startPage);
 		  request.setAttribute("endPage", endPage);
 		  request.setAttribute("recipeList", recipeList);
-		  request.setAttribute("listcount", listCount);
+		  request.setAttribute("listCount", listCount);
+		 
 		  
+		  System.out.println("1");
 	
 		  forward.setRedirect(false);
 		  forward.setPath("navi/navi_shareRecipe.jsp");

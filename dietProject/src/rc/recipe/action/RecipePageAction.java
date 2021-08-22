@@ -17,24 +17,6 @@ public class RecipePageAction implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ActionForward forward =new ActionForward();
-		RecipeDAO recipedao=new RecipeDAO();
-		List<RecipeInfo> recipeList= new ArrayList<RecipeInfo>();
-		int page=1;
-		int limit=8;
-		
-		if(request.getParameter("page")!=null) {
-		 page=Integer.parseInt(request.getParameter("page"));
-		}
-		
-		//int listcount =  recipedao.getListCount();
-		
-		recipeList= recipedao.getRecipeList(page,limit);
-		
-		
-		
-		
-		
-	     PrintWriter out = response.getWriter();
 		
 		forward.setRedirect(false);
 		forward.setPath("");
