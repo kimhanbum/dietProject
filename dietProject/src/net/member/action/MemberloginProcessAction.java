@@ -47,6 +47,7 @@ public class MemberloginProcessAction implements Action {
 			if (result == -1) {
 				message = "일치하는 아이디가 없습니다.";
 			}
+			response.setContentType("text/html;charset=utf-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('" + message + "')");
