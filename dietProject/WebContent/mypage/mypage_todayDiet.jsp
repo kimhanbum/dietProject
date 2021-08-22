@@ -129,53 +129,17 @@ select::-ms-expand {
 			<div class="week_today">
 				<button id="weekLeftbtn" type="button"
 					style="background: white; border: 0px; ourline: 0px">◀</button>
-				<span id="currDate">${totalinfo.total_date}</span>
+				<s:if test="${empty defautlDate}">
+					<span id="currDate">${totalinfo.total_date}</span>
+				</s:if>
+				<s:if test="${!empty defautlDate}">
+					<span id="currDate">${defautlDate}</span>
+				</s:if>
 				<button id="weekRightbtn" type="button"
 					style="background: white; border: 0px; ourline: 0px">▶</button>
 			</div>
 			<hr>
 
-			<span id="record">물/체중/운동 추가</span>
-			<button type="button"
-				style="background: white; border: 0px; outline: 0px">+</button>
-			<div style="min-height: 30px;">
-				<div class="week d-flex justify-content-around">
-					<div class="p-2 user-info-circle"
-						style="border: 1px solid blue; color: blue;">
-						<span style="margin: 0px 12px 0px 12px">마신물</span>
-						<button type="button"
-							style="height: 5px; background: white; border: 0px; outline: 0px">
-							-</button>
-						<span>4잔</span>
-						<button type="button"
-							style="height: 5px; background: white; border: 0px; outline: 0px">
-							+</button>
-					</div>
-					<div class="p-2 user-info-circle"
-						style="border: 1px solid red; color: red;">
-						<span style="margin: 0px 12px 0px 12px">체중</span>
-						<button type="button"
-							style="height: 5px; background: white; border: 0px; outline: 0px">
-							-</button>
-						<span>50kg</span>
-						<button type="button"
-							style="height: 5px; background: white; border: 0px; outline: 0px">
-							+</button>
-					</div>
-					<div class="p-2 user-info-circle"
-						style="border: 1px solid green; color: green;">
-						<span style="margin: 0px 12px 0px 12px">운동</span>
-						<button type="button"
-							style="height: 5px; background: white; border: 0px; outline: 0px">
-							-</button>
-						<span>30분</span>
-						<button type="button"
-							style="height: 5px; background: white; border: 0px; outline: 0px">
-							+</button>
-					</div>
-				</div>
-			</div>
-			<hr>
 			<!-- modal detail_contents  -->
 			<div class="container">
 				<!-- Button to Open the Modal -->
@@ -186,34 +150,62 @@ select::-ms-expand {
 				<div style="overflow: auto; max-height: 200px;">
 					<div
 						style="border: 1px solid black; min-height: 400px; margin: 10px">
-						<h5> 아침</h5>
-						<s:out value="${bf.name}" />
-						&nbsp;&nbsp;
-						<s:out value="${bf.cal}" />
-						kcal&nbsp;(100g 당)&nbsp; <br> 
-						<img src="images/dietSnack/${bf.imgname}" onerror="this.src='images/dietSnack/imgmessage.jpg'" id="recordimg">
-						<hr>
-						<h5> 점심</h5>
-						<s:out value="${lunch.name}" />
-						&nbsp;&nbsp;
-						<s:out value="${lunch.cal}" />
-						kcal&nbsp;(100g 당)&nbsp; <br> 
-						<img src="images/dietSnack/${lunch.imgname}" onerror="this.src='images/dietSnack/imgmessage.jpg'" id="recordimg">
-						<hr>
-						<h5> 저녁</h5>
-						<s:out value="${dinner.name}" />
-						&nbsp;&nbsp;
-						<s:out value="${dinner.cal}" />
-						kcal&nbsp;(100g 당)&nbsp; <br> 
-						<img src="images/dietSnack/${dinner.imgname}" onerror="this.src='images/dietSnack/imgmessage.jpg'" id="recordimg">
-						<hr>
-						<h5> 간식</h5>
-						<s:out value="${snack.name}" />
-						&nbsp;&nbsp;
-						<s:out value="${snack.cal}" />
-						kcal&nbsp;(100g 당)&nbsp; <br> 
-						<img src="images/dietSnack/${snack.imgname}" onerror="this.src='images/dietSnack/imgmessage.jpg'" id="recordimg">
-						<hr>
+						<s:if test="${!empty bf}">
+							<h5> 아침</h5>
+							<s:out value="${bf.name}" />
+							&nbsp;&nbsp;
+							<s:out value="${bf.cal}" />
+							kcal&nbsp;(100g 당)&nbsp; <br> 
+							<s:if test="${bf.meal == 1 }">
+								<img src="images/dietSnack/${bf.imgname}" onerror="this.src='images/dietSnack/imgmessage.jpg'" id="recordimg">
+							</s:if>
+							<s:if test="${bf.meal == 0 }">
+								<img src="images/food/${bf.imgname}.jpg" onerror="this.src='images/dietSnack/imgmessage.jpg'" id="recordimg">
+							</s:if>
+							<hr>
+						</s:if>
+						<s:if test="${!empty lunch}">
+							<h5> 점심</h5>
+							<s:out value="${lunch.name}" />
+							&nbsp;&nbsp;
+							<s:out value="${lunch.cal}" />
+							kcal&nbsp;(100g 당)&nbsp; <br> 
+							<s:if test="${lunch.meal == 1 }">
+								<img src="images/dietSnack/${lunch.imgname}" onerror="this.src='images/dietSnack/imgmessage.jpg'" id="recordimg">
+							</s:if>
+							<s:if test="${lunch.meal == 0 }">
+								<img src="images/food/${lunch.imgname}.jpg" onerror="this.src='images/dietSnack/imgmessage.jpg'" id="recordimg">
+							</s:if>
+							<hr>
+						</s:if>
+						<s:if test="${!empty dinner}">
+							<h5> 저녁</h5>
+							<s:out value="${dinner.name}" />
+							&nbsp;&nbsp;
+							<s:out value="${dinner.cal}" />
+							kcal&nbsp;(100g 당)&nbsp; <br> 
+							<s:if test="${dinner.meal == 1 }">
+								<img src="images/dietSnack/${dinner.imgname}" onerror="this.src='images/dietSnack/imgmessage.jpg'" id="recordimg">
+							</s:if>
+							<s:if test="${dinner.meal == 0 }">
+								<img src="images/food/${dinner.imgname}.jpg" onerror="this.src='images/dietSnack/imgmessage.jpg'" id="recordimg">
+							</s:if>
+							<hr>
+						</s:if>
+						<s:if test="${!empty snack}">
+							<h5> 간식</h5>
+							<s:out value="${snack.name}" />
+							&nbsp;&nbsp;
+							<s:out value="${snack.cal}" />
+							kcal&nbsp;(100g 당)&nbsp; <br> 
+							<s:if test="${snack.meal == 1 }">
+								<img src="images/dietSnack/${snack.imgname}" onerror="this.src='images/dietSnack/imgmessage.jpg'" id="recordimg">
+							</s:if>
+							<s:if test="${snack.meal == 0 }">
+								<img src="images/food/${snack.imgname}.jpg" onerror="this.src='images/dietSnack/imgmessage.jpg'" id="recordimg">
+							</s:if>
+							<hr>
+						</s:if>
 					</div>
 				</div>
 			</div>
@@ -233,36 +225,64 @@ select::-ms-expand {
 					<div class="one">
 						<div>칼로리</div>
 					</div>
-					<div class='title'>${totalrmr} / ${totalinfo.total_cal} / ${totalrmr - totalinfo.total_cal}</div>
+					<div class='title'> ${totalrmr} 
+					  <s:if test="${!empty totalinfo}">
+					   		/ ${totalinfo.total_cal} / ${totalrmr - totalinfo.total_cal}
+					  </s:if>
+					  <s:if test="${empty totalinfo}">
+					   		/ 0 / ${totalrmr}
+					  </s:if>
+					</div>
 				</div>
 				<div>
 					<div class="two">
 						<div>영양소</div>
 						<div>탄수화물</div>
 					</div>
-					<div class='title'>${calcucarbpro} / ${totalinfo.total_carb} / ${calcucarbpro - totalinfo.total_carb}</div>
+					<div class='title'> ${calcucarbpro} 
+					  <s:if test="${!empty totalinfo}">
+					   		/ ${totalinfo.total_carb} / ${calcucarbpro - totalinfo.total_carb}
+					  </s:if>
+					  <s:if test="${empty totalinfo}">
+					   		/ 0 / ${calcucarbpro}
+					  </s:if>
+					</div>
 				</div>
 				<div>
 					<div class="three">
 						<div>영양소</div>
 						<div>단백질</div>
 					</div>
-					<div class='title'>${calcucarbpro} / ${totalinfo.total_protein} / ${calcucarbpro - totalinfo.total_protein}</div>
+					<div class='title'> ${calcucarbpro} 
+					  <s:if test="${!empty totalinfo}">
+					   		/ ${totalinfo.total_protein} / ${calcucarbpro - totalinfo.total_protein}
+					  </s:if>
+					  <s:if test="${empty totalinfo}">
+					   		/ 0 / ${calcucarbpro}
+					  </s:if>
+					</div>
 				</div>
 				<div>
 					<div class="four">
 						<div>영양소</div>
 						<div>지방</div>
 					</div>
-					<div class='title'>${calcufat} / ${totalinfo.total_fat} /${calcufat - totalinfo.total_fat}</div>
+					<div class='title'> ${calcufat} 
+					  <s:if test="${!empty totalinfo}">
+					   		/ ${totalinfo.total_fat} / ${calcufat - totalinfo.total_fat}
+					  </s:if>
+					  <s:if test="${empty totalinfo}">
+					   		/ 0 / ${calcufat}
+					  </s:if>
+					</div>
 				</div>
-				<div>
+<%-- 				<div>
 					<div class="five">
 						<div>물</div>
 						<div>(mL)</div>
 					</div>
 					<div class='title'>${calcuwater} / ${totalinfo.total_water * 240} / ${calcuwater- totalinfo.total_water}</div>
-				</div>
+				</div> --%>
 				<%-- <div>
 					<div class="six">
 						<div>운동</div>

@@ -8,7 +8,14 @@ public class Commondiet {
 	private int pro;
 	private int cal;
 	private String imgname;
-	
+	private int meal;
+
+	public int getMeal() {
+		return meal;
+	}
+	public void setMeal(int meal) {
+		this.meal = meal;
+	}
 	public String getName() {
 		return name;
 	}

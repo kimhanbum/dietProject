@@ -114,8 +114,21 @@ public class TodayDAO {
 				comdiet.setFat(rs.getInt("DIET_TOTAL_FAT"));
 				comdiet.setPro(rs.getInt("DIET_TOTAL_PROTEIN"));
 				comdiet.setCal(rs.getInt("DIET_TOTAL_CAL"));
-				comdiet.setImgname(rs.getString("DIET_IMG_NAME"));
+				comdiet.setMeal(0);
 			}
+			pstmt.close();
+			rs.close();
+			
+			String img_sql="select food_img_name from food_info where food_code = ?"; 
+			pstmt = con.prepareStatement(img_sql);	 
+			String food_code=comdiet.getForm().split(",")[0];
+			System.out.println("food_code : " + food_code);
+			pstmt.setInt(1,Integer.parseInt(food_code)); 
+			rs = pstmt.executeQuery();
+			if(rs.next()) 
+			{ 
+				comdiet.setImgname(rs.getString(1)); 
+			} 
 		} catch (Exception ex) {
 			System.out.println("getDietlInfo() 에러: " + ex);
 		} finally {
@@ -159,8 +172,9 @@ public class TodayDAO {
 				comdiet.setCarb(rs.getInt("MEAL_CARB"));
 				comdiet.setFat(rs.getInt("MEAL_FAT"));
 				comdiet.setPro(rs.getInt("MEAL_PROTEIN"));
-				comdiet.setCal(rs.getInt("MEAL_CAL"));
+				comdiet.setCal(rs.getInt("MEALL_CAL"));   /*meall_cal -> meal_cal로 변경 필요*/
 				comdiet.setImgname(rs.getString("MEAL_IMG_NAME"));
+				comdiet.setMeal(1);
 			}
 		} catch (Exception ex) {
 			System.out.println("getMealInfo() 에러: " + ex);
