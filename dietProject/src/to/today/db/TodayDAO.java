@@ -545,9 +545,6 @@ public class TodayDAO {
 		}
 		return result;
 	}
-}
-
-
 	public PersonalInfo selectrmr(String id) {
 		PersonalInfo personalinformr = null;
 		Connection con = null;

@@ -45,15 +45,6 @@ public class cfDietFrontContoller extends javax.servlet.http.HttpServlet{
 			case "/cfDietAdd.cf":
 				action = new CfDietAddAction();
 				break;
-			case "/cfDietRemove.cf":
-				action = new CfDietRemoveAction();
-				break;
-			case "/cfDietSearch.cf":
-				action = new CfDietSearchAction();
-				break;
-			case "/cfDietRecomm.cf":
-				action = new CfDietRecommendAction();
-				break;
 			case "/cfDietProcess.cf":
 				action = new CfDietProcessAction();
 				break;
