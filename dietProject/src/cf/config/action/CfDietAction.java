@@ -52,14 +52,10 @@ public class CfDietAction implements Action{
 		if(request.getParameterValues("food_type") !=null) {
 			list =request.getParameterValues("food_type");
 			checkType ="food_type";
-//			for(String fval:list)
-//				System.out.println("f : " + fval);
 		}
 		if(request.getParameterValues("nutrient_type") !=null) {
 			list =request.getParameterValues("nutrient_type");
 			checkType = "nutrient_type";
-//			for(String nval:list)
-//				System.out.println("n : " + nval);
 		}
 		
 		//세션에서 id를 가져옵니다.
@@ -142,7 +138,6 @@ public class CfDietAction implements Action{
 			object.addProperty("checkType", checkType);
 			object.addProperty("searchText", search);
 			
-
 			JsonElement je = new Gson().toJsonTree(foodList);
 			System.out.println("foodList = " + je.toString());
 			object.add("foodList",je);
