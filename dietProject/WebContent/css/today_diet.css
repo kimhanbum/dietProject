@@ -184,7 +184,7 @@ aside a{
 li{
 	list-style: none;
 }
-div >a{
+aside>div>a{
 	padding-left: 40px;
 }
 aside a:hover {

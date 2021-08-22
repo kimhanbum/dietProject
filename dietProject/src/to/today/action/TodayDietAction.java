@@ -59,146 +59,172 @@ public class TodayDietAction implements Action {
 			    System.out.println("sessionid: " + userId);
 			    
 			    
-			    //임의 테스트용 날짜 
-				String testday = "21/08/22";
 			    //                     db 저장                                      인자값
          		TotalInfo totalinfo = todaydao.getTotalInfo(userId, today1);
+         		
 				if(totalinfo != null) {
-				System.out.println(totalinfo.getId());
-				System.out.println(totalinfo.getTotal_date());
-				System.out.println(totalinfo.getTotal_bf());
-				System.out.println(totalinfo.getTotal_lunch());
-				System.out.println(totalinfo.getTotal_dinner());
-				System.out.println(totalinfo.getTotal_snack());
-				System.out.println(totalinfo.getTotal_fat());
-				System.out.println(totalinfo.getTotal_carb());
-				System.out.println(totalinfo.getTotal_cal());
-		
-				//반환형과 같은 타입 string으로 받아준다
-			   String bf = totalinfo.getTotal_bf();
-			   String lunch = totalinfo.getTotal_lunch();
-			   String dinner = totalinfo.getTotal_dinner();
-			   String snack = totalinfo.getTotal_snack();
-			    
-			   
-			   Commondiet bf_comm=null;
-			   Commondiet lunch_comm=null;
-			   Commondiet dinner_comm=null;
-			   Commondiet snack_comm=null;
-			   if(bf.contains("M")) {
-				    bf_comm = todaydao.getMealInfo(bf);
-			   		System.out.println("M이 포함되어 MealInfo에서 정보를 가져왔습니다.");
-			   }else if(bf.contains("D")){
-				    bf_comm = todaydao.getDietInfo(bf);
-				   System.out.println("D가 포함되어 DietInfo에서 정보를 가져왔습니다.");
-			   }
-			   
-				System.out.println("-----bf_comm------");
-				System.out.println(bf_comm.getName());
-				System.out.println(bf_comm.getForm());
-				System.out.println(bf_comm.getCarb());
-				System.out.println(bf_comm.getFat());
-				System.out.println(bf_comm.getPro());
-				System.out.println(bf_comm.getCal());
-				System.out.println(bf_comm.getImgname());
-			   
-			   if(lunch.contains("M")) {
-				   lunch_comm = todaydao.getMealInfo(lunch);
-				   System.out.println("M이 포함되어 MealInfo에서 정보를 가져왔습니다.");
-			   }else if(lunch.contains("D")){
-				   lunch_comm = todaydao.getDietInfo(lunch);
-				   System.out.println("D가 포함되어 DietInfo에서 정보를 가져왔습니다.");
-			   }
-			   
-				System.out.println("-----lunch_comm------");
-				System.out.println(lunch_comm.getName());
-				System.out.println(lunch_comm.getForm());
-				System.out.println(lunch_comm.getCarb());
-				System.out.println(lunch_comm.getFat());
-				System.out.println(lunch_comm.getPro());
-				System.out.println(lunch_comm.getCal());
-				System.out.println(lunch_comm.getImgname());
-			   
-			   if(dinner.contains("M")) {
-				   dinner_comm = todaydao.getMealInfo(dinner);
-				   System.out.println("M이 포함되어 MealInfo에서 정보를 가져왔습니다.");
-			   }else if(dinner.contains("D")){
-				   dinner_comm = todaydao.getDietInfo(dinner);
-				   System.out.println("D가 포함되어 DietInfo에서 정보를 가져왔습니다.");
-			   }
-			   
-				System.out.println("-----dinner_comm------");
-				System.out.println(dinner_comm.getName());
-				System.out.println(dinner_comm.getForm());
-				System.out.println(dinner_comm.getCarb());
-				System.out.println(dinner_comm.getFat());
-				System.out.println(dinner_comm.getPro());
-				System.out.println(dinner_comm.getCal());
-				System.out.println(dinner_comm.getImgname());
-			   
-			   if(snack.contains("M")) {
-				   snack_comm = todaydao.getMealInfo(snack);
-				   System.out.println("M이 포함되어 MealInfo에서 정보를 가져왔습니다.");
-			   }else if(snack.contains("D")){
-				   snack_comm = todaydao.getDietInfo(snack);
-				   System.out.println("D가 포함되어 DietInfo에서 정보를 가져왔습니다.");
-			   }
-				System.out.println("-----snack_comm------");
-				System.out.println(snack_comm.getName());
-				System.out.println(snack_comm.getForm());
-				System.out.println(snack_comm.getCarb());
-				System.out.println(snack_comm.getFat());
-				System.out.println(snack_comm.getPro());
-				System.out.println(snack_comm.getCal());
-				System.out.println(snack_comm.getImgname());
-			   
-		        //totalinfo=null;//error테스트를 위한 값 설정
-		        //DAO에서 글의 내용을 읽지 못했을 경우 null을 반환합니다.
-		        if(totalinfo==null) { System.out.println("상세보기 실패"); 
-		        ActionForward forward = new ActionForward(); forward.setRedirect(false);
-		        request.setAttribute("message", "데이터를 읽지 못했습니다.");
-		        forward.setPath("error/error.jsp"); return forward; }
-		        System.out.println("상세보기 성공");
-		  
-		        //totalinfo 객체를 request 객체에  담는다
-		        //                     아이디                  실제데이터
-		        request.setAttribute("totalinfo", totalinfo);
-		        
-		        
-		        // 오른쪽 바 목표 칼로리
-		        //세션에서 id값 가져옵니다.
-		        String id = (String) session.getAttribute("id"); 
-		        System.out.println("sessionid 값: " + id);
-		        
-		        PersonalInfo personalinfo = todaydao.selectrmr(id);
-		        System.out.println("getRmr: " + personalinfo.getRmr());
-		        
-		        int calcurmr = personalinfo.getRmr();
-		        System.out.println("가져온 rmr 정보:" + calcurmr);
-		        int calcucarbpro = (int) Math.round((calcurmr) * 0.25 / 4);
-		        System.out.println("rmr에서 계산된 carb, pro: " + calcucarbpro);
-		        int calcufat = (int) Math.round((calcurmr) * 0.25 / 9);
-		        System.out.println("rmr에서 계산된 fat: " + calcufat);
-		        
-		        int rmrweight = personalinfo.getWeight();
-		        int weightwater = (int) Math.round((rmrweight) * 30);
-		        System.out.println("무게당 계산된 물 L: " + weightwater +"L");
-		        
-		        //                    아이디                 실제데이터
-		        request.setAttribute("totalrmr", calcurmr);
-		        request.setAttribute("calcucarbpro", calcucarbpro);
-		        request.setAttribute("calcufat", calcufat);
-		        request.setAttribute("calcuwater", weightwater);
-		        
-		        
-		        
-		        
-		        
-		        //                    아이디                 실제데이터
-		        request.setAttribute("bf",        bf_comm);
-		        request.setAttribute("lunch", lunch_comm );
-		        request.setAttribute("dinner",dinner_comm);
-		        request.setAttribute("snack",snack_comm);
+//					System.out.println(totalinfo.getId());
+//					System.out.println(totalinfo.getTotal_date());
+//					System.out.println(totalinfo.getTotal_bf());
+//					System.out.println(totalinfo.getTotal_lunch());
+//					System.out.println(totalinfo.getTotal_dinner());
+//					System.out.println(totalinfo.getTotal_snack());
+//					System.out.println(totalinfo.getTotal_fat());
+//					System.out.println(totalinfo.getTotal_carb());
+//					System.out.println(totalinfo.getTotal_cal());
+			
+					//반환형과 같은 타입 string으로 받아준다
+				   String bf = totalinfo.getTotal_bf();
+				   String lunch = totalinfo.getTotal_lunch();
+				   String dinner = totalinfo.getTotal_dinner();
+				   String snack = totalinfo.getTotal_snack();
+				    
+				   
+				   Commondiet bf_comm=null;
+				   Commondiet lunch_comm=null;
+				   Commondiet dinner_comm=null;
+				   Commondiet snack_comm=null;
+				   if(bf != null) {
+					   if(bf.contains("M")) {
+						    bf_comm = todaydao.getMealInfo(bf);
+					   		System.out.println("M이 포함되어 MealInfo에서 정보를 가져왔습니다.");
+					   }else if(bf.contains("D")){
+						    bf_comm = todaydao.getDietInfo(bf);
+						   System.out.println("D가 포함되어 DietInfo에서 정보를 가져왔습니다.");
+					   }
+						System.out.println("-----bf_comm------");
+						System.out.println(bf_comm.getName());
+						System.out.println(bf_comm.getForm());
+						System.out.println(bf_comm.getCarb());
+						System.out.println(bf_comm.getFat());
+						System.out.println(bf_comm.getPro());
+						System.out.println(bf_comm.getCal());
+						System.out.println(bf_comm.getImgname());
+						System.out.println("is meal ? " + bf_comm.getMeal());
+				   }
+					
+				   if(lunch !=null) {
+					   if(lunch.contains("M")) {
+						   lunch_comm = todaydao.getMealInfo(lunch);
+						   System.out.println("M이 포함되어 MealInfo에서 정보를 가져왔습니다.");
+					   }else if(lunch.contains("D")){
+						   lunch_comm = todaydao.getDietInfo(lunch);
+						   System.out.println("D가 포함되어 DietInfo에서 정보를 가져왔습니다.");
+					   }
+						System.out.println("-----lunch_comm------");
+						System.out.println(lunch_comm.getName());
+						System.out.println(lunch_comm.getForm());
+						System.out.println(lunch_comm.getCarb());
+						System.out.println(lunch_comm.getFat());
+						System.out.println(lunch_comm.getPro());
+						System.out.println(lunch_comm.getCal());
+						System.out.println(lunch_comm.getImgname());
+						System.out.println("is meal ? " + lunch_comm.getMeal());
+				   }
+
+				   if(dinner != null) {
+					   if(dinner.contains("M")) {
+						   dinner_comm = todaydao.getMealInfo(dinner);
+						   System.out.println("M이 포함되어 MealInfo에서 정보를 가져왔습니다.");
+					   }else if(dinner.contains("D")){
+						   dinner_comm = todaydao.getDietInfo(dinner);
+						   System.out.println("D가 포함되어 DietInfo에서 정보를 가져왔습니다.");
+					   }
+						System.out.println("-----dinner_comm------");
+						System.out.println(dinner_comm.getName());
+						System.out.println(dinner_comm.getForm());
+						System.out.println(dinner_comm.getCarb());
+						System.out.println(dinner_comm.getFat());
+						System.out.println(dinner_comm.getPro());
+						System.out.println(dinner_comm.getCal());
+						System.out.println(dinner_comm.getImgname());
+						System.out.println("is meal ? " + dinner_comm.getMeal());
+				   }
+
+				   if(snack !=null) {
+					   if(snack.contains("M")) {
+						   snack_comm = todaydao.getMealInfo(snack);
+						   System.out.println("M이 포함되어 MealInfo에서 정보를 가져왔습니다.");
+					   }else if(snack.contains("D")){
+						   snack_comm = todaydao.getDietInfo(snack);
+						   System.out.println("D가 포함되어 DietInfo에서 정보를 가져왔습니다.");
+					   }
+						System.out.println("-----snack_comm------");
+						System.out.println(snack_comm.getName());
+						System.out.println(snack_comm.getForm());
+						System.out.println(snack_comm.getCarb());
+						System.out.println(snack_comm.getFat());
+						System.out.println(snack_comm.getPro());
+						System.out.println(snack_comm.getCal());
+						System.out.println(snack_comm.getImgname());
+						System.out.println("is meal ? " + snack_comm.getMeal());
+				   }
+			  
+			        //totalinfo 객체를 request 객체에  담는다
+			        //                     아이디                  실제데이터
+			        request.setAttribute("totalinfo", totalinfo);
+			        
+			        // 오른쪽 바 목표 칼로리
+			        //세션에서 id값 가져옵니다.
+			        String id = (String) session.getAttribute("id"); 
+			        System.out.println("sessionid 값: " + id);
+			        
+			        PersonalInfo personalinfo = todaydao.selectrmr(id);
+			        System.out.println("getRmr: " + personalinfo.getRmr());
+			        
+			        int calcurmr = personalinfo.getRmr();
+			        System.out.println("가져온 rmr 정보:" + calcurmr);
+			        int calcucarbpro = (int) Math.round((calcurmr) * 0.25 / 4);
+			        System.out.println("rmr에서 계산된 carb, pro: " + calcucarbpro);
+			        int calcufat = (int) Math.round((calcurmr) * 0.25 / 9);
+			        System.out.println("rmr에서 계산된 fat: " + calcufat);
+			        
+			        int rmrweight = personalinfo.getWeight();
+			        int weightwater = (int) Math.round((rmrweight) * 30);
+			        System.out.println("무게당 계산된 물 L: " + weightwater +"L");
+			        
+			        //                    아이디                 실제데이터
+			        request.setAttribute("totalrmr", calcurmr);
+			        request.setAttribute("calcucarbpro", calcucarbpro);
+			        request.setAttribute("calcufat", calcufat);
+			        request.setAttribute("calcuwater", weightwater);
+			        
+ 
+			        //                    아이디                 실제데이터
+			        request.setAttribute("bf",        bf_comm);
+			        request.setAttribute("lunch", lunch_comm );
+			        request.setAttribute("dinner",dinner_comm);
+			        request.setAttribute("snack",snack_comm);
+				}
+				else {
+					
+			        String id = (String) session.getAttribute("id"); 
+			        System.out.println("sessionid 값: " + id);
+			        
+			        PersonalInfo personalinfo = todaydao.selectrmr(id);
+			        System.out.println("getRmr: " + personalinfo.getRmr());
+			        
+			        int calcurmr = personalinfo.getRmr();
+			        System.out.println("가져온 rmr 정보:" + calcurmr);
+			        int calcucarbpro = (int) Math.round((calcurmr) * 0.25 / 4);
+			        System.out.println("rmr에서 계산된 carb, pro: " + calcucarbpro);
+			        int calcufat = (int) Math.round((calcurmr) * 0.25 / 9);
+			        System.out.println("rmr에서 계산된 fat: " + calcufat);
+			        
+			        int rmrweight = personalinfo.getWeight();
+			        int weightwater = (int) Math.round((rmrweight) * 30);
+			        System.out.println("무게당 계산된 물 L: " + weightwater +"L");
+					
+					
+					String[] tarray = today1.split("/");
+				    String defautlDate = "20"+tarray[0]+"-"+tarray[1]+"-"+tarray[2];
+
+//                  아이디                 실제데이터
+			        request.setAttribute("totalrmr", calcurmr);
+			        request.setAttribute("calcucarbpro", calcucarbpro);
+			        request.setAttribute("calcufat", calcufat);
+			        request.setAttribute("calcuwater", weightwater);
+			        request.setAttribute("defautlDate",defautlDate);
 				}
 				ActionForward forward =new ActionForward();
 				forward.setRedirect(false);
