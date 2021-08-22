@@ -7,23 +7,15 @@
 		<ul>
 			<hr>
 			<li><p class="icon-receipt">&nbsp;&nbsp;콘텐츠</p>
-				<ul>
-					<li><a href="infoCheck.my">내정보</a></li>
+				<ul style="line-height:28pt">
+					
 					<li><a href="todayDiet.to">Today 식단</a></li>
 					<li><a href="dietpage.dt">내 식단 리스트</a></li>
 					<li><a href="dietShareAddpage.dt">담은 리스트</a></li>
-				</ul>
-			</li>
-			<hr>
-			<li><p class="icon-chat_bubble_outline">&nbsp;&nbsp;댓글·방명록</p>
-				
-				<ul>
 					<li><a href="dietSharePage.dt">나의 공유식단</a></li>
-					<li><a href="recipePage.rc">나의 레시피</a></li>
-					<li><a href="replyTo.rp">내가 남긴 댓글</a></li>
-					<li><a href="replyFrom.rp">내게 남긴 댓글</a></li>
 				</ul>
 			</li>
+			
 		</ul>
 	</div>
 </aside>
