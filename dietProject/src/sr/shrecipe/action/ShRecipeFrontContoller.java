@@ -48,6 +48,9 @@ public class ShRecipeFrontContoller extends javax.servlet.http.HttpServlet{
 			case "/shareRecipeInsertProcess.sr":
 				action = new ShRecipeInsertProcessAction();
 				break;
+			case "/shareRecipeDetail.sr":
+				action = new ShRecipeDetailAction();
+				break;		
 		}
 		
 		forward = action.execute(request,response);

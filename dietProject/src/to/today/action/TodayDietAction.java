@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import _comm.javabean.Commondiet;
+import _comm.javabean.PersonalInfo;
 import _comm.javabean.TotalInfo;
+import net.member.db.MemberDAO;
 import to.today.db.TodayDAO;
 
 public class TodayDietAction implements Action {
@@ -24,7 +26,7 @@ public class TodayDietAction implements Action {
 				//
 				String today1=null;
 			    Calendar cal = Calendar.getInstance();
-				// ◀▶버튼눌렀을때
+				// Today 식단의  ◀, ▶버튼 눌렀을 때
 				if(request.getParameter("today") != null) {  //(today)값이 있는지 체크
 					String currentDate = request.getParameter("currentdate"); //형식 : YYYY-DD-MM
 					//현재 페이지의 날짜를 가져와서 calender 타입 cal변수에 세팅
@@ -37,10 +39,12 @@ public class TodayDietAction implements Action {
 					cal.add(Calendar.DATE, today);
 				    today1 = new SimpleDateFormat("YY/MM/dd").format(cal.getTime()); 
 				    System.out.println("클릭후 today 날짜= " + today1);
+				// MY 식단의 달력 날짜 눌렀을 떄
 				} else if(request.getParameter("searchDate") != null){
 					 today1 = request.getParameter("searchDate");
 					 
 				}
+				// 왼쪽 네비바 Today식단 눌렀을 때 
 				else {
 					cal.setTime(new Date(System.currentTimeMillis()));
 					today1 = new SimpleDateFormat("YY/MM/dd").format(cal.getTime()); 
@@ -155,15 +159,44 @@ public class TodayDietAction implements Action {
 		        request.setAttribute("message", "데이터를 읽지 못했습니다.");
 		        forward.setPath("error/error.jsp"); return forward; }
 		        System.out.println("상세보기 성공");
-		 	
 		  
 		        //totalinfo 객체를 request 객체에  담는다
 		        //                     아이디                  실제데이터
 		        request.setAttribute("totalinfo", totalinfo);
 		        
-		       
-		        request.setAttribute("bf",bf_comm);
-		        request.setAttribute("lunch",lunch_comm );
+		        
+		        // 오른쪽 바 목표 칼로리
+		        //세션에서 id값 가져옵니다.
+		        String id = (String) session.getAttribute("id"); 
+		        System.out.println("sessionid 값: " + id);
+		        
+		        PersonalInfo personalinfo = todaydao.selectrmr(id);
+		        System.out.println("getRmr: " + personalinfo.getRmr());
+		        
+		        int calcurmr = personalinfo.getRmr();
+		        System.out.println("가져온 rmr 정보:" + calcurmr);
+		        int calcucarbpro = (int) Math.round((calcurmr) * 0.25 / 4);
+		        System.out.println("rmr에서 계산된 carb, pro: " + calcucarbpro);
+		        int calcufat = (int) Math.round((calcurmr) * 0.25 / 9);
+		        System.out.println("rmr에서 계산된 fat: " + calcufat);
+		        
+		        int rmrweight = personalinfo.getWeight();
+		        int weightwater = (int) Math.round((rmrweight) * 30);
+		        System.out.println("무게당 계산된 물 L: " + weightwater +"L");
+		        
+		        //                    아이디                 실제데이터
+		        request.setAttribute("totalrmr", calcurmr);
+		        request.setAttribute("calcucarbpro", calcucarbpro);
+		        request.setAttribute("calcufat", calcufat);
+		        request.setAttribute("calcuwater", weightwater);
+		        
+		        
+		        
+		        
+		        
+		        //                    아이디                 실제데이터
+		        request.setAttribute("bf",        bf_comm);
+		        request.setAttribute("lunch", lunch_comm );
 		        request.setAttribute("dinner",dinner_comm);
 		        request.setAttribute("snack",snack_comm);
 				}
